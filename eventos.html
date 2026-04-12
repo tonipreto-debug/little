@@ -1,0 +1,2184 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos | Little Juego Libre — Espacios Infantiles para Bodas, Comuniones y Más</title>
+    <meta name="description"
+        content="Creamos rincones infantiles con alma para bodas, comuniones y eventos corporativos en Mallorca. Materiales naturales, juego libre y acompañamiento respetuoso.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="./css/style.css?v=14">
+
+    <style>
+        /* ======= EVENTOS PAGE SPECIFIC STYLES ======= */
+
+        /* Hero */
+        .eventos-hero {
+            position: relative;
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background-color: #f9f3ee;
+        }
+        .eventos-hero-bg {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            z-index: 0;
+        }
+        .eventos-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(249, 243, 238, 0.65); /* Subtle overlay matching light page color */
+            z-index: 2;
+        }
+        .hero-bg-col {
+            flex: 1;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(100%);
+            z-index: 1;
+        }
+        @media (max-width: 768px) {
+            .hero-bg-col:not(:first-child) {
+                display: none;
+            }
+        }
+        .eventos-hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px; /* Slightly wider for better balance */
+            padding: 40px 20px;
+            text-align: center;
+            margin: 0 auto;
+        }
+        /* Definitive removal of legacy deco blobs */
+        .eventos-hero-deco, .eventos-hero-deco.d1, .eventos-hero-deco.d2 {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+        }
+        .eventos-hero-eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-accent-primary);
+            margin-bottom: 20px;
+            display: block;
+        }
+        .eventos-hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: #3a2e28;
+            line-height: 1.15;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .eventos-hero-title em {
+            color: var(--color-accent-primary);
+            font-style: italic;
+        }
+        .eventos-hero-desc {
+            font-size: 1.1rem;
+            color: #6b5c52;
+            max-width: 580px;
+            margin: 0 auto 40px;
+            line-height: 1.75;
+        }
+
+        /* Section Labels */
+        .section-eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-accent-primary);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-back-shift {
+                position: absolute !important;
+                top: 160px !important;
+                left: 20px !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                z-index: 100 !important;
+            }
+            .eventos-hero-content {
+                padding-top: 80px !important; /* Make room for the link */
+            }
+        }
+        /* Philosophy Strip */
+        .philosophy-strip {
+            background: var(--color-accent-primary);
+            padding: 60px 0;
+            color: white;
+        }
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        .philosophy-item .ph-icon {
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+            display: block;
+            opacity: 0.9;
+        }
+        .philosophy-item h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+        .philosophy-item p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            line-height: 1.7;
+        }
+
+        /* Editorial Event Types */
+        .event-types-section {
+            padding: 120px 0 80px;
+            background: white;
+        }
+        .editorial-row {
+            display: grid;
+            grid-template-columns: 10fr 12fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 140px;
+            position: relative;
+        }
+        .editorial-row.reverse {
+            grid-template-columns: 12fr 10fr;
+        }
+        .editorial-img-col {
+            position: relative;
+        }
+        .editorial-row.reverse .editorial-img-col {
+            order: 2;
+        }
+        .editorial-text-col {
+            position: relative;
+            z-index: 2;
+        }
+        .editorial-row.reverse .editorial-text-col {
+            order: 1;
+            padding-right: 40px;
+        }
+        .editorial-row:not(.reverse) .editorial-text-col {
+            padding-left: 40px;
+        }
+        
+        .ed-img-wrap {
+            position: relative;
+            overflow: hidden;
+        }
+        /* Typical 4:5 portrait ratio */
+        .ed-img-wrap::before {
+            content: '';
+            display: block;
+            padding-bottom: 125%; 
+        }
+        .ed-img-wrap img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .ed-img-wrap:hover img {
+            transform: scale(1.03);
+        }
+        
+        /* Thin border deco */
+        .ed-img-deco {
+            position: absolute;
+            border: 1px solid rgba(224,95,89,0.3);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .editorial-row:not(.reverse) .ed-img-deco {
+            top: -20px; left: -20px; right: 20px; bottom: 20px;
+        }
+        .editorial-row.reverse .ed-img-deco {
+            top: -20px; right: -20px; left: 20px; bottom: 20px;
+        }
+        
+        .ed-eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #bfa59a;
+            margin-bottom: 25px;
+            display: block;
+        }
+        
+        .ed-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #3a2e28;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            position: relative;
+            /* overlapping the image slightly visually */
+            margin-left: -80px; 
+        }
+        .editorial-row.reverse .ed-title {
+            margin-left: 0;
+            margin-right: -80px;
+        }
+        
+        .ed-desc {
+            font-size: 1.05rem;
+            color: #7a6a62;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+        
+        .ed-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 45px;
+        }
+        .ed-features li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: #5a4a42;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        .ed-features li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent-primary);
+        }
+        
+        .btn-editorial {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-accent-primary);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(224,95,89,0.3);
+            padding-bottom: 5px;
+            transition: all 0.3s;
+        }
+        .btn-editorial:hover {
+            color: #3a2e28;
+            border-bottom-color: #3a2e28;
+            gap: 18px;
+        }
+
+        /* Zones Section */
+        .zones-section {
+            padding: 100px 0;
+            background: #faf7f4;
+        }
+        .zones-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+        .zone-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 35px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+            border: 1px solid rgba(224,95,89,0.08);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .zone-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        .zone-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent-primary), #f0a090);
+        }
+        .zone-icon-wrap {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(224,95,89,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .zone-icon-wrap .material-symbols-rounded {
+            font-size: 1.8rem;
+            color: var(--color-accent-primary);
+            font-variation-settings: 'wght' 300;
+        }
+        .zone-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            color: #3a2e28;
+            margin-bottom: 14px;
+        }
+        .zone-card p {
+            color: #7a6a62;
+            font-size: 0.92rem;
+            line-height: 1.75;
+            margin-bottom: 18px;
+        }
+        .zone-materials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .zone-tag {
+            font-size: 0.75rem;
+            background: rgba(224,95,89,0.1);
+            color: var(--color-accent-primary);
+            border-radius: 30px;
+            padding: 4px 12px;
+            font-weight: 500;
+        }
+
+        /* Materials Strip */
+        .materials-section {
+            background: #3a2e28;
+            padding: 80px 0;
+            color: white;
+        }
+        .materials-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .materials-text h2 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            line-height: 1.25;
+            margin-bottom: 20px;
+        }
+        .materials-text h2 em { color: #f0a090; font-style: italic; }
+        .materials-text p {
+            opacity: 0.8;
+            line-height: 1.8;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+        }
+        .materials-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .material-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .material-item .material-symbols-rounded {
+            font-size: 1.5rem;
+            color: #f0a090;
+            font-variation-settings: 'wght' 300;
+        }
+        .material-item span:last-child {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        /* CTA Section Editorial */
+        .eventos-cta {
+            background: var(--int-dark, #2b312b); 
+            padding: 140px 0;
+            text-align: center;
+            color: #edeadf;
+            position: relative;
+        }
+        .eventos-cta::after {
+            content: '';
+            position: absolute;
+            top: 20px; right: 20px; bottom: 20px; left: 20px;
+            border: 1px solid rgba(237,234,223,0.15);
+            pointer-events: none;
+        }
+        .eventos-cta h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 400;
+            margin-bottom: 25px;
+            color: white;
+            font-style: italic;
+        }
+        .eventos-cta p {
+            opacity: 0.85;
+            font-size: 1.05rem;
+            max-width: 520px;
+            margin: 0 auto 50px;
+            line-height: 1.9;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-cta-white {
+            background: white;
+            color: var(--int-dark, #2b312b);
+            border: none;
+            padding: 16px 45px;
+            border-radius: 2px;
+            font-family: var(--font-body);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .btn-cta-white:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .btn-cta-outline {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 2px;
+            padding: 15px 45px;
+            font-family: var(--font-body);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s, border-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .btn-cta-outline:hover { border-color: white; background: rgba(255,255,255,0.05); }
+
+        /* ======= ANIMATIONS ======= */
+
+        /* Gravity-Defying Text Reveal */
+        .reveal-text {
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: bottom;
+        }
+        .reveal-word {
+            display: inline-block;
+            transform: translateY(110%);
+            opacity: 0;
+            animation: gravity-float-up 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            will-change: transform, opacity;
+        }
+        @keyframes gravity-float-up {
+            from { transform: translateY(110%) rotate(5deg); opacity: 0; }
+            to { transform: translateY(0) rotate(0deg); opacity: 1; }
+        }
+
+        /* Ambient Floating Particles */
+        .ambient-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float-particle var(--duration) linear infinite;
+            opacity: 0;
+        }
+        @keyframes float-particle {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(var(--move-y)) translateX(var(--move-x)); opacity: 0; }
+        }
+
+        /* 3D Tilt Utility */
+        .tilt-card {
+            transition: transform 0.1s ease-out;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+        .tilt-content {
+            transform: translateZ(30px);
+        }
+
+        /* Stats counter section Editorial */
+        .stats-section {
+            padding: 140px 0;
+            background: #faf7f4;
+            border: none;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: clamp(3.5rem, 6vw, 4.5rem);
+            font-weight: 300;
+            color: #3a2e28;
+            line-height: 1;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: #9a8a82;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+        }
+
+        /* Card slide-in from sides */
+        .slide-left  { opacity: 0; transform: translateX(-60px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .slide-right { opacity: 0; transform: translateX(60px);  transition: opacity 0.7s ease, transform 0.7s ease; }
+        .slide-left.in-view, .slide-right.in-view { opacity: 1; transform: translateX(0); }
+
+        /* LittleGlamping section */
+        .glamping-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1a2a1b 0%, #2a3b2b 60%, #162417 100%);
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+        .glamping-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 80% 50%, rgba(224,95,89,0.15) 0%, transparent 60%);
+        }
+        .glamping-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .glamping-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 30px;
+            padding: 6px 16px;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #c8dfc9;
+            margin-bottom: 20px;
+        }
+        .glamping-title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .glamping-title span { color: #f0a090; font-style: italic; }
+        .glamping-desc {
+            opacity: 0.8;
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+        .glamping-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 40px;
+        }
+        .glamping-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+        .glamping-features li .material-symbols-rounded {
+            color: #c8dfc9;
+            font-size: 1.1rem;
+            font-variation-settings: 'wght' 300;
+            flex-shrink: 0;
+        }
+        .btn-glamping {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #f0a090, var(--color-accent-primary));
+            color: white;
+            border-radius: 50px;
+            padding: 16px 40px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 8px 30px rgba(224,95,89,0.4);
+            cursor: pointer;
+            will-change: transform;
+        }
+        .btn-glamping:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 16px 45px rgba(224,95,89,0.5);
+        }
+        .glamping-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .glamping-circle-bg {
+            width: 340px;
+            height: 340px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            gap: 10px;
+            position: relative;
+        }
+        .glamping-circle-bg::before {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            border-radius: 50%;
+            border: 1px dashed rgba(200,223,201,0.3);
+            animation: spin-slow 30s linear infinite;
+        }
+        @keyframes spin-slow { to { transform: rotate(360deg); } }
+        .glamp-icon {
+            font-size: 4rem;
+            color: #c8dfc9;
+            font-variation-settings: 'wght' 300;
+        }
+        .glamp-x {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.3);
+        }
+        .glamp-names {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+        }
+
+        /* ======= EL ALMA (QUIENES SOMOS) ======= */
+        .alma-section {
+            padding: 120px 0;
+            background: #faf7f4;
+            text-align: center;
+        }
+        .alma-quote {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--color-accent-primary);
+            font-style: italic;
+            line-height: 1.25;
+            max-width: 900px;
+            margin: 0 auto 50px auto;
+            position: relative;
+        }
+        .alma-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            text-align: left;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .alma-text p {
+            color: #7a6a62;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* ======= EXTRAS MOSAIC ======= */
+        .extras-section {
+            padding: 120px 0;
+            background: #fdfbf9;
+            border-top: 1px solid rgba(224,95,89,0.1);
+        }
+        .extras-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        .extras-header h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: #3a2e28;
+            margin-bottom: 15px;
+        }
+        .extras-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        .extra-card {
+            background: white;
+            border: 1px solid rgba(224,95,89,0.15);
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 220px;
+        }
+        .extra-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(224,95,89,0.03);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.4s ease;
+            z-index: 0;
+        }
+        .extra-card:hover {
+            border-color: rgba(224,95,89,0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(224,95,89,0.1);
+        }
+        .extra-card:hover::before {
+            transform: scaleY(1);
+        }
+        .extra-card > * {
+            position: relative;
+            z-index: 1;
+        }
+        .extra-title {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: #3a2e28;
+            margin-bottom: 15px;
+        }
+        .extra-desc {
+            font-size: 0.9rem;
+            color: #7a6a62;
+            line-height: 1.6;
+        }
+
+        /* ======= LOGISTICA COLUMNS ======= */
+        .logistica-section {
+            padding: 100px 0;
+            background: white;
+        }
+        .logistica-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+        }
+        .logistica-col h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--color-accent-primary);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .logistica-col p {
+            font-size: 0.95rem;
+            color: #5a4a42;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        /* ======= ANIMATIONS EXTRA ======= */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal-up.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ======= MOBILE OVERRIDES ======= */
+        @media (max-width: 900px) {
+            .editorial-row {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                margin-bottom: 100px;
+            }
+            .editorial-row.reverse {
+                grid-template-columns: 1fr;
+            }
+            .editorial-row.reverse .editorial-img-col {
+                order: 0;
+            }
+            .editorial-row.reverse .editorial-text-col {
+                order: 0;
+                padding-right: 0;
+            }
+            .editorial-row:not(.reverse) .editorial-text-col {
+                padding-left: 0;
+            }
+            .ed-title {
+                margin-left: 0;
+                margin-right: 0 !important;
+                font-size: 2.2rem;
+            }
+            .eventos-cta {
+                padding: 100px 20px;
+            }
+            .stats-grid { grid-template-columns: 1fr; gap: 50px; }
+            .glamping-inner { grid-template-columns: 1fr; gap: 40px; }
+            .glamping-circle-bg { width: 240px; height: 240px; }
+            .glamping-visual { order: -1; }
+            .alma-grid { grid-template-columns: 1fr; gap: 30px; }
+            .extras-grid { grid-template-columns: 1fr; gap: 20px; }
+            .logistica-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        /* ======= PDF LAYOUT STYLES ======= */
+        .pdf-bg { background-color: #fdf7ed; }
+        .pdf-bg-alt { background-color: #f7f1e6; }
+        .pdf-terracotta { color: #a45037 !important; }
+        
+        .pdf-title-container { 
+            text-align: right; 
+            margin-bottom: 50px; 
+            padding-right: 5%;
+        }
+        .pdf-title { 
+            font-family: var(--font-heading); 
+            font-size: clamp(2rem, 4vw, 3rem); 
+            color: #a45037; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            position: relative;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+        .pdf-title::before, .pdf-title::after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            background: #a45037;
+        }
+        .pdf-title::before { top: -15px; left: -20px; right: 20px; }
+        .pdf-title::after { bottom: -15px; left: 20px; right: -20px; }
+        
+        .pdf-subtitle {
+            color: #a45037;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 30px auto;
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        /* Forma de Crear */
+        .forma-crear-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .forma-text-col p {
+            color: #a45037;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        .forma-text-col strong {
+            font-weight: 700;
+        }
+        .forma-text-col .quote {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: 1.4rem;
+            text-align: center;
+            margin-top: 40px;
+            color: #a45037;
+        }
+        .forma-img-col {
+            position: relative;
+            height: 500px;
+        }
+        .forma-img-1 {
+            position: absolute;
+            top: 0; right: 0;
+            width: 65%; height: 60%;
+            border-radius: 200px 200px 0 0;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(164,80,55,0.1);
+        }
+        .forma-img-2 {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 55%; height: 70%;
+            border-radius: 0 200px 200px 0;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(164,80,55,0.1);
+        }
+
+        /* Talleres Círculos */
+        .talleres-row {
+            display: flex;
+            justify-content: center;
+            gap: 3%;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+        .taller-circle-item {
+            text-align: center;
+            width: 220px;
+            margin-bottom: 40px;
+        }
+        .taller-circle-title {
+            color: #a45037;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            min-height: 50px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            border-bottom: 1px solid #a45037;
+            padding-bottom: 10px;
+            flex-direction: column;
+        }
+        .taller-circle-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto;
+            border: 5px solid #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            transition: transform 0.4s ease;
+        }
+        .taller-circle-item:hover .taller-circle-img {
+            transform: scale(1.05) translateY(-5px);
+        }
+        .btn-oval {
+            display: inline-block;
+            background-color: #ebdccc;
+            color: #a45037;
+            border-radius: 30px;
+            padding: 10px 30px;
+            font-size: 0.95rem;
+            text-decoration: underline;
+            text-decoration-color: #a45037;
+            text-underline-offset: 4px;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+        }
+        .btn-oval:hover {
+            background-color: #d6cab9;
+        }
+
+        /* Timeline */
+        .timeline-container {
+            position: relative;
+            margin: 100px 0 60px;
+            padding: 20px 0;
+        }
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 5%; right: 5%;
+            height: 2px;
+            background: #edc9b8;
+            z-index: 1;
+        }
+        .timeline-items {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+        .timeline-item {
+            width: 150px;
+            text-align: center;
+            position: relative;
+        }
+        .timeline-item.top {
+            transform: translateY(-50%);
+        }
+        .timeline-item.bottom {
+            transform: translateY(50%);
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 14px; height: 14px;
+            background: #e8c6b8;
+            border-radius: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .timeline-item.top::after { bottom: -60px; }
+        .timeline-item.bottom::after { top: -60px; }
+        
+        .timeline-title {
+            color: #a45037;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            min-height: 40px;
+        }
+        .timeline-img {
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px auto;
+            border: 3px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.4s;
+        }
+        .timeline-item:hover .timeline-img {
+            transform: scale(1.05);
+        }
+        .timeline-desc {
+            color: #a45037;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* Estacion Sensorial */
+        .sensorial-box {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .sensorial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .sens-arch {
+            width: 100%;
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .sens-arch-p1 { border-radius: 150px 150px 20px 20px; height: 350px; }
+        .sens-arch-p2 { border-radius: 150px 150px 20px 20px; height: 400px; }
+        .sens-arch-p3 { border-radius: 20px 20px 150px 150px; height: 300px; }
+        .sens-arch-p4 { border-radius: 20px 20px 150px 150px; height: 250px; }
+
+        @media (max-width: 900px) {
+            .forma-crear-grid { grid-template-columns: 1fr; }
+            .forma-img-col { height: 400px; }
+            .timeline-line { display: none; }
+            .timeline-items { flex-direction: column; align-items: center; gap: 40px; }
+            .timeline-item.top, .timeline-item.bottom { transform: none; }
+            .timeline-item.top::after, .timeline-item.bottom::after { display: none; }
+            .sensorial-box { grid-template-columns: 1fr; }
+            .pdf-title-container { text-align: center; padding-right: 0; }
+            .pdf-title::before, .pdf-title::after { display: none; }
+        }
+
+        /* ===== PERSONALIZA VUESTRA EXPERIENCIA ===== */
+        .personaliza-section {
+            padding: 110px 0 120px;
+            background: var(--pdf-bg, #f4edea);
+            position: relative;
+        }
+        .personaliza-section::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c9a98a 30%, #a45037 50%, #c9a98a 70%, transparent);
+        }
+        .personaliza-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .personaliza-header .pdf-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: #a45037;
+            border: 1px solid rgba(164,80,55,0.35);
+            padding: 5px 16px;
+            border-radius: 100px;
+            margin-bottom: 18px;
+        }
+        .personaliza-sub {
+            color: #7a6a62;
+            font-size: 1.05rem;
+            max-width: 500px;
+            margin: 14px auto 0;
+            line-height: 1.7;
+        }
+        /* 3-column grid, 2 rows */
+        .personaliza-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1020px;
+            margin: 0 auto;
+        }
+        .pcard {
+            background: #fff;
+            border-radius: 20px;
+            padding: 36px 30px 32px;
+            position: relative;
+            border: 1px solid rgba(164,80,55,0.1);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            overflow: hidden;
+        }
+        .pcard::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #e8d0c0, #a45037, #e8d0c0);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        .pcard:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(164,80,55,0.12);
+        }
+        .pcard:hover::after { opacity: 1; }
+
+        .pcard-featured {
+            background: linear-gradient(145deg, #fff 60%, #fdf6f3);
+            border-color: rgba(164,80,55,0.25);
+        }
+        .pcard-badge {
+            position: absolute;
+            top: 18px; right: 18px;
+            background: #a45037;
+            color: white;
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 100px;
+        }
+        .pcard-icon-wrap {
+            width: 52px;
+            height: 52px;
+            background: #fdf0eb;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .pcard-icon-wrap svg {
+            width: 28px;
+            height: 28px;
+        }
+        .pcard-num {
+            font-family: var(--font-heading, 'Playfair Display', serif);
+            font-size: 0.75rem;
+            color: rgba(164,80,55,0.4);
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+        .pcard h3 {
+            font-family: var(--font-heading, 'Playfair Display', serif);
+            font-size: 1.25rem;
+            color: #3d2c26;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        .pcard p {
+            font-size: 0.9rem;
+            color: #7a6a62;
+            line-height: 1.65;
+            margin: 0;
+        }
+        /* CTA row */
+        .personaliza-cta-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 56px;
+            flex-wrap: wrap;
+        }
+        .personaliza-cta-text {
+            color: #7a6a62;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        .btn-personaliza {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #a45037;
+            color: white;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            transition: background 0.25s, transform 0.25s;
+        }
+        .btn-personaliza:hover {
+            background: #8a3d2b;
+            transform: translateY(-2px);
+        }
+        /* Mobile */
+        @media (max-width: 900px) {
+            .personaliza-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .personaliza-grid { grid-template-columns: 1fr; gap: 16px; }
+            .personaliza-section { padding: 70px 0 80px; }
+            .personaliza-cta-row { flex-direction: column; gap: 16px; text-align: center; }
+        }
+
+        /* ===== TALLERES REDESIGN: 2x2 Symmetric Grid ===== */
+        .talleres-section { background: var(--pdf-bg, #f4edea); }
+        .talleres-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            max-width: 860px;
+            margin: 60px auto 0;
+        }
+        .taller-card {
+            background: #fff;
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 32px rgba(164,80,55,0.07);
+            border: 1px solid rgba(164,80,55,0.08);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+        .taller-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(164,80,55,0.14);
+        }
+        .taller-card-img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            display: block;
+        }
+        .taller-card-body {
+            padding: 24px 26px 28px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .taller-card-tag {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #a45037;
+            margin-bottom: 8px;
+        }
+        .taller-card-body h3 {
+            font-family: var(--font-heading, 'Playfair Display', serif);
+            font-size: 1.4rem;
+            color: #3d2c26;
+            margin: 0 0 10px;
+        }
+        .taller-card-body p {
+            font-size: 0.88rem;
+            color: #7a6a62;
+            line-height: 1.65;
+            margin: 0 0 18px;
+            flex: 1;
+        }
+        .taller-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #a45037;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid currentColor;
+            padding-bottom: 2px;
+            transition: opacity 0.2s;
+            width: fit-content;
+        }
+        .taller-card-link:hover { opacity: 0.7; }
+        @media (max-width: 640px) {
+            .talleres-grid { grid-template-columns: 1fr; gap: 20px; }
+            .taller-card-img { height: 210px; }
+        }
+
+        /* ===== GLAMPING: Real photo replacing abstract circle ===== */
+        .glamping-photo-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+        .glamping-photo-main {
+            width: 100%;
+            border-radius: 24px;
+            object-fit: cover;
+            height: 500px;
+            display: block;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.18);
+        }
+        .glamping-photo-badge {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #a45037;
+            color: white;
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 10px 24px;
+            border-radius: 100px;
+            white-space: nowrap;
+            box-shadow: 0 8px 20px rgba(164,80,55,0.35);
+        }
+
+        /* ===== NUESTRA FORMA DE CREAR - 3D PHOTO CAROUSEL ===== */
+        .forma-crear-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .forma-text-col p {
+            color: #7a6a62;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+        .forma-text-col .quote {
+            color: #a45037;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-top: 28px;
+            font-family: var(--font-heading, 'Playfair Display', serif);
+        }
+        /* Photo slots wrapper */
+        .forma-img-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+        /* Each slot = perspective container */
+        .nfc-slot {
+            perspective: 900px;
+            border-radius: 22px;
+            overflow: hidden;
+            position: relative;
+        }
+        .nfc-slot:first-child {
+            margin-top: 0;
+        }
+        .nfc-slot:last-child {
+            margin-top: 40px; /* stagger lower */
+        }
+        /* Inner rotating card */
+        .nfc-card {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            transform-style: preserve-3d;
+        }
+        /* Each face = one photo + overlay */
+        .nfc-face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.14);
+        }
+        .nfc-face img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        /* Subtle overlay */
+        .nfc-face::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(60,30,20,0.25) 0%, transparent 50%);
+            border-radius: 22px;
+        }
+        /* --- SLOT A: cycles photos 1,3,5 with a Y-axis flip --- */
+        @keyframes nfc-flipA {
+            0%,26%    { transform: rotateY(0deg);   opacity:1; }
+            30%,32%   { transform: rotateY(90deg);  opacity:0; }
+            33%,59%   { transform: rotateY(0deg);   opacity:1; }
+            63%,65%   { transform: rotateY(90deg);  opacity:0; }
+            66%,92%   { transform: rotateY(0deg);   opacity:1; }
+            96%,98%   { transform: rotateY(90deg);  opacity:0; }
+            100%      { transform: rotateY(0deg);   opacity:1; }
+        }
+        /* Slot A images appear in sequence: img1 -> img3 -> img5 */
+        .nfc-slot-a .nfc-face:nth-child(1) { animation: nfc-showA1 9s infinite ease-in-out; }
+        .nfc-slot-a .nfc-face:nth-child(2) { animation: nfc-showA2 9s infinite ease-in-out; }
+        .nfc-slot-a .nfc-face:nth-child(3) { animation: nfc-showA3 9s infinite ease-in-out; }
+
+        @keyframes nfc-showA1 {
+            0%,28%      { opacity:1; transform: scale(1); }
+            30%,31%     { opacity:0; transform: scale(0.94) rotateY(12deg); }
+            32%,99%     { opacity:0; transform: scale(0.94); }
+            100%        { opacity:1; }
+        }
+        @keyframes nfc-showA2 {
+            0%,31%      { opacity:0; transform: scale(0.94) rotateY(-12deg); }
+            33%,59%     { opacity:1; transform: scale(1) rotateY(0deg); }
+            61%,62%     { opacity:0; transform: scale(0.94) rotateY(12deg); }
+            63%,100%    { opacity:0; }
+        }
+        @keyframes nfc-showA3 {
+            0%,62%      { opacity:0; transform: scale(0.94) rotateY(-12deg); }
+            64%,92%     { opacity:1; transform: scale(1) rotateY(0deg); }
+            94%,95%     { opacity:0; transform: scale(0.94) rotateY(12deg); }
+            96%,100%    { opacity:0; }
+        }
+
+        /* Slot B images appear in sequence: img2 -> img4 (offset by 4.5s) */
+        .nfc-slot-b .nfc-face:nth-child(1) { animation: nfc-showB1 9s 4.5s infinite ease-in-out; }
+        .nfc-slot-b .nfc-face:nth-child(2) { animation: nfc-showB2 9s 4.5s infinite ease-in-out; }
+
+        @keyframes nfc-showB1 {
+            0%,44%      { opacity:1; transform: scale(1) rotateY(0deg); }
+            46%,47%     { opacity:0; transform: scale(0.94) rotateY(12deg); }
+            48%,100%    { opacity:0; }
+        }
+        @keyframes nfc-showB2 {
+            0%,47%      { opacity:0; transform: scale(0.94) rotateY(-12deg); }
+            49%,94%     { opacity:1; transform: scale(1) rotateY(0deg); }
+            96%,97%     { opacity:0; transform: scale(0.94) rotateY(12deg); }
+            98%,100%    { opacity:0; }
+        }
+
+        /* Scale-up pulse so the active photo breathes */
+        .nfc-face { transition: transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+
+        /* Mobile */
+        @media (max-width: 900px) {
+            .forma-crear-grid { grid-template-columns: 1fr; gap: 40px; }
+            .forma-img-col { grid-template-columns: 1fr 1fr; }
+            .nfc-card { height: 280px; }
+            .nfc-slot:last-child { margin-top: 20px; }
+        }
+        @media (max-width: 500px) {
+            .forma-img-col { grid-template-columns: 1fr; }
+            .nfc-slot:last-child { margin-top: 0; }
+            .nfc-card { height: 300px; }
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- Navegación -->
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="./assets/logo.png" alt="Little Juego Libre" class="logo-img">
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list" style="position: relative;">
+                    <li class="nav-item dropdown">
+                        <a href="servicios.html" class="nav-link active" data-i18n="nav_services">Servicios <span class="material-symbols-rounded" style="font-size: 16px; vertical-align: middle;">expand_more</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="eventos.html" class="nav-link" data-i18n="nav_events">Eventos</a></li>
+                            <li><a href="cumpleanos.html" class="nav-link" data-i18n="nav_birthdays">Cumpleaños</a></li>
+                            <li><a href="juegos-libres.html" class="nav-link" data-i18n="nav_play">Juegos Libres</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="sobre-nosotras.html" class="nav-link " data-i18n="nav_about">Sobre Nosotras</a></li>
+                    <li class="nav-item"><a href="colaboradores.html" class="nav-link " data-i18n="nav_collab">Colaboradores</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="nav-link " data-i18n="nav_contact">Contacto</a></li>
+                </ul>
+                <div class="nav-mobile-social">
+                    <a href="https://www.instagram.com/little_juegolibre" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/34603919414" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </nav>
+
+            <div class="header-social desktop-only">
+                <a href="https://www.instagram.com/little_juegolibre" target="_blank" aria-label="Instagram" class="nav-icon-delayed"><i
+                        class="fa-brands fa-instagram" style="font-size: 24px;"></i></a>
+                <a href="https://wa.me/34603919414" target="_blank" aria-label="WhatsApp" class="nav-icon-delayed"><i
+                        class="fa-brands fa-whatsapp" style="font-size: 24px;"></i></a>
+            </div>
+
+            <div class="custom-language-selector" id="language-selector-container">
+                <div class="language-selected" id="language-selected">
+                    <span class="material-symbols-rounded" style="font-size: 18px; margin-right: 4px;">language</span>
+                    <span class="lang-text" id="current-lang-text">ES</span>
+                    <span class="material-symbols-rounded" style="font-size: 16px; margin-left: 2px;">expand_more</span>
+                </div>
+                <ul class="language-options" id="language-options">
+                    <li data-value="es">ES</li>
+                    <li data-value="en">EN</li>
+                    <li data-value="de">DE</li>
+                    <li data-value="fr">FR</li>
+                    <li data-value="ca">CA</li>
+                </ul>
+            </div>
+
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+                <span class="material-symbols-rounded">menu</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="page-main">
+
+        <!-- Hero Section -->
+        <section class="eventos-hero">
+            <div class="eventos-hero-bg">
+                <div class="hero-bg-col" style="background-image: url('./assets/eventos-hero-1.jpg');"></div>
+                <div class="hero-bg-col" style="background-image: url('./assets/eventos-hero-2.jpg');"></div>
+                <div class="hero-bg-col" style="background-image: url('./assets/eventos-hero-3.jpg');"></div>
+            </div>
+            
+            <div style="position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10;">
+                <div class="container mobile-back-shift" style="width: 100%; position: absolute; top: 40px; left: 0; right: 0;">
+                    <a href="servicios.html" class="back-link" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--color-accent-primary); font-weight: 600; font-size: 0.9rem;">
+                        <span class="material-symbols-rounded">arrow_back</span>
+                        <span data-i18n="nav_back_services">Volver a Servicios</span>
+                    </a>
+                </div>
+
+                <div class="eventos-hero-content reveal-up">
+                    <span class="eventos-hero-eyebrow" data-i18n="evt_hero_eyebrow">Momentos Inolvidables</span>
+                    <h1 class="eventos-hero-title">
+                        <span data-i18n="evt_hero_title1" style="display: block; text-align: center;">Creamos el escenario para tu</span>
+                        <em id="hero-typewriter" style="display: block; text-align: center;">Boda</em>
+                    </h1>
+                    <p class="eventos-hero-desc" data-i18n="evt_hero_desc">Diseñamos rincones infantiles con alma donde los más pequeños viven su propia fiesta. Estética, juego libre y materiales naturales para eventos mágicos.</p>
+                    <div class="hero-actions">
+                        <a href="#tipos-evento" class="btn btn-primary" style="padding: 15px 40px; border-radius: 50px; text-decoration: none; display: inline-block;" data-i18n="evt_hero_btn">Ver Servicios</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Strip -->
+        <section class="philosophy-strip">
+            <div class="container">
+                <div class="philosophy-grid">
+                    <div class="philosophy-item reveal-up">
+                        <span class="ph-icon material-symbols-rounded">eco</span>
+                        <h3 data-i18n="evt_philo1_title">Natural & Estético</h3>
+                        <p data-i18n="evt_philo1_desc">Materiales nobles, madera y texturas suaves que se integran en la decoración de tu evento.</p>
+                    </div>
+                    <div class="philosophy-item reveal-up" style="transition-delay: 0.1s;">
+                        <span class="ph-icon material-symbols-rounded">face</span>
+                        <h3 data-i18n="evt_philo2_title">Acompañamiento</h3>
+                        <p data-i18n="evt_philo2_desc">Cuidado profesional y respetuoso para que los peques disfruten con total seguridad.</p>
+                    </div>
+                    <div class="philosophy-item reveal-up" style="transition-delay: 0.2s;">
+                        <span class="ph-icon material-symbols-rounded">auto_awesome</span>
+                        <h3 data-i18n="evt_philo3_title">Momentos Mágicos</h3>
+                        <p data-i18n="evt_philo3_desc">Propuestas abiertas que invitan al asombro, la calma y la alegría compartida.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- ===== NUESTRA FORMA DE CREAR (PDF STYLE) ===== -->
+        <section class="alma-section pdf-bg" style="padding: 100px 0;">
+            <div class="container reveal-up">
+                <div class="pdf-title-container">
+                    <h2 class="pdf-title">Nuestra Forma<br>de Crear</h2>
+                </div>
+                <div class="forma-crear-grid">
+                    <div class="forma-text-col">
+                        <p>Nuestro trabajo nace de la <strong>sensibilidad</strong>, la <strong>experiencia</strong> y el cuidado por lo bonito.</p>
+                        <p>Creamos <strong>propuestas</strong> abiertas, con materiales elegidos con <strong>intención</strong> y espacios pensados para invitar a la <strong>curiosidad</strong>, la <strong>calma</strong> y la <strong>autonomía</strong>.</p>
+                        <p>Nos gusta <strong>acompañar</strong> sin dirigir, dejar espacio para que cada peque explore, imagine y descubra a su manera.</p>
+                        <p>Porque no se trata solo de entretener, sino de <strong>vivirlo</strong>.<br>De <strong>crear</strong> sin prisas, sin ruido… y dejar que lo más bonito pase de forma espontánea.</p>
+                        <p class="quote">“Creamos el evento que ellos también recordarán”</p>
+                    </div><!-- /.forma-text-col -->
+                    <div class="forma-img-col">
+                        <div class="nfc-slot nfc-slot-a">
+                            <div class="nfc-card">
+                                <div class="nfc-face"><img src="./assets/nfc-foto1.jpg" alt="Little Juego Libre"></div>
+                                <div class="nfc-face"><img src="./assets/nfc-foto3.jpg" alt="Little Juego Libre"></div>
+                                <div class="nfc-face"><img src="./assets/nfc-foto5.jpg" alt="Little Juego Libre"></div>
+                            </div>
+                        </div>
+                        <div class="nfc-slot nfc-slot-b">
+                            <div class="nfc-card">
+                                <div class="nfc-face"><img src="./assets/nfc-foto2.jpg" alt="Little Juego Libre"></div>
+                                <div class="nfc-face"><img src="./assets/nfc-foto4.jpg" alt="Little Juego Libre"></div>
+                            </div>
+                        </div>
+                    </div><!-- /.forma-img-col -->
+                </div><!-- /.forma-crear-grid -->
+            </div><!-- /.container -->
+        </section>
+
+        <!-- ===== TIPOS DE EVENTOS ORIGINALES ===== -->
+        <section class="event-types-section pdf-bg-alt" id="tipos-evento" style="padding: 100px 0;">
+
+            <div class="container">
+                <div class="text-center reveal-up" style="margin-bottom: 70px;">
+                    <div class="pdf-title-container" style="text-align: center; padding-right: 0;">
+                        <h2 class="pdf-title">Nuestros Servicios</h2>
+                    </div>
+                    <p style="color: #a45037; max-width: 540px; margin: 0 auto; line-height: 1.75;">Cada evento es único. Nos adaptamos a ti, a tu espacio y a los pequeños que lo habitarán.</p>
+                </div>
+
+                <!-- Row 1: Bodas y Comuniones -->
+                <div class="editorial-row reveal-up" style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
+                    <div class="editorial-img-col">
+                        <div class="ed-img-wrap" style="border-radius: 20px;">
+                            <img loading="lazy" decoding="async" src="./assets/evento-mockup-bodas.png" alt="Rincón infantil elegante en boda">
+                        </div>
+                    </div>
+                    <div class="editorial-text-col">
+                        <span class="ed-eyebrow" style="color: #a45037;">Evento 01</span>
+                        <h2 class="ed-title" style="color: #a45037;">Bodas &amp; Comuniones</h2>
+                        <p class="ed-desc">Los adultos celebran, los pequeños también. Diseñamos un rincón infantil integrado en vuestra boda o comunión para que los niños vivan el momento a su ritmo, con seguridad y sin interrumpir la magia del día grande.</p>
+                        <ul class="ed-features" style="opacity:0.8;">
+                            <li>Zona de juego sensorial personalizada</li>
+                            <li>Estación de arte y creación libre</li>
+                            <li>Mobiliario de madera y mimbre natural</li>
+                            <li>Montaje y desmontaje incluidos</li>
+                            <li>Acompañamiento profesional durante el evento</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Row 2: Comuniones y Bautizos (reverse) -->
+                <div class="editorial-row reverse reveal-up" style="background: white; padding: 40px; border-radius: 20px; margin-top: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
+                    <div class="editorial-img-col">
+                        <div class="ed-img-wrap" style="border-radius: 20px;">
+                            <img loading="lazy" decoding="async" src="./assets/evento-mockup-bautizos.png" alt="Rincón infantil celebraciones familiares">
+                        </div>
+                    </div>
+                    <div class="editorial-text-col">
+                        <span class="ed-eyebrow" style="color: #a45037;">Evento 02</span>
+                        <h2 class="ed-title" style="color: #a45037;">Bautizos &amp; Fiestas Familiares</h2>
+                        <p class="ed-desc">Cada celebración familiar merece un espacio donde los pequeños se sientan parte de algo especial. Creamos rincones adaptados a distintos grupos de edad, integrando el juego libre como protagonista natural del día.</p>
+                        <ul class="ed-features" style="opacity:0.8;">
+                            <li>Adaptación a interior o exterior</li>
+                            <li>Personalización temática y cromática</li>
+                            <li>Actividades sensoriales por edades</li>
+                            <li>Hasta 40 niños participantes</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Row 3: Corporativos -->
+                <div class="editorial-row reveal-up" style="background: white; padding: 40px; border-radius: 20px; margin-top: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
+                    <div class="editorial-img-col">
+                        <div class="ed-img-wrap" style="border-radius: 20px;">
+                            <img loading="lazy" decoding="async" src="./assets/evento-mockup-corporativo.png" alt="Rincón infantil corporativo">
+                        </div>
+                    </div>
+                    <div class="editorial-text-col">
+                        <span class="ed-eyebrow" style="color: #a45037;">Evento 03</span>
+                        <h2 class="ed-title" style="color: #a45037;">Eventos Escolares<br>&amp; Corporativos</h2>
+                        <p class="ed-desc">Desde jornadas de puertas abiertas hasta ferias infantiles y días especiales en centros educativos — aportamos propuestas artísticas y sensoriales que conectan con la infancia de una manera auténtica y significativa.</p>
+                        <ul class="ed-features" style="opacity:0.8;">
+                            <li>Propuestas artísticas y sensoriales grupales</li>
+                            <li>Adaptado a entornos educativos y empresariales</li>
+                            <li>Materiales biodegradables y seguros</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TALLERES ===== -->
+        <section class="talleres-section pdf-bg-alt" style="padding: 100px 0;">
+            <div class="container reveal-up">
+                <div class="pdf-title-container" style="text-align: center; padding-right: 0;">
+                    <h2 class="pdf-title">Talleres</h2>
+                    <p class="pdf-subtitle">Dise&#241;amos talleres <strong>creativos</strong> que pueden adaptarse al estilo y concepto de cada evento.</p>
+                </div>
+
+                <div class="talleres-grid">
+
+                    <div class="taller-card">
+                        <img src="./assets/taller-gorras.jpg" alt="Taller de Gorras" class="taller-card-img">
+                        <div class="taller-card-body">
+                            <span class="taller-card-tag">Taller Creativo</span>
+                            <h3>Gorras</h3>
+                            <p>Personalizan su propia gorra con parches, pins y pedreria. Un accesorio &#250;nico que se llevan a casa como recuerdo del d&#237;a.</p>
+                            <a href="contacto.html" class="taller-card-link">Saber m&#225;s &#8594;</a>
+                        </div>
+                    </div>
+
+                    <div class="taller-card">
+                        <img src="./assets/evento-gafas.png" alt="Taller de Gafas" class="taller-card-img">
+                        <div class="taller-card-body">
+                            <span class="taller-card-tag">Taller Creativo</span>
+                            <h3>Gafas</h3>
+                            <p>Decoran y personalizan sus propias gafas de sol. Infinitas combinaciones para que cada peque exprese su estilo &#250;nico.</p>
+                            <a href="contacto.html" class="taller-card-link">Saber m&#225;s &#8594;</a>
+                        </div>
+                    </div>
+
+                    <div class="taller-card">
+                        <img src="./assets/taller-capas.jpg" alt="Taller de Capas" class="taller-card-img">
+                        <div class="taller-card-body">
+                            <span class="taller-card-tag">Taller Creativo</span>
+                            <h3>Capas de Superh&#233;roe</h3>
+                            <p>Cada peque crea y personaliza su propia capa de superh&#233;roe. Pinceles, purpurina y mucha imaginaci&#243;n para vivir la aventura.</p>
+                            <a href="contacto.html" class="taller-card-link">Saber m&#225;s &#8594;</a>
+                        </div>
+                    </div>
+
+                    <div class="taller-card">
+                        <img src="./assets/evento-sensorial.png" alt="Taller Sensorial" class="taller-card-img">
+                        <div class="taller-card-body">
+                            <span class="taller-card-tag">Taller Sensorial · 0&#8211;4 a&#241;os</span>
+                            <h3>Estaci&#243;n Sensorial</h3>
+                            <p>Un rinc&#243;n de calma y exploraci&#243;n para los m&#225;s peque&#241;os, con materiales naturales, texturas y elementos sensoriales seguros.</p>
+                            <a href="contacto.html" class="taller-card-link">Saber m&#225;s &#8594;</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ESTACION SENSORIAL DETAIL ===== -->
+        <section class="pdf-bg" style="padding: 100px 0;">
+            <div class="container reveal-up">
+                <div class="sensorial-box">
+                    <div class="forma-text-col">
+                        <div class="pdf-title-container" style="text-align:left; padding-right:0;"><h2 class="pdf-title" style="margin-left:20px;">Estación Sensorial</h2></div>
+                        <p class="quote" style="text-align:left; color:#a45037; font-size:1.1rem; margin-top:-30px; font-weight: 500;">"Zona de experimentación para los más pequeños"</p>
+                        <p>Los invitados más pequeños también merecen una experiencia a su medida. Diseñamos un rincón de <strong>calma y exploración</strong> para bebés y niños de <strong>0 a 4 años</strong>, donde los materiales naturales, las texturas y los elementos sensoriales son los protagonistas.</p>
+                        <p>Un <strong>espacio seguro y estético</strong> que respeta sus ritmos, fomentando la <strong>curiosidad</strong> y el asombro en un ambiente <strong>relajado</strong> dentro de la celebración.</p>
+                        <strong style="color:#a45037; display:block; margin: 30px 0 15px;">INCLUYE:</strong>
+                        <ul style="color:#a45037; padding-left:20px; line-height:1.8;">
+                            <li>Propuestas sensoriales con bases comestibles, hechas por nosotras y sin azúcar.</li>
+                            <li>Mobiliario a su altura.</li>
+                            <li>Temática personalizada.</li>
+                            <li>Acompañamiento durante el taller.</li>
+                        </ul>
+                    </div>
+                    <div class="sensorial-grid">
+                        <img src="./assets/evento-sensorial.png" class="sens-arch sens-arch-p1">
+                        <img src="./assets/evento-sensorial.png" class="sens-arch sens-arch-p2">
+                        <img src="./assets/evento-sensorial.png" class="sens-arch sens-arch-p3">
+                        <img src="./assets/evento-sensorial.png" class="sens-arch sens-arch-p4">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<!-- ===== PERSONALIZA VUESTRA EXPERIENCIA (EXTRAS GRID) ===== -->
+        <section class="personaliza-section">
+            <div class="container">
+                <div class="personaliza-header">
+                    <span class="pdf-tag">Extras con alma</span>
+                    <h2 class="pdf-title">Personaliza Vuestra Experiencia</h2>
+                    <p class="personaliza-sub"><strong>Rincones con alma</strong> para completar una experiencia diseñada exclusivamente para vosotros.</p>
+                </div>
+
+                <div class="personaliza-grid">
+
+                    <div class="pcard">
+                        <div class="pcard-icon-wrap">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 6L28 18H41L31 26L35 38L24 30L13 38L17 26L7 18H20L24 6Z" stroke="#a45037" stroke-width="2" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="pcard-num">01</div>
+                        <h3>Gymcana</h3>
+                        <p>Aventura en equipo personalizada para que los peques vivan una experiencia única e irrepetible.</p>
+                    </div>
+
+                    <div class="pcard">
+                        <div class="pcard-icon-wrap">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 36 Q24 10 38 36" stroke="#a45037" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="24" cy="20" r="4" stroke="#a45037" stroke-width="2"/>
+                                <rect x="16" y="36" width="16" height="4" rx="2" stroke="#a45037" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="pcard-num">02</div>
+                        <h3>Zona Tipi</h3>
+                        <p>Rincones de calma y materiales naturales. Un refugio íntimo dentro de vuestra celebración.</p>
+                    </div>
+
+                    <div class="pcard pcard-featured">
+                        <div class="pcard-icon-wrap">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="10" y="14" width="28" height="22" rx="3" stroke="#a45037" stroke-width="2"/>
+                                <path d="M18 14V12a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2" stroke="#a45037" stroke-width="2"/>
+                                <path d="M10 22h28" stroke="#a45037" stroke-width="1.5" stroke-dasharray="3 2"/>
+                            </svg>
+                        </div>
+                        <div class="pcard-num">03</div>
+                        <h3>Bolsa de Tela</h3>
+                        <p>Detalle creativo para llevar a casa. Un regalo que los peques y sus familias recordarán.</p>
+                        <span class="pcard-badge">Favorito</span>
+                    </div>
+
+                    <div class="pcard pcard-featured">
+                        <div class="pcard-icon-wrap">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="8" y="12" width="32" height="24" rx="2" stroke="#a45037" stroke-width="2"/>
+                                <path d="M14 20h20M14 26h12" stroke="#a45037" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="pcard-num">04</div>
+                        <h3>Manteles Personalizados</h3>
+                        <p>Colorear mientras nos divertimos. Una actividad creativa que decora y entretiene a partes iguales.</p>
+                        <span class="pcard-badge">Favorito</span>
+                    </div>
+
+                    <div class="pcard">
+                        <div class="pcard-icon-wrap">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="12" y="10" width="24" height="30" rx="2" stroke="#a45037" stroke-width="2"/>
+                                <circle cx="24" cy="24" r="7" stroke="#a45037" stroke-width="1.5"/>
+                                <circle cx="24" cy="24" r="2" fill="#a45037"/>
+                            </svg>
+                        </div>
+                        <div class="pcard-num">05</div>
+                        <h3>Álbum con Polaroid</h3>
+                        <p>Fotos y dedicatorias de vuestro día especial. Un álbum artesanal que se convierte en tesoro.</p>
+                    </div>
+
+                    <div class="pcard">
+                        <div class="pcard-icon-wrap">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="16" stroke="#a45037" stroke-width="2"/>
+                                <path d="M18 28 Q24 18 30 28" stroke="#a45037" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="19" cy="22" r="2" fill="#a45037"/>
+                                <circle cx="29" cy="22" r="2" fill="#a45037"/>
+                            </svg>
+                        </div>
+                        <div class="pcard-num">06</div>
+                        <h3>Cuadro de Huellas</h3>
+                        <p>Un recuerdo artístico creado por los peques. Arte sensorial que viaja a casa y dura para siempre.</p>
+                    </div>
+
+                </div>
+
+                <div class="personaliza-cta-row">
+                    <p class="personaliza-cta-text">¿Quieres combinar varios extras? <strong>Lo hacemos a tu medida.</strong></p>
+                    <a href="contacto.html" class="btn-personaliza">Consultar extras disponibles</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== LITTLE x GLAMPING ===== -->
+        <section class="glamping-section">
+            <div class="container">
+                <div class="glamping-inner">
+                    <div class="slide-left">
+                        <div class="glamping-badge">
+                            <span class="material-symbols-rounded" style="font-size:14px; font-variation-settings:'wght' 300;">forest</span>
+                            <span data-i18n="evt_glamp_badge">Colaboración Exclusiva</span>
+                        </div>
+                        <h2 class="glamping-title"><span data-i18n="evt_glamp_title1">Haz tu evento</span><br><span data-i18n="evt_glamp_title2">Little Glamping</span></h2>
+                        <p class="glamping-desc">Cuando la filosofía de Little se fusiona con la estética de The Glamping, nace una experiencia única. Diseñamos espacios con mimo donde las tiendas glamping se convierten en el refugio perfecto para los más pequeños.<br><br>Es un acierto total para celebraciones en la naturaleza, permitiendo crear diferentes ambientes: desde estaciones de talleres creativos hasta rincones de calma con colchones, textiles suaves y cuentos.</p>
+                        <ul class="glamping-features">
+                            <li><span class="material-symbols-rounded">check_circle</span> <span data-i18n="evt_glamp_f1">Zonas sensoriales integradas en el entorno natural</span></li>
+                            <li><span class="material-symbols-rounded">check_circle</span> <span data-i18n="evt_glamp_f2">Arte, agua y exploración entre tipis y glamping</span></li>
+                            <li><span class="material-symbols-rounded">check_circle</span> <span data-i18n="evt_glamp_f3">Mobiliario de madera que se funde con el paisaje</span></li>
+                            <li><span class="material-symbols-rounded">check_circle</span> <span data-i18n="evt_glamp_f4">Disponible para bodas, cumpleaños y eventos familiares</span></li>
+                        </ul>
+                        <a href="contacto.html" class="btn-glamping" id="btn-glamping-mag">
+                            <span class="material-symbols-rounded" style="font-variation-settings:'wght' 300;">forest</span>
+                            <span data-i18n="evt_glamp_btn">Haz tu evento LittleGlamping</span>
+                        </a>
+                    </div>
+                    <div class="glamping-visual slide-right">
+                        <div class="glamping-photo-wrap">
+                            <img src="./assets/glamping-flyers.jpg" alt="Little Glamping portfolio" class="glamping-photo-main">
+                            <span class="glamping-photo-badge">Little &#215; The Glamping</span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- ===== CTA ===== -->
+        <section class="eventos-cta">
+            <div class="container fade-in-up">
+                <h2 data-i18n="evt_cta_title">¿Tienes un evento en mente?</h2>
+                <p data-i18n="evt_cta_desc">Cuéntanos tu celebración y juntos diseñaremos un rincón que tus invitados recordarán siempre.</p>
+                <div class="cta-buttons">
+                    <a href="contacto.html" class="btn-cta-white">
+                        <span class="material-symbols-rounded" style="font-variation-settings: 'wght' 300;">mail</span>
+                        <span data-i18n="evt_cta_btn1">Solicitar Presupuesto</span>
+                    </a>
+                    <a href="https://wa.me/34603919414" target="_blank" class="btn-cta-outline">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span data-i18n="evt_cta_btn2">WhatsApp Directo</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="padding-top: 100px;">
+        <div class="container footer-container">
+            <div class="footer-col text-center">
+                <!-- âœ¦ 3D GLOBE (WebGL) âœ¦ -->
+                <img src="./assets/logo.png" alt="Little Juego Libre" class="footer-logo-img">
+                <div class="social-links justify-center">
+                    <a href="https://www.instagram.com/little_juegolibre" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram" style="font-size: 24px;"></i></a>
+                    <a href="https://wa.me/34603919414" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" style="font-size: 24px;"></i></a>
+                </div>
+            </div>
+            <div class="footer-nav">
+                <ul class="footer-links">
+                    <li><a href="index.html" data-i18n="nav_home">Inicio</a></li>
+                    <li><a href="servicios.html" data-i18n="nav_services">Servicios</a></li>
+                    <li><a href="sobre-nosotras.html" data-i18n="nav_about">Sobre Nosotras</a></li>
+                    <li><a href="colaboradores.html" data-i18n="nav_collab">Colaboradores</a></li>
+                    <li><a href="contacto.html" data-i18n="nav_contact">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p><span data-i18n="footer_rights">Derechos de Autor &copy; </span><span id="year"></span><span data-i18n="footer_designed"> Little Juego Libre | Diseñado con alma</span></p>
+        </div>
+    </footer>
+
+    <!-- Language Translation Scripts -->
+    <script defer src="./js/translations.js"></script>
+    <script defer src="./js/language.js"></script>
+
+    <!-- Custom JS -->
+    <script defer src="./js/main.js"></script>
+
+    <!-- Eventos Animations -->
+    <script>
+    (function() {
+        // --- 1. TYPEWRITER EFFECT ---
+        const words = ['Boda', 'Comunión', 'Bautizo', 'Evento Escolar'];
+        const el = document.getElementById('hero-typewriter');
+        let wi = 0, ci = 0, deleting = false;
+        function type() {
+            const w = words[wi];
+            if (!deleting) {
+                el.textContent = w.slice(0, ++ci);
+                if (ci === w.length) { deleting = true; setTimeout(type, 1800); return; }
+            } else {
+                el.textContent = w.slice(0, --ci);
+                if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
+            }
+            setTimeout(type, deleting ? 60 : 110);
+        }
+        if (el) setTimeout(type, 1200);
+
+        // --- 2. SCROLL OBSERVER ---
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('in-view');
+                    // counter logic
+                    if (e.target.classList.contains('stat-number')) startCounter(e.target);
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.slide-left, .slide-right, .stat-number, .reveal-up').forEach(el => io.observe(el));
+
+        // --- 3. ANIMATED COUNTERS ---
+        function startCounter(el) {
+            const target = parseInt(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
+            const duration = 1400;
+            const step = Math.ceil(target / (duration / 16));
+            let current = 0;
+            const timer = setInterval(() => {
+                current = Math.min(current + step, target);
+                el.textContent = current + suffix;
+                if (current >= target) clearInterval(timer);
+            }, 16);
+        }
+
+        // --- 4. WORD-BY-WORD REVEAL for section headings ---
+        document.querySelectorAll('.word-reveal').forEach(h => {
+            h.innerHTML = h.textContent.split(' ').map((w, i) =>
+                `<span class="word" style="transition-delay:${i * 0.08}s">${w}</span>`
+            ).join(' ');
+        });
+        const wordObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); wordObs.unobserve(e.target); } });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.word-reveal').forEach(el => wordObs.observe(el));
+
+        // --- 5. MAGNETIC BUTTON ---
+        const magBtn = document.getElementById('btn-glamping-mag');
+        if (magBtn) {
+            magBtn.addEventListener('mousemove', function(e) {
+                const r = this.getBoundingClientRect();
+                const x = (e.clientX - r.left - r.width / 2) * 0.28;
+                const y = (e.clientY - r.top  - r.height / 2) * 0.28;
+                this.style.transform = `translate(${x}px, ${y}px) scale(1.04)`;
+            });
+            magBtn.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        }
+    })();
+    </script>
+
+    <!-- Bono Regalo Popup -->
+    <div id="bono-popup" class="gift-popup-overlay">
+        <div class="gift-popup-content">
+            <img loading="lazy" decoding="async" src="./assets/bono-regalo.png" alt="Bono Regalo - Little Juego Libre" class="bono-img">
+            <div class="gift-popup-actions">
+                <a href="contacto.html" class="btn btn-primary btn-bono" data-i18n="btn_saber_mas">SABER MÍS</a>
+                <button class="btn btn-secondary btn-bono" id="bono-close-btn" data-i18n="btn_otro_momento">EN OTRO MOMENTO</button>
+            </div>
+        </div>
+    </div>
+    <script>
+    /* --- 3D TILT EFFECT --- */
+    function initTilt() {
+        const cards = document.querySelectorAll('.event-type-card, .zone-card');
+        cards.forEach(card => {
+            card.classList.add('tilt-card');
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const xc = rect.width / 2;
+                const yc = rect.height / 2;
+                const dx = x - xc;
+                const dy = y - yc;
+                // Limit tilt to 6 degrees
+                card.style.transform = `perspective(1000px) rotateX(${-dy / yc * 6}deg) rotateY(${dx / xc * 6}deg)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+            });
+        });
+    }
+
+    /* --- AMBIENT PARTICLES --- */
+    function initParticles() {
+        const section = document.querySelector('.glamping-section');
+        const container = document.createElement('div');
+        container.className = 'ambient-particles';
+        section.appendChild(container);
+
+        for (let i = 0; i < 20; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 4 + 2;
+            p.style.width = `${size}px`;
+            p.style.height = `${size}px`;
+            p.style.left = `${Math.random() * 100}%`;
+            p.style.top = `${Math.random() * 100}%`;
+            p.style.setProperty('--duration', `${Math.random() * 10 + 10}s`);
+            p.style.setProperty('--move-x', `${(Math.random() - 0.5) * 200}px`);
+            p.style.setProperty('--move-y', `${-Math.random() * 300 - 100}px`);
+            p.style.animationDelay = `${Math.random() * 10}s`;
+            container.appendChild(p);
+        }
+    }
+
+    /* --- MAGNETIC BUTTON --- */
+    function initMagneticButton() {
+        const btn = document.querySelector('.btn-glamping');
+        if (!btn) return;
+
+        btn.addEventListener('mousemove', e => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            btn.style.boxShadow = `${-x * 0.15}px ${-y * 0.15}px 35px rgba(224,95,89,0.5)`;
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0, 0)';
+            btn.style.boxShadow = '0 8px 30px rgba(224,95,89,0.4)';
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initTilt();
+        initParticles();
+        initMagneticButton();
+    });
+    </script>
+</body>
+</html>
+
+
+
+

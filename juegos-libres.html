@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Libre | Little Juego Libre</title>
+    <meta name="description" content="Elige entre Juego Libre Exterior, en nuestra finca, o Juego Libre Interior, en nuestro local especializado. ¡Tira los dados!">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="./css/style.css?v=14">
+
+    <style>
+      /* Full-screen dice selector sits behind the fixed header */
+      #dice-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 100; /* below header (z-index ~200) */
+        background: linear-gradient(150deg, #fdf6ef 0%, #f2e9df 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 16px 16px; /* top padding to clear header */
+      }
+
+      .ds-dice-row {
+        display: flex;
+        gap: clamp(24px, 6vw, 60px);
+        align-items: flex-end;
+        justify-content: center;
+        width: 100%;
+        perspective: 1400px;
+        position: relative;
+        z-index: 2;
+      }
+      .ds-die {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        cursor: pointer;
+        flex: 1;
+        max-width: 48%;
+      }
+      .ds-scene {
+        width: min(34vmin, 40vw);
+        height: min(34vmin, 40vw);
+        perspective: 1000px;
+        transition: transform 0.25s ease;
+      }
+      .ds-die:hover .ds-scene { transform: scale(1.04); }
+      .ds-cube {
+        position: relative;
+        width: 100%; height: 100%;
+        transform-style: preserve-3d;
+      }
+      .ds-cube.ext { animation: rollExt 2.8s cubic-bezier(0.15, 0.5, 0.3, 1) 0.3s both; }
+      @keyframes rollExt {
+        0%   { transform: rotateX(-1080deg) rotateY(-720deg) translateY(-100px); }
+        75%  { transform: rotateX(18deg) rotateY(8deg) translateY(0); }
+        82%  { transform: rotateX(-8deg) rotateY(-4deg) translateY(-8px); }
+        89%  { transform: rotateX(5deg) rotateY(2deg) translateY(0); }
+        94%  { transform: rotateX(-2deg) rotateY(-1deg) translateY(-2px); }
+        100% { transform: rotateX(0deg) rotateY(0deg) translateY(0); }
+      }
+      .ds-cube.int { animation: rollInt 2.8s cubic-bezier(0.15, 0.5, 0.3, 1) 0.7s both; }
+      @keyframes rollInt {
+        0%   { transform: rotateX(1080deg) rotateY(720deg) translateY(-100px); }
+        75%  { transform: rotateX(-18deg) rotateY(-8deg) translateY(0); }
+        82%  { transform: rotateX(8deg) rotateY(4deg) translateY(-8px); }
+        89%  { transform: rotateX(-5deg) rotateY(-2deg) translateY(0); }
+        94%  { transform: rotateX(2deg) rotateY(1deg) translateY(-2px); }
+        100% { transform: rotateX(0deg) rotateY(0deg) translateY(0); }
+      }
+      .ds-face {
+        position: absolute;
+        width: 100%; height: 100%;
+        border-radius: 20px;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 10px; backface-visibility: hidden;
+        font-family: var(--font-heading); font-weight: 700;
+        line-height: 1.2; text-align: center;
+        padding: 14px; font-size: clamp(0.7rem, 2.5vw, 1.15rem);
+        background: white;
+      }
+      .ds-ext .ds-face { color: var(--color-accent-primary); border: 3px solid rgba(224,95,89,0.18); }
+      .ds-int .ds-face { color: #5a7a8a; border: 3px solid rgba(90,122,138,0.18); }
+      .ds-face .ds-ico { font-size: clamp(2rem, 7vmin, 4rem); font-variation-settings: 'wght' 300; }
+      .ds-face.front  { transform: translateZ(calc(min(34vmin,40vw) / 2)); }
+      .ds-face.back   { transform: rotateY(180deg)  translateZ(calc(min(34vmin,40vw) / 2)); }
+      .ds-face.right  { transform: rotateY(90deg)   translateZ(calc(min(34vmin,40vw) / 2)); }
+      .ds-face.left   { transform: rotateY(-90deg)  translateZ(calc(min(34vmin,40vw) / 2)); }
+      .ds-face.top    { transform: rotateX(90deg)   translateZ(calc(min(34vmin,40vw) / 2)); }
+      .ds-face.bottom { transform: rotateX(-90deg)  translateZ(calc(min(34vmin,40vw) / 2)); }
+      .ds-shadow {
+        width: 80%; height: 12px; border-radius: 50%;
+        background: radial-gradient(ellipse, rgba(0,0,0,0.18) 0%, transparent 70%);
+        animation: shadow-impact 2.8s ease 0.3s both; margin-top: 15px;
+      }
+      .ds-die:nth-child(2) .ds-shadow { animation-delay: 0.7s; }
+      @keyframes shadow-impact {
+        0%   { transform: scaleX(0.2); opacity: 0; }
+        70%  { transform: scaleX(1.15); opacity: 1; }
+        100% { transform: scaleX(1); opacity: 1; }
+      }
+      .ds-label {
+        font-size: clamp(0.65rem, 1.8vw, 0.85rem); font-weight: 600;
+        letter-spacing: 0.08em; text-transform: uppercase;
+        padding: 7px 18px; border-radius: 30px; border: 2px solid;
+        opacity: 0; animation: ds-fade-in 0.5s ease 3.2s forwards;
+        transition: all 0.2s; white-space: nowrap;
+      }
+      @keyframes ds-fade-in { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+      .ds-die:nth-child(2) .ds-label { animation-delay: 3.5s; }
+      .ds-label.ext { color: var(--color-accent-primary); border-color: var(--color-accent-primary); }
+      .ds-label.int { color: #5a7a8a; border-color: #5a7a8a; }
+      .ds-die:hover .ds-label.ext { background: var(--color-accent-primary); color: white; }
+      .ds-die:hover .ds-label.int { background: #5a7a8a; color: white; }
+      #ds-prompt {
+        position: absolute; bottom: 8%;
+        font-family: var(--font-heading); font-size: clamp(1rem, 3vw, 1.5rem);
+        color: #7a6560; opacity: 0; transition: opacity 0.6s ease;
+        pointer-events: none;
+      }
+      #ds-prompt.visible { opacity: 1; }
+      .ds-floor-glow {
+        position: absolute; bottom: 10%; width: 100vw; height: 100px;
+        background: radial-gradient(ellipse at center, rgba(224,95,89,0.07) 0%, transparent 60%);
+        pointer-events: none; z-index: 1; filter: blur(20px);
+        opacity: 0; animation: ds-fade-in 1s ease 2s forwards;
+      }
+    </style>
+</head>
+
+<body>
+    <!-- ===== STANDARD HEADER ===== -->
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="./assets/logo.png" alt="Little Juego Libre" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list" style="position: relative;">
+                    <li class="nav-item dropdown">
+                        <a href="servicios.html" class="nav-link active" data-i18n="nav_services">Servicios <span class="material-symbols-rounded" style="font-size: 16px; vertical-align: middle;">expand_more</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="eventos.html" class="nav-link" data-i18n="nav_events">Eventos</a></li>
+                            <li><a href="cumpleanos.html" class="nav-link" data-i18n="nav_birthdays">Cumpleaños</a></li>
+                            <li><a href="juegos-libres.html" class="nav-link" data-i18n="nav_play">Juegos Libres</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="sobre-nosotras.html" class="nav-link" data-i18n="nav_about">Sobre Nosotras</a></li>
+                    <li class="nav-item"><a href="colaboradores.html" class="nav-link" data-i18n="nav_collab">Colaboradores</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="nav-link" data-i18n="nav_contact">Contacto</a></li>
+                </ul>
+                <div class="nav-mobile-social">
+                    <a href="https://www.instagram.com/little_juegolibre" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/34603919414" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </nav>
+            <div class="header-social desktop-only">
+                <a href="https://www.instagram.com/little_juegolibre" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram" style="font-size: 24px;"></i></a>
+                <a href="https://wa.me/34603919414" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" style="font-size: 24px;"></i></a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+                <span class="material-symbols-rounded">menu</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== DICE SELECTOR ===== -->
+    <div id="dice-screen">
+        <div class="ds-floor-glow"></div>
+        <div class="ds-dice-row">
+            <!-- EXTERIOR -->
+            <div class="ds-die" onclick="window.location.href='juego-libre-exterior.html'">
+                <div class="ds-scene"><div class="ds-cube ext ds-ext">
+                    <div class="ds-face front"><span class="material-symbols-rounded ds-ico">sunny</span><span data-i18n="play_ext_cube">Juego Libre<br>Exterior</span></div>
+                    <div class="ds-face back"><span class="material-symbols-rounded ds-ico">park</span><span data-i18n="play_ext_cube">Juego Libre<br>Exterior</span></div>
+                    <div class="ds-face right"><span class="material-symbols-rounded ds-ico">grass</span><span data-i18n="play_ext_cube">Juego Libre<br>Exterior</span></div>
+                    <div class="ds-face left"><span class="material-symbols-rounded ds-ico">wb_sunny</span><span data-i18n="play_ext_cube">Juego Libre<br>Exterior</span></div>
+                    <div class="ds-face top"><span class="material-symbols-rounded ds-ico">forest</span><span data-i18n="play_ext_cube">Juego Libre<br>Exterior</span></div>
+                    <div class="ds-face bottom"><span class="material-symbols-rounded ds-ico">nature</span><span data-i18n="play_ext_cube">Juego Libre<br>Exterior</span></div>
+                </div></div>
+                <div class="ds-shadow"></div>
+                <span class="ds-label ext" data-i18n="play_ext_lbl">Juego Libre Exterior</span>
+            </div>
+            <!-- INTERIOR -->
+            <div class="ds-die" onclick="window.location.href='juego-libre-interior.html'">
+                <div class="ds-scene"><div class="ds-cube int ds-int">
+                    <div class="ds-face front"><span class="material-symbols-rounded ds-ico">home</span><span data-i18n="play_int_cube">Juego Libre<br>Interior</span></div>
+                    <div class="ds-face back"><span class="material-symbols-rounded ds-ico">chair</span><span data-i18n="play_int_cube">Juego Libre<br>Interior</span></div>
+                    <div class="ds-face right"><span class="material-symbols-rounded ds-ico">curtains</span><span data-i18n="play_int_cube">Juego Libre<br>Interior</span></div>
+                    <div class="ds-face left"><span class="material-symbols-rounded ds-ico">lightbulb</span><span data-i18n="play_int_cube">Juego Libre<br>Interior</span></div>
+                    <div class="ds-face top"><span class="material-symbols-rounded ds-ico">house</span><span data-i18n="play_int_cube">Juego Libre<br>Interior</span></div>
+                    <div class="ds-face bottom"><span class="material-symbols-rounded ds-ico">roofing</span><span data-i18n="play_int_cube">Juego Libre<br>Interior</span></div>
+                </div></div>
+                <div class="ds-shadow"></div>
+                <span class="ds-label int" data-i18n="play_int_lbl">Juego Libre Interior</span>
+            </div>
+        </div>
+        <p id="ds-prompt" data-i18n="play_prompt">Selecciona una de las dos opciones</p>
+    </div>
+
+    <script defer src="./js/translations.js"></script>
+    <script defer src="./js/language.js"></script>
+    <script defer src="./js/main.js"></script>
+    <script>
+    (function() {
+        const prompt = document.getElementById('ds-prompt');
+        let promptTimer;
+        function replayDice() {
+            document.querySelectorAll('.ds-cube, .ds-shadow, .ds-label').forEach(el => {
+                el.style.animation = 'none';
+                void el.offsetWidth;
+                el.style.animation = null;
+            });
+            prompt.classList.remove('visible');
+            clearTimeout(promptTimer);
+            promptTimer = setTimeout(() => prompt.classList.add('visible'), 5000);
+        }
+        setInterval(replayDice, 10000);
+        promptTimer = setTimeout(() => prompt.classList.add('visible'), 5000);
+    })();
+    </script>
+</body>
+</html>

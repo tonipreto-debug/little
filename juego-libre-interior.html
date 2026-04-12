@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Libre Interior | Little Juego Libre</title>
+    <meta name="description" content="Nuestro espacio indoor para el juego libre sensorial. Un local propio con materiales naturales, zonas inmersivas y la calidez del interior.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="./css/style.css?v=14">
+
+    <style>
+        /* ===== INTERIOR PAGE STYLES ===== */
+        :root {
+            --int-accent: #5a7a8a;
+            --int-warm: #e8d5c4;
+            --int-dark: #2c3a42;
+        }
+
+        /* Ambient floating particles */
+        .ambient-particle {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: float-particle linear infinite;
+            opacity: 0;
+        }
+        @keyframes float-particle {
+            0%   { transform: translateY(110vh) scale(0); opacity: 0; }
+            10%  { opacity: 0.35; transform: translateY(100vh) scale(1); }
+            90%  { opacity: 0.2; }
+            100% { transform: translateY(-10vh) scale(0.6); opacity: 0; }
+        }
+
+        /* ---- HERO ---- */
+        .interior-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.52), rgba(0,0,0,0.52)), url('./assets/int-bg.jpg') center/cover no-repeat;
+            padding-top: 140px;
+        }
+
+        /* Mobile: video background replaces the static image */
+        @media (max-width: 768px) {
+            .interior-hero {
+                background: rgba(0,0,0,0.52) !important;
+                padding-top: 100px;
+            }
+            .interior-hero-video-bg {
+                display: block !important;
+            }
+        }
+
+        .interior-hero-video-bg {
+            display: none; /* hidden on desktop */
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .interior-hero-video-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+        .interior-hero-video-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.55) 100%);
+        }
+
+        .interior-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            padding: 0 20px;
+        }
+        .interior-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(90,122,138,0.12);
+            border: 1px solid rgba(90,122,138,0.25);
+            border-radius: 30px;
+            padding: 6px 18px;
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--int-accent);
+            margin-bottom: 28px;
+            animation: badge-in 0.7s ease 0.3s both;
+        }
+        @keyframes badge-in {
+            from { opacity:0; transform: translateY(-10px); }
+            to   { opacity:1; transform: translateY(0); }
+        }
+        .interior-hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.4rem, 7vw, 5rem);
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            animation: hero-title-in 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s both;
+        }
+        .interior-hero-title em { color: #c8dfe8; font-style: italic; }
+        @keyframes hero-title-in {
+            from { opacity:0; transform: translateY(40px) scale(0.97); }
+            to   { opacity:1; transform: translateY(0) scale(1); }
+        }
+        .interior-hero-desc {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            max-width: 520px;
+            margin: 0 auto 40px;
+            animation: hero-title-in 0.9s cubic-bezier(0.16,1,0.3,1) 0.75s both;
+        }
+        .interior-hero-ctas {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: hero-title-in 0.7s ease 1s both;
+        }
+        .btn-int-primary {
+            background: var(--int-accent);
+            color: white;
+            border: none;
+            padding: 14px 34px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 6px 20px rgba(90,122,138,0.35);
+        }
+        .btn-int-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(90,122,138,0.4); }
+        .btn-int-outline {
+            background: transparent;
+            color: var(--int-dark);
+            border: 2px solid rgba(44,58,66,0.3);
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-int-outline:hover { border-color: var(--int-accent); color: var(--int-accent); }
+
+        /* ---- REVEAL COUNTER STRIP ---- */
+        .int-stats {
+            background: var(--int-dark);
+            padding: 60px 0;
+            color: white;
+        }
+        .int-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        .int-stat-num {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: #c8dfe8;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .int-stat-label { font-size: 0.85rem; opacity: 0.7; }
+
+        /* ---- S-CURVE TIMELINE (reuse existing + style overrides) ---- */
+        .interior-timeline {
+            padding: 100px 0;
+            background: white;
+            position: relative;
+        }
+        .interior-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--int-accent), #a0c0d0, var(--int-accent));
+        }
+
+        /* ---- ROOM ATMOSPHERE SECTION ---- */
+        .atmosphere-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f0ebe6 0%, #e8ddd6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .atmosphere-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+        }
+        .atmo-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+        .atmo-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(90,122,138,0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.35s;
+        }
+        .atmo-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .atmo-card:hover::after { opacity: 1; }
+        .atmo-icon-wrap {
+            width: 72px; height: 72px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(90,122,138,0.1);
+        }
+        .atmo-icon-wrap .material-symbols-rounded {
+            font-size: 2rem; color: var(--int-accent);
+            font-variation-settings: 'wght' 300;
+        }
+        .atmo-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            color: var(--int-dark);
+            margin-bottom: 12px;
+        }
+        .atmo-card p { color: #7a6a62; font-size: 0.9rem; line-height: 1.7; }
+
+        /* ---- LIGHT ANIMATION SECTION ---- */
+        .light-section {
+            padding: 100px 0;
+            background: var(--int-dark);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Animated light rays */
+        .light-ray {
+            position: absolute;
+            top: -100px;
+            width: 2px;
+            height: 400px;
+            background: linear-gradient(to bottom, rgba(255,220,160,0.0), rgba(255,220,160,0.4), rgba(255,220,160,0.0));
+            transform-origin: top center;
+            animation: ray-sweep linear infinite;
+        }
+        @keyframes ray-sweep {
+            0%   { opacity: 0; transform: rotate(-20deg); }
+            20%  { opacity: 1; }
+            80%  { opacity: 1; }
+            100% { opacity: 0; transform: rotate(20deg); }
+        }
+        .light-section h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            margin-bottom: 18px;
+            position: relative; z-index: 1;
+        }
+        .light-section h2 em { color: #c8dfe8; font-style: italic; }
+
+        /* --- S-Curve Reveal --- */
+        .curvy-row {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .curvy-row.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .curvy-svg path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            transition: stroke-dashoffset 2s ease-out 0.3s;
+        }
+        .curvy-row.revealed .curvy-svg path {
+            stroke-dashoffset: 0;
+        }
+        .light-section p {
+            opacity: 0.75; max-width: 520px; margin: 0 auto 40px;
+            line-height: 1.8; font-size: 1rem;
+            position: relative; z-index: 1;
+        }
+
+        /* ---- CTA ---- */
+        .interior-cta {
+            background: linear-gradient(135deg, var(--int-accent), #3a5a6a);
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+        .interior-cta h2 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 16px; }
+        .interior-cta p { opacity: 0.85; max-width: 480px; margin: 0 auto 40px; line-height: 1.7; }
+
+        /* ---- MOBILE ---- */
+        @media (max-width: 768px) {
+            main { padding-top: 0 !important; } /* Fix global padding gap */
+            .int-stats-grid { grid-template-columns: 1fr; gap: 20px; }
+            .atmosphere-grid { grid-template-columns: 1fr; }
+
+            /* Hero: flush against header, no gap */
+            .interior-hero {
+                padding-top: 0 !important;
+                margin-top: 0 !important;
+                min-height: 100svh !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+
+            /* Ensure content starts below the fixed header without a gap */
+            .interior-hero-content {
+                padding-top: 80px !important;
+                width: 100% !important;
+                text-align: center !important;
+            }
+
+            /* Hide badge and Descubrir button on mobile */
+            .interior-badge-desktop,
+            .btn-int-discover {
+                display: none !important;
+            }
+
+            .interior-hero-title {
+                font-size: clamp(2.2rem, 12vw, 3.8rem) !important;
+                margin-bottom: 15px !important;
+            }
+
+            /* Hero description cleanup */
+            .interior-hero-desc {
+                font-size: 0.95rem !important;
+                line-height: 1.6 !important;
+                margin-bottom: 25px !important;
+                padding: 0 10px !important;
+            }
+
+            /* Footer: match light-section dark color on this page */
+            .footer {
+                background-color: var(--int-dark) !important;
+            }
+        }
+
+
+
+        /* ===== OVERRIDE: timeline/curvy colors for interior page ===== */
+        /* Replace red accent with interior blue */
+        .interior-timeline .curvy-icon {
+            border-color: var(--int-accent) !important;
+            box-shadow: 0 5px 20px rgba(90, 122, 138, 0.35) !important;
+            background: white !important;
+            color: var(--int-accent) !important;
+            overflow: visible !important;
+        }
+        .interior-timeline .curvy-icon .material-symbols-rounded {
+            color: var(--int-accent) !important;
+            font-size: 2rem !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-family: 'Material Symbols Rounded' !important;
+            font-style: normal !important;
+            -webkit-font-feature-settings: 'liga' !important;
+            font-feature-settings: 'liga' !important;
+        }
+        .interior-timeline .curvy-content h3 {
+            color: var(--int-dark) !important;
+        }
+        .interior-timeline .curvy-content {
+            box-shadow: 0 10px 40px rgba(44, 58, 66, 0.1) !important;
+        }
+
+        /* Footer: azul oscuro en todas las resoluciones (no solo móvil) */
+        .footer {
+            background-color: var(--int-dark) !important;
+        }
+        .footer-bottom {
+            background-color: var(--int-dark) !important;
+        }
+
+
+        /* ===== OVERRIDE: timeline/curvy colors for interior page ===== */
+        /* Wave divider between stats and mosaic */
+        .int-wave-divider {
+            background: var(--int-dark);
+            line-height: 0;
+            margin-bottom: 0;
+        }
+        .int-wave-divider svg {
+            display: block;
+            width: 100%;
+            height: 80px;
+        }
+        .int-photo-mosaic-section .container {
+            padding-top: 60px;
+        }
+        /* Accent top bar on mosaic */
+        .int-photo-mosaic-section::before {
+            content: '';
+            display: block;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #c8dfe8 30%, #e0a064 70%, transparent);
+            margin-bottom: 0;
+        }
+        /* ===== INTERIOR PHOTO MOSAIC ===== */
+        .int-photo-mosaic-section {
+            padding: 0 0 90px;
+            background: #141f27;
+            position: relative;
+        }
+        .int-photo-mosaic-section .section-tag {
+            display: block;
+            text-align: center;
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #c8dfe8;
+            margin-bottom: 14px;
+        }
+        .int-photo-mosaic-section h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #e8d5c4;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .int-photo-mosaic-section p.sub {
+            text-align: center;
+            color: rgba(200,223,232,0.7);
+            font-size: 1rem;
+            margin-bottom: 48px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .int-photo-mosaic-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+            grid-template-rows: 260px 200px;
+            gap: 12px;
+            padding: 0 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .int-mosaic-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: zoom-in;
+        }
+        .int-mosaic-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+        .int-mosaic-item:hover img { transform: scale(1.06); }
+        .int-mosaic-tall { grid-row: span 2; }
+        .int-mosaic-wide { grid-column: span 2; }
+        .int-mosaic-label {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 20px 16px 14px;
+            background: linear-gradient(to top, rgba(10,20,30,0.75) 0%, transparent 100%);
+            color: #fff;
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 1;
+        }
+
+        /* Mobile mosaic interior */
+        @media (max-width: 768px) {
+            .int-photo-mosaic-section { padding: 50px 0 65px; }
+            .int-photo-mosaic-section h2 { font-size: 1.8rem !important; }
+            .int-photo-mosaic-section p.sub { font-size: 0.9rem !important; margin-bottom: 28px !important; }
+            .int-photo-mosaic-grid {
+                grid-template-columns: 1fr 1fr !important;
+                grid-template-rows: 180px 180px 220px !important;
+                gap: 10px !important;
+            }
+            .int-mosaic-item { grid-row: span 1 !important; grid-column: span 1 !important; border-radius: 16px !important; }
+            .int-mosaic-item:nth-child(1) { grid-column: 1 !important; grid-row: 1 !important; }
+            .int-mosaic-item:nth-child(2) { grid-column: 2 !important; grid-row: 1 !important; }
+            .int-mosaic-item:nth-child(3) { grid-column: 1 !important; grid-row: 2 !important; }
+            .int-mosaic-item:nth-child(4) { grid-column: 2 !important; grid-row: 2 !important; }
+            .int-mosaic-item.int-mosaic-wide {
+                grid-column: 1 / -1 !important;
+                grid-row: 3 !important;
+                border-radius: 20px !important;
+            }
+        }    </style>
+</head>
+<body>
+
+    <!-- Ambient floating light particles -->
+    <script>
+    (function() {
+        const colors = ['rgba(90,122,138,0.4)', 'rgba(224,160,100,0.35)', 'rgba(200,223,232,0.5)'];
+        for (let i = 0; i < 18; i++) {
+            const el = document.createElement('div');
+            el.className = 'ambient-particle';
+            const size = Math.random() * 10 + 4;
+            el.style.cssText = `
+                width:${size}px; height:${size}px;
+                left:${Math.random()*100}vw;
+                background:${colors[Math.floor(Math.random()*colors.length)]};
+                animation-duration:${Math.random()*15+12}s;
+                animation-delay:${Math.random()*12}s;
+            `;
+            document.body.appendChild(el);
+        }
+    })();
+    </script>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="./assets/logo.png" alt="Little Juego Libre" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list" style="position: relative;">
+                    <li class="nav-item dropdown">
+                        <a href="servicios.html" class="nav-link active" data-i18n="nav_services">Servicios <span class="material-symbols-rounded" style="font-size:16px;vertical-align:middle;">expand_more</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="eventos.html" class="nav-link" data-i18n="nav_events">Eventos</a></li>
+                            <li><a href="cumpleanos.html" class="nav-link" data-i18n="nav_birthdays">Cumpleaños</a></li>
+                            <li><a href="juegos-libres.html" class="nav-link" data-i18n="nav_play">Juegos Libres</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="sobre-nosotras.html" class="nav-link" data-i18n="nav_about">Sobre Nosotras</a></li>
+                    <li class="nav-item"><a href="colaboradores.html" class="nav-link" data-i18n="nav_collab">Colaboradores</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="nav-link" data-i18n="nav_contact">Contacto</a></li>
+                </ul>
+                <div class="nav-mobile-social">
+                    <a href="https://www.instagram.com/little_juegolibre" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/34603919414" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </nav>
+            <div class="header-social desktop-only">
+                <a href="https://www.instagram.com/little_juegolibre" target="_blank" aria-label="Instagram" class="nav-icon-delayed"><i class="fa-brands fa-instagram" style="font-size:24px;"></i></a>
+                <a href="https://wa.me/34603919414" target="_blank" aria-label="WhatsApp" class="nav-icon-delayed"><i class="fa-brands fa-whatsapp" style="font-size:24px;"></i></a>
+            </div>
+            <div class="custom-language-selector" id="language-selector-container">
+                <div class="language-selected" id="language-selected">
+                    <span class="material-symbols-rounded" style="font-size:18px;margin-right:4px;">language</span>
+                    <span class="lang-text" id="current-lang-text">ES</span>
+                    <span class="material-symbols-rounded" style="font-size:16px;margin-left:2px;">expand_more</span>
+                </div>
+                <ul class="language-options" id="language-options">
+                    <li data-value="es">ES</li>
+                    <li data-value="en">EN</li>
+                    <li data-value="de">DE</li>
+                    <li data-value="fr">FR</li>
+                    <li data-value="ca">CA</li>
+                </ul>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+                <span class="material-symbols-rounded">menu</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== HERO ===== -->
+        <section class="interior-hero">
+            <!-- Mobile-only video background -->
+            <div class="interior-hero-video-bg">
+                <video autoplay muted loop playsinline src="./assets/IMG_8361.MOV"></video>
+            </div>
+            <div class="interior-hero-content">
+                <!-- Badge hidden on mobile, shown on desktop -->
+                <div class="interior-badge interior-badge-desktop" data-i18n="int_badge">
+                    <span class="material-symbols-rounded" style="font-size:14px;">home</span>
+                    Nuevo Servicio · Espacio Propio
+                </div>
+                <h1 class="interior-hero-title" data-i18n="int_hero_title">
+                    Taller<br><em>Multisensorial</em>
+                </h1>
+                <p class="interior-hero-desc" data-i18n="int_hero_desc">
+                    La misma magia sensorial de Little, ahora en INTERIOR. Un espacio cálido, diseñado al milímetro, donde la luz, los materiales y la experimentación crean el ambiente perfecto para explorar sin límites.
+                </p>
+                <div class="interior-hero-ctas">
+                    <a href="contacto.html" class="btn-int-primary" data-i18n="int_btn_book">Reservar sesión</a>
+                    <!-- Descubrir button hidden on mobile via CSS -->
+                    <a href="#que-ofrecemos" class="btn-int-outline btn-int-discover" data-i18n="int_btn_space">Descubrir el espacio</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== STATS ===== -->
+        <section class="int-stats">
+            <div class="container">
+                <div class="int-stats-grid">
+                    <div class="fade-in-up delay-1" style="text-align:center;">
+                        <span class="int-stat-num" data-target="1" data-suffix=" HORA">0</span>
+                        <span class="int-stat-label" data-i18n="int_stats_1_lbl">DE JUEGO LIBRE</span>
+                    </div>
+                    <div class="fade-in-up delay-2" style="text-align:center;">
+                        <span class="int-stat-num" style="display:block; font-size:1.5rem; line-height:1.2; margin-bottom:5px;">0 - 2 AÑOS</span>
+                        <span class="int-stat-label" data-i18n="int_stats_2_lbl" style="font-size: 0.85rem; line-height: 1.4; display: block;">PEQUES DESDE QUE SE MANTIENEN SENTADOS HASTA LOS 2 AÑOS</span>
+                    </div>
+                    <div class="fade-in-up delay-3" style="text-align:center;">
+                        <span class="int-stat-num" style="display:block; font-size:1.5rem; line-height:1.2; margin-bottom:5px;">100% natural</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Wave divider: stats -> mosaic -->
+        <div class="int-wave-divider" aria-hidden="true">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#141f27"/>
+            </svg>
+        </div>
+        <!-- ===== INTERIOR PHOTO MOSAIC ===== -->
+        <section class="int-photo-mosaic-section">
+            <div class="container">
+                <span class="section-tag">Momentos Reales</span>
+                <h2>El juego que no se olvida</h2>
+                <p class="sub">Harina, body painting, arroz, cacao… cada sesión es un universo</p>
+            </div>
+            <div class="int-photo-mosaic-grid">
+                <!-- Tall left: Harina -->
+                <div class="int-mosaic-item int-mosaic-tall">
+                    <img loading="lazy" src="./assets/int-photo-harina.jpg" alt="Bebé jugando con harina">
+                    <div class="int-mosaic-label">Harina Sensorial</div>
+                </div>
+                <!-- Top row: Body painting + Arroz -->
+                <div class="int-mosaic-item">
+                    <img loading="lazy" src="./assets/int-photo-pintura.jpg" alt="Bebés con body painting">
+                    <div class="int-mosaic-label">Body painting</div>
+                </div>
+                <div class="int-mosaic-item">
+                    <img loading="lazy" src="./assets/int-photo-arroz.jpg" alt="Juego con arroz de colores">
+                    <div class="int-mosaic-label">Arroz de Colores</div>
+                </div>
+                <!-- Tall right: Espagueti -->
+                <div class="int-mosaic-item int-mosaic-tall">
+                    <img loading="lazy" src="./assets/int-photo-espagueti.jpg" alt="Bebé con espaguetis">
+                    <div class="int-mosaic-label">Espaguetis</div>
+                </div>
+                <!-- Bottom wide: Cacao -->
+                <div class="int-mosaic-item int-mosaic-wide">
+                    <img loading="lazy" src="./assets/int-photo-cacao.jpg" alt="Niña dibujando con cacao">
+                    <div class="int-mosaic-label">Cacao y Especias</div>
+                </div>
+            </div>
+        </section>
+        <!-- ===== QUÉ OFRECEMOS (S-CURVE TIMELINE) ===== -->
+        <section class="interior-timeline section" id="que-ofrecemos">
+            <div class="container" style="max-width:1000px;margin:0 auto;">
+                <div class="text-center fade-in-up" style="margin-bottom:70px;">
+                    <h2 style="font-family:var(--font-heading);font-size:clamp(1.8rem,4vw,2.8rem);color:var(--int-dark);" data-i18n="int_timeline_title">
+                        Qué viven dentro
+                    </h2>
+                    <p style="color:#7a6a62;max-width:520px;margin:0 auto;line-height:1.75;" data-i18n="int_timeline_desc">
+                        Cada detalle del local está pensado para que el juego sea la única protagonista.
+                    </p>
+                </div>
+
+                <!-- SVG gradient -->
+                <svg style="width:0;height:0;position:absolute;">
+                    <defs>
+                        <linearGradient id="gradInt" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#5a7a8a"/>
+                            <stop offset="50%" stop-color="#a0c0d0"/>
+                            <stop offset="100%" stop-color="#e8d5c4"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                <!-- ROW 1 -->
+                <div class="curvy-row fade-in-up">
+                    <svg class="curvy-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M 50 0 C 90 20, 90 80, 50 100" stroke="url(#gradInt)" fill="none" vector-effect="non-scaling-stroke"/>
+                    </svg>
+                    <div class="curvy-icon" style="left:90%;">
+                        <span class="material-symbols-rounded" style="font-variation-settings:'wght' 300;font-size:2.2rem;">schedule</span>
+                    </div>
+                    <div class="curvy-content" style="left:0;width:40%;text-align:right;">
+                        <h3 style="color:var(--int-dark);" data-i18n="int_time_title">1 Hora</h3>
+                        <p data-i18n="int_time_desc">Sesiones íntimas de una hora, con tiempo suficiente para que cada peque entre en su propio ritmo y viva el juego de verdad.</p>
+                    </div>
+                </div>
+
+                <!-- ROW 3 -->
+                <div class="curvy-row fade-in-up delay-2">
+                    <svg class="curvy-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M 50 0 C 90 20, 90 80, 50 100" stroke="url(#gradInt)" fill="none" vector-effect="non-scaling-stroke"/>
+                    </svg>
+                    <div class="curvy-icon" style="left:90%;">
+                        <span class="material-symbols-rounded" style="font-variation-settings:'wght' 300;font-size:2.2rem;">cottage</span>
+                    </div>
+                    <div class="curvy-content" style="left:0;width:40%;text-align:right;">
+                        <h3 style="color:var(--int-dark);" data-i18n="int_zones_title">Zonas Temáticas</h3>
+                        <p data-i18n="int_zones_desc">en una experimentación con bases secas y en la otra experimentación con bases cochinas para un mejor desarollo de todos los sentidos de los peques.</p>
+                    </div>
+                </div>
+
+                <!-- ROW 4 -->
+                <div class="curvy-row fade-in-up delay-3">
+                    <svg class="curvy-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M 50 0 C 10 20, 10 80, 50 100" stroke="url(#gradInt)" fill="none" vector-effect="non-scaling-stroke"/>
+                    </svg>
+                    <div class="curvy-icon" style="left:10%;">
+                        <span class="material-symbols-rounded" style="font-variation-settings:'wght' 300;font-size:2.2rem;">volume_off</span>
+                    </div>
+                    <div class="curvy-content" style="left:60%;width:40%;text-align:left;">
+                        <h3 style="color:var(--int-dark);" data-i18n="int_silence_title">Silencio activo</h3>
+                        <p data-i18n="int_silence_desc">Música suave de fondo, sin ruido ajeno, sin pantallas. Un entorno que favorece la concentración, el asombro y la conexión entre adultos y peques.</p>
+                    </div>
+                </div>
+
+                <!-- ROW 5 -->
+                <div class="curvy-row fade-in-up delay-4" style="min-height:280px;">
+                    <svg class="curvy-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M 50 0 C 90 20, 90 80, 50 100" stroke="url(#gradInt)" fill="none" vector-effect="non-scaling-stroke"/>
+                    </svg>
+                    <div class="curvy-icon" style="left:90%;">
+                        <span class="material-symbols-rounded" style="font-variation-settings:'wght' 300;font-size:2.2rem;">eco</span>
+                    </div>
+                    <div class="curvy-content" style="left:0;width:40%;text-align:right;">
+                        <h3 style="color:var(--int-dark);" data-i18n="int_mat_title">Materiales 100% naturales</h3>
+                        <p style="margin-bottom:20px;" data-i18n="int_mat_desc">Todos los elementos del local — madera, mimbre, algodón, alimentos naturales — son seguros para el tacto y la boca. Garantizamos un entorno sin químicos.</p>
+                        <a href="contacto.html" class="btn-int-primary" style="display:inline-block;text-decoration:none;" data-i18n="int_btn_book">Reservar sesión interior</a>
+                    </div>
+                </div>
+
+                <div style="text-align:center;margin-top:-20px;position:relative;z-index:2;">
+                    <span class="material-symbols-rounded" style="font-size:2.5rem;color:var(--int-accent);font-variation-settings:'wght' 200;">home</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== LIGHT ANIMATION SECTION ===== -->
+        <section class="light-section">
+            <!-- Animated light rays -->
+            <div class="light-ray" style="left:20%;animation-duration:7s;animation-delay:0s;"></div>
+            <div class="light-ray" style="left:35%;animation-duration:9s;animation-delay:2s;"></div>
+            <div class="light-ray" style="left:55%;animation-duration:6s;animation-delay:1s;"></div>
+            <div class="light-ray" style="left:70%;animation-duration:8s;animation-delay:3s;"></div>
+            <div class="light-ray" style="left:82%;animation-duration:11s;animation-delay:0.5s;"></div>
+
+            <div class="container fade-in-up" style="position:relative;z-index:1;">
+                <h2 data-i18n="int_banner_title">Protegidos del exterior,<br><em>libres por dentro</em></h2>
+                <p data-i18n="int_banner_desc">La mejor versión del juego libre no depende del tiempo que hace fuera. En nuestro local, llueva o luzca el sol de Mallorca, la magia siempre está lista.</p>
+                <a href="contacto.html" class="btn-int-primary" style="display:inline-flex;align-items:center;gap:8px;" >
+                    <span class="material-symbols-rounded" style="font-variation-settings:'wght' 300;">calendar_month</span>
+                    <span data-i18n="int_banner_btn">Ver disponibilidad</span>
+                </a>
+                <a href="https://wa.me/34603919414" target="_blank" style="display:inline-flex;align-items:center;gap:10px;margin-top:16px;background:rgba(255,255,255,0.12);border:2px solid rgba(255,255,255,0.35);color:white;border-radius:50px;padding:12px 30px;font-weight:600;text-decoration:none;transition:all 0.2s;">
+                    <i class="fa-brands fa-whatsapp" style="font-size:1.2rem;"></i>
+                    <span>WhatsApp</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="padding-top:100px;">
+        <div class="container footer-container">
+            <div class="footer-col text-center">
+                <!-- âœ¦ 3D GLOBE (WebGL) âœ¦ -->
+                <img src="./assets/logo.png" alt="Little Juego Libre" class="footer-logo-img">
+                <div class="social-links justify-center">
+                    <a href="https://www.instagram.com/little_juegolibre" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram" style="font-size:24px;"></i></a>
+                    <a href="https://wa.me/34603919414" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" style="font-size:24px;"></i></a>
+                </div>
+            </div>
+            <div class="footer-nav">
+                <ul class="footer-links">
+                    <li><a href="index.html" data-i18n="nav_home">Inicio</a></li>
+                    <li><a href="servicios.html" data-i18n="nav_services">Servicios</a></li>
+                    <li><a href="sobre-nosotras.html" data-i18n="nav_about">Sobre Nosotras</a></li>
+                    <li><a href="colaboradores.html" data-i18n="nav_collab">Colaboradores</a></li>
+                    <li><a href="contacto.html" data-i18n="nav_contact">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p><span data-i18n="footer_rights">Derechos de Autor &copy; </span><span id="year"></span><span data-i18n="footer_designed"> Little Juego Libre | Diseñado con alma</span></p>
+        </div>
+    </footer>
+
+    <script defer src="./js/translations.js?v=2"></script>
+    <script defer src="./js/language.js"></script>
+    <script defer src="./js/main.js"></script>
+
+    <!-- Interior page animations -->
+    <script>
+    (function() {
+        // 1. Animated counters + Scroll-reveal for S-curve
+        const ioOptions = { threshold: 0.2, rootMargin: '0px 0px -50px 0px' };
+        
+        const countObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const target = parseInt(e.target.dataset.target);
+                    const suffix = e.target.dataset.suffix || '';
+                    let cur = 0;
+                    const duration = 1200;
+                    const fps = 60;
+                    const increment = target / (duration / (1000 / fps));
+                    const timer = setInterval(() => {
+                        cur += increment;
+                        if (cur >= target) {
+                            e.target.textContent = target + suffix;
+                            clearInterval(timer);
+                        } else {
+                            e.target.textContent = Math.round(cur) + suffix;
+                        }
+                    }, 1000 / fps);
+                    countObs.unobserve(e.target);
+                }
+            });
+        }, ioOptions);
+
+        document.querySelectorAll('.int-stat-num[data-target]').forEach(el => countObs.observe(el));
+
+        // 2. Reveal S-curve rows
+        const revealObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('revealed');
+                    revealObs.unobserve(e.target);
+                }
+            });
+        }, ioOptions);
+
+        document.querySelectorAll('.curvy-row').forEach(row => revealObs.observe(row));
+
+        // 3. 3D Tilt for Atmosphere Cards
+        const cards = document.querySelectorAll('.atmo-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const tiltX = (y - centerY) / 10;
+                const tiltY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-10px) scale(1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+
+        // 4. Subtle magnetic for the Back link
+        const backBtn = document.querySelector('a[href="juegos-libres.html"]');
+        if(backBtn) {
+            backBtn.addEventListener('mousemove', (e) => {
+                const rect = backBtn.getBoundingClientRect();
+                const x = (e.clientX - rect.left - rect.width/2) * 0.3;
+                const y = (e.clientY - rect.top - rect.height/2) * 0.3;
+                backBtn.style.transform = `translate(${x}px, ${y}px)`;
+            });
+            backBtn.addEventListener('mouseleave', () => backBtn.style.transform = '');
+        }
+    })();
+    </script>
+
+    <!-- Bono Regalo Popup -->
+    <div id="bono-popup" class="gift-popup-overlay">
+        <div class="gift-popup-content">
+            <img loading="lazy" decoding="async" src="./assets/bono-regalo.png" alt="Bono Regalo - Little Juego Libre" class="bono-img">
+            <div class="gift-popup-actions">
+                <a href="contacto.html" class="btn btn-primary btn-bono" data-i18n="btn_saber_mas">SABER MÍS</a>
+                <button class="btn btn-secondary btn-bono" id="bono-close-btn" data-i18n="btn_otro_momento">EN OTRO MOMENTO</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== INTERIOR LIGHTBOX ===== -->
+    <style>
+        #int-lightbox {
+            display: none; position: fixed; inset: 0; z-index: 9999;
+            background: rgba(10,8,6,0.93); backdrop-filter: blur(12px);
+            align-items: center; justify-content: center; flex-direction: column;
+        }
+        #int-lightbox.active { display: flex; }
+        .int-lb-close {
+            position: absolute; top: 18px; right: 22px;
+            color: white; font-size: 2.2rem; cursor: pointer;
+            background: none; border: none; opacity: 0.7;
+            transition: opacity 0.2s; padding: 8px;
+        }
+        .int-lb-close:hover { opacity: 1; }
+        .int-lb-wrap {
+            position: relative; width: 100%; max-width: 860px;
+            padding: 0 64px; box-sizing: border-box;
+            display: flex; align-items: center; justify-content: center;
+        }
+        #int-lb-img {
+            max-width: 100%; max-height: 78vh;
+            border-radius: 18px; object-fit: contain;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6); user-select: none;
+        }
+        .int-lb-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(255,255,255,0.14); border: none; color: white;
+            width: 48px; height: 48px; border-radius: 50%; cursor: pointer;
+            font-size: 1.4rem; display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s; backdrop-filter: blur(6px);
+        }
+        .int-lb-btn:hover { background: rgba(255,255,255,0.28); }
+        .int-lb-prev { left: 10px; }
+        .int-lb-next { right: 10px; }
+        .int-lb-dots { display: flex; gap: 8px; margin-top: 20px; }
+        .int-lb-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: rgba(255,255,255,0.25);
+            transition: background 0.3s, transform 0.3s; cursor: pointer;
+        }
+        .int-lb-dot.active { background: white; transform: scale(1.35); }
+        .int-lb-counter { margin-top: 10px; color: rgba(255,255,255,0.45); font-size: 0.78rem; letter-spacing: 0.15em; }
+        @media (max-width: 600px) {
+            .int-lb-wrap { padding: 0 44px; }
+            .int-lb-btn { width: 38px; height: 38px; font-size: 1.1rem; }
+        }
+    </style>
+    <div id="int-lightbox" role="dialog" aria-modal="true">
+        <button class="int-lb-close" id="int-lb-close" aria-label="Cerrar">&times;</button>
+        <div class="int-lb-wrap" id="int-lb-wrap">
+            <button class="int-lb-btn int-lb-prev" id="int-lb-prev">&#8592;</button>
+            <img id="int-lb-img" src="" alt="">
+            <button class="int-lb-btn int-lb-next" id="int-lb-next">&#8594;</button>
+        </div>
+        <div class="int-lb-dots" id="int-lb-dots"></div>
+        <div class="int-lb-counter" id="int-lb-counter">1 / 5</div>
+    </div>
+    <script>
+    (function() {
+        var imgs = Array.from(document.querySelectorAll('.int-photo-mosaic-grid .int-mosaic-item img'));
+        var lb = document.getElementById('int-lightbox');
+        var lbImg = document.getElementById('int-lb-img');
+        var lbCounter = document.getElementById('int-lb-counter');
+        var lbDots = document.getElementById('int-lb-dots');
+        var cur = 0;
+        imgs.forEach(function(_, i) {
+            var d = document.createElement('span');
+            d.className = 'int-lb-dot' + (i === 0 ? ' active' : '');
+            d.addEventListener('click', function() { goTo(i); });
+            lbDots.appendChild(d);
+        });
+        function goTo(idx) {
+            cur = (idx + imgs.length) % imgs.length;
+            lbImg.src = imgs[cur].src; lbImg.alt = imgs[cur].alt;
+            lbCounter.textContent = (cur + 1) + ' / ' + imgs.length;
+            document.querySelectorAll('.int-lb-dot').forEach(function(d, i) { d.classList.toggle('active', i === cur); });
+        }
+        function open(idx) { cur = idx; goTo(cur); lb.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function close() { lb.classList.remove('active'); document.body.style.overflow = ''; }
+        imgs.forEach(function(img, i) { img.parentElement.addEventListener('click', function() { open(i); }); });
+        document.getElementById('int-lb-close').addEventListener('click', close);
+        document.getElementById('int-lb-prev').addEventListener('click', function(e) { e.stopPropagation(); goTo(cur - 1); });
+        document.getElementById('int-lb-next').addEventListener('click', function(e) { e.stopPropagation(); goTo(cur + 1); });
+        lb.addEventListener('click', function(e) { if (e.target === lb) close(); });
+        document.addEventListener('keydown', function(e) {
+            if (!lb.classList.contains('active')) return;
+            if (e.key === 'Escape') close();
+            if (e.key === 'ArrowLeft') goTo(cur - 1);
+            if (e.key === 'ArrowRight') goTo(cur + 1);
+        });
+        var tx0 = 0;
+        document.getElementById('int-lb-wrap').addEventListener('touchstart', function(e) { tx0 = e.touches[0].clientX; }, { passive: true });
+        document.getElementById('int-lb-wrap').addEventListener('touchend', function(e) { var dx = tx0 - e.changedTouches[0].clientX; if (Math.abs(dx) > 40) goTo(cur + (dx > 0 ? 1 : -1)); });
+    })();
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+

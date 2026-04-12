@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Little Juego Libre</title>
+    <meta name="description" content="Contacta con Little Juego Libre para organizar tu prï¿½ximo evento en Mallorca.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="./css/style.css?v=14">
+</head>
+
+<body class="bg-white">
+
+    <!-- Navegaciï¿½n -->
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="./assets/logo.png" alt="Little Juego Libre" class="logo-img">
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list" style="position: relative;">
+                    <li class="nav-item dropdown">
+                        <a href="servicios.html" class="nav-link " data-i18n="nav_services">Servicios <span class="material-symbols-rounded" style="font-size: 16px; vertical-align: middle;">expand_more</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="eventos.html" class="nav-link" data-i18n="nav_events">Eventos</a></li>
+                            <li><a href="cumpleanos.html" class="nav-link" data-i18n="nav_birthdays">Cumpleaños</a></li>
+                            <li><a href="juegos-libres.html" class="nav-link" data-i18n="nav_play">Juegos Libres</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="sobre-nosotras.html" class="nav-link " data-i18n="nav_about">Sobre Nosotras</a></li>
+                    <li class="nav-item"><a href="colaboradores.html" class="nav-link " data-i18n="nav_collab">Colaboradores</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="nav-link active" data-i18n="nav_contact">Contacto</a></li>
+                </ul>
+                <div class="nav-mobile-social">
+                    <a href="https://www.instagram.com/little_juegolibre" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/34603919414" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </nav>
+
+            <div class="header-social desktop-only">
+                <a href="https://www.instagram.com/little_juegolibre" target="_blank" aria-label="Instagram" class="nav-icon-delayed"><i
+                        class="fa-brands fa-instagram" style="font-size: 24px;"></i></a>
+                <a href="https://wa.me/34603919414" target="_blank" aria-label="WhatsApp" class="nav-icon-delayed"><i
+                        class="fa-brands fa-whatsapp" style="font-size: 24px;"></i></a>
+            </div>
+
+            <div class="custom-language-selector" id="language-selector-container">
+                <div class="language-selected" id="language-selected">
+                    <span class="material-symbols-rounded" style="font-size: 18px; margin-right: 4px;">language</span>
+                    <span class="lang-text" id="current-lang-text">ES</span>
+                    <span class="material-symbols-rounded" style="font-size: 16px; margin-left: 2px;">expand_more</span>
+                </div>
+                <ul class="language-options" id="language-options">
+                    <li data-value="es">ES</li>
+                    <li data-value="en">EN</li>
+                    <li data-value="de">DE</li>
+                    <li data-value="fr">FR</li>
+                    <li data-value="ca">CA</li>
+                </ul>
+            </div>
+
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+                <span class="material-symbols-rounded">menu</span>
+            </button>
+        </div>
+    </header>
+
+    <main style="padding-top: 120px; padding-bottom: 50px;">
+        <section class="section contact">
+            <div class="container fade-in-up">
+
+                <!-- Encabezado de Contacto -->
+                <div class="text-center" style="margin-bottom: 30px;">
+                    <p style="color: var(--color-accent-primary); font-weight: 500; font-size: 1.2rem;"><span
+                            data-i18n="contact_subtitle">Ponte en contacto con nosotras si tienes alguna duda o propuesta a</span>
+                        <strong>little.juegolibre@gmail.com</strong>
+                    </p>
+                </div>
+
+                <!-- Layout Principal a dos columnas -->
+                <div class="contact-layout"
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: stretch; margin-bottom: 60px;">
+
+                    <!-- Columna Izquierda: Calendario -->
+                    <div class="contact-left">
+                        <div id="booking-calendar" class="calendar-card"
+                            style="background: white; border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 2px solid rgba(224,95,89,0.1); height: 100%; display: flex; flex-direction: column;">
+                            <div class="calendar-header"
+                                style="background: var(--color-accent-primary); color: white; padding: 20px; text-align: center;">
+                                <h3 style="margin: 0; font-family: var(--font-heading); font-size: 1.4rem;"
+                                    data-i18n="contact_book_call">Agenda tu Llamada</h3>
+                                <p style="margin: 5px 0 0; font-size: 0.85rem; opacity: 0.9;" data-i18n="contact_book_desc">
+                                    Selecciona un dï¿½a y hora para hablar.</p>
+                            </div>
+
+                            <form id="call-form" action="https://formsubmit.co/little.juegolibre@gmail.com" method="POST" style="flex-grow: 1; display: flex; flex-direction: column;">
+                                <!-- Calendario Interactivo -->
+                                <div style="padding: 20px; flex-grow: 1;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                        <button type="button" class="btn-cal-nav" onclick="changeMonth(-1)"><span class="material-symbols-rounded">chevron_left</span></button>
+                                        <h4 id="month-name" style="margin:0; font-family: var(--font-heading);" data-i18n="contact_month">Agosto 2026</h4>
+                                        <button type="button" class="btn-cal-nav" onclick="changeMonth(1)"><span class="material-symbols-rounded">chevron_right</span></button>
+                                    </div>
+                                    <div class="calendar-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; font-size: 0.8rem;">
+                                        <div style="font-weight: 600; color: #999;" data-i18n="contact_mon">L</div>
+                                        <div style="font-weight: 600; color: #999;" data-i18n="contact_tue">M</div>
+                                        <div style="font-weight: 600; color: #999;" data-i18n="contact_wed">X</div>
+                                        <div style="font-weight: 600; color: #999;" data-i18n="contact_thu">J</div>
+                                        <div style="font-weight: 600; color: #999;" data-i18n="contact_fri">V</div>
+                                        <div style="font-weight: 600; color: #999;" data-i18n="contact_sat">S</div>
+                                        <div style="font-weight: 600; color: #999;" data-i18n="contact_sun">D</div>
+                                        <!-- Days injected by JS -->
+                                        <div style="color: #ccc;">27</div><div style="color: #ccc;">28</div><div style="color: #ccc;">29</div><div style="color: #ccc;">30</div><div style="color: #ccc;">31</div>
+                                        <div class="cal-day">1</div><div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div>
+                                        <div class="cal-day available">10</div><div class="cal-day available">11</div><div class="cal-day">12</div><div class="cal-day">13</div><div class="cal-day">14</div><div class="cal-day">15</div>
+                                        <div class="cal-day available" onclick="selectDate(this, '16')">16</div>
+                                        <div class="cal-day available selected" id="default-selected" onclick="selectDate(this, '17')">17</div>
+                                        <div class="cal-day available" onclick="selectDate(this, '18')">18</div>
+                                        <div class="cal-day">19</div><div class="cal-day">20</div><div class="cal-day">21</div><div class="cal-day">22</div>
+                                        <div class="cal-day available" onclick="selectDate(this, '23')">23</div>
+                                        <div class="cal-day available" onclick="selectDate(this, '24')">24</div>
+                                        <div class="cal-day available" onclick="selectDate(this, '25')">25</div>
+                                        <div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day">28</div>
+                                    </div>
+                                </div>
+                                <div class="time-slots" style="padding: 0 15px 15px; border-top: 1px solid #eee;">
+                                    <p id="date-label" style="margin: 10px 0; font-weight: 600; font-size: 0.85rem;" data-i18n="contact_date_selected">Lun, 17 Ago</p>
+                                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px;">
+                                        <button type="button" class="btn btn-time selected" onclick="selectTime(this, '10:00')">10:00</button>
+                                        <button type="button" class="btn btn-time" onclick="selectTime(this, '11:30')">11:30</button>
+                                        <button type="button" class="btn btn-time" onclick="selectTime(this, '16:00')">16:00</button>
+                                    </div>
+                                    <input type="hidden" name="Fecha_Llamada" id="hidden-date" value="2026-08-17 10:00">
+                                    <div style="margin-bottom: 10px;">
+                                        <input type="text" name="Nombre_Cliente" data-i18n="contact_form_name_ph" placeholder="Tu Nombre" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-family: var(--font-body); font-size: 0.9rem;">
+                                    </div>
+                                    <div style="margin-bottom: 10px;">
+                                        <input type="email" name="Email_Cliente" data-i18n="contact_form_email_ph" placeholder="Tu Email" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-family: var(--font-body); font-size: 0.9rem;">
+                                    </div>
+                                    <div style="margin-bottom: 15px;">
+                                        <input type="tel" name="Telfono_Cliente" data-i18n="contact_form_phone_ph" placeholder="Tu Telfono" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-family: var(--font-body); font-size: 0.9rem;">
+                                    </div>
+                                    <!-- FormSubmit Config -->
+                                    <input type="hidden" name="_subject" value="Nueva Llamada Agendada en Little!">
+                                    <input type="hidden" name="_autorespond" value="Gracias por agendar tu llamada con Little Juego Libre! Hemos recibido tu solicitud correctamente. Si deseas aadirlo a tu calendario, puedes hacerlo desde el enlace adjunto o crear un evento para el da seleccionado. Hablemos pronto!">
+                                    <input type="hidden" name="_template" value="table">
+                                    <button type="submit" class="btn btn-primary btn-full" data-i18n="contact_btn_confirm">Confirmar Reserva</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="contact-right">
+                        <div class="quote-container bg-white"
+                            style="border: 2px solid rgba(224,95,89,0.2); padding: 25px; text-align: left; border-radius: var(--border-radius-lg); height: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+                            <div style="text-align: center; margin-bottom: 20px;">
+                                <h3 style="color: var(--color-accent-primary); font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 5px;"
+                                    data-i18n="contact_quote_title">Solicita tu Presupuesto</h3>
+                                <p style="color: var(--color-text-light); font-size: 0.85rem;"
+                                    data-i18n="contact_quote_desc">Cuntanos sobre tu evento y prepararemos algo mgico para ti.</p>
+                            </div>
+                            <form action="https://formsubmit.co/little.juegolibre@gmail.com" method="POST" class="quote-form" style="flex-grow: 1;">
+                                <!-- FormSubmit Configuration -->
+                                <input type="hidden" name="_subject" value="Nueva solicitud de Presupuesto en Little Juego Libre!">
+                                <input type="hidden" name="_next" value="https://tonip8.github.io/little/contacto.html">
+                                <input type="hidden" name="_captcha" value="false">
+                                
+                                <div>
+                                    <label for="name" style="display: block; margin-bottom: 5px; font-weight: 500; color: var(--color-text-main);" data-i18n="contact_form_name">Nombre y Apellidos</label>
+                                    <input type="text" id="name" name="Nombre" data-i18n="contact_form_name_ph" placeholder="Tu Nombre" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-family: var(--font-body);" required>
+                                </div>
+                                <div>
+                                    <label for="email" style="display: block; margin-bottom: 5px; font-weight: 500; color: var(--color-text-main);" data-i18n="contact_form_email">Email</label>
+                                    <input type="email" id="email" name="Email" data-i18n="contact_form_email_ph" placeholder="Tu Email" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-family: var(--font-body);" required>
+                                </div>
+                                <div>
+                                    <label for="phone" style="display: block; margin-bottom: 5px; font-weight: 500; color: var(--color-text-main);" data-i18n="contact_form_phone">Telfono</label>
+                                    <input type="tel" id="phone" name="Telfono" data-i18n="contact_form_phone_ph" placeholder="Tu Telfono" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-family: var(--font-body);" required>
+                                </div>
+                                <div>
+                                    <label for="event_type" style="display: block; margin-bottom: 5px; font-weight: 500; color: var(--color-text-main);" data-i18n="contact_form_event">Tipo de Evento</label>
+                                    <select id="event_type" name="Tipo_Evento" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-family: var(--font-body); background-color: white;" required>
+                                        <option value="" disabled selected data-i18n="contact_form_event_select">Selecciona...</option>
+                                        <option value="Cumpleaños en Little" data-i18n="contact_form_event_bday_little">Cumpleaños en Little</option>
+                                        <option value="Cumpleaños a domicilio" data-i18n="contact_form_event_bday_home">Cumpleaños a domicilio</option>
+                                        <option value="Eventos" data-i18n="contact_form_event_others">Eventos (ej: Bodas, comuniones, etc)</option>
+                                        <option value="Escuelas Infantiles" data-i18n="contact_form_event_schools">Escuelas Infantiles</option>
+                                    </select>
+                                </div>
+                                <div style="grid-column: 1 / 2;">
+                                    <label for="date" style="display: block; margin-bottom: 5px; font-weight: 500; color: var(--color-text-main);" data-i18n="contact_form_date">Da del evento</label>
+                                    <input type="date" id="date" name="Fecha_Evento" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-family: var(--font-body);" required>
+                                </div>
+                                <div style="grid-column: 2 / 3;">
+                                    <label for="kids" style="display: block; margin-bottom: 5px; font-weight: 500; color: var(--color-text-main);" data-i18n="contact_form_kids">Cantidad de nios</label>
+                                    <input type="number" id="kids" name="Max_Nios" min="1" max="40" data-i18n="contact_form_kids_ph" placeholder="Mx 40" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-family: var(--font-body);" required>
+                                </div>
+                                <div style="grid-column: 1 / -1;">
+                                    <label for="comments" style="display: block; margin-bottom: 5px; font-weight: 500; color: var(--color-text-main);" data-i18n="contact_form_comments">Destaqus (lugar, temtica...)</label>
+                                    <textarea id="comments" name="Comentarios" data-i18n="contact_form_comments_ph" placeholder="Escribe aquí tus comentarios..." rows="2" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-family: var(--font-body); resize: vertical;"></textarea>
+                                </div>
+                                <div style="grid-column: 1 / -1; text-align: center; margin-top: 15px;">
+                                    <button type="submit" class="btn btn-primary btn-full" style="padding: 10px 20px; font-size: 0.95rem; border-radius: 30px; box-shadow: 0 4px 15px rgba(224,95,89,0.3);" data-i18n="contact_form_submit">Recibir Presupuesto</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ubicaciï¿½n / Mapa -->
+        <section class="section map" style="padding: 0 0 60px;">
+            <div class="container">
+                <div class="map-container" style="max-width: 900px; margin: 0 auto;">
+                    <div style="border: 2px solid rgba(224,95,89,0.2); padding: 5px; background: white; border-radius: var(--border-radius-md); box-shadow: 0 5px 20px rgba(0,0,0,0.05); overflow: hidden;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.606708687786!2d2.6373752766861444!3d39.578665005510255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12979261fc599b4d%3A0xa6187cc8add82245!2sCarrer%20Tarragona%2C%202%2C%20Ponent%2C%2007011%20Palma%2C%20Illes%20Balears!5e0!3m2!1sen!2ses!4v1700000000000!5m2!1sen!2ses" width="100%" height="400" style="border:0; display: block;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- Enlaces Directos -->
+                <div class="direct-contact-links text-center" style="margin-top: 40px;">
+                    <h4 style="color: var(--color-accent-primary); margin-bottom: 25px; font-size: 1.5rem;" data-i18n="contact_or_write">O escrï¿½benos directamente:</h4>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <a href="mailto:little.juegolibre@gmail.com" class="social-btn" style="background-color: var(--color-accent-primary); color: white; border-radius: 5px; padding: 12px 25px; display: inline-flex; align-items: center; text-decoration: none; font-weight: 500;">
+                            <span class="material-symbols-rounded" style="margin-right: 8px;">mail</span> <span data-i18n="contact_mail">Mail</span>
+                        </a>
+                        <a href="https://wa.me/34603919414" target="_blank" class="social-btn" style="background-color: #25D366; color: white; border-radius: 5px; padding: 12px 25px; display: inline-flex; align-items: center; text-decoration: none; font-weight: 500;">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 20px; margin-right: 8px;"></i> WhatsApp
+                        </a>
+                        <a href="https://www.instagram.com/little_juegolibre" target="_blank" class="social-btn" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; border-radius: 5px; padding: 12px 25px; display: inline-flex; align-items: center; text-decoration: none; font-weight: 500;">
+                            <i class="fa-brands fa-instagram" style="font-size: 20px; margin-right: 8px;"></i> Instagram
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="padding-top: 100px;">
+        <div class="container footer-container">
+            <div class="footer-col text-center">
+                <!-- ? 3D GLOBE (WebGL) ? -->
+                <img src="./assets/logo.png" alt="Little Juego Libre" class="footer-logo-img">
+                <div class="social-links justify-center">
+                    <a href="https://www.instagram.com/little_juegolibre" target="_blank" aria-label="Instagram"><i
+                            class="fa-brands fa-instagram" style="font-size: 24px;"></i></a>
+                    <a href="https://wa.me/34603919414" target="_blank" aria-label="WhatsApp"><i
+                            class="fa-brands fa-whatsapp" style="font-size: 24px;"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-nav">
+                <ul class="footer-links">
+                    <li><a href="index.html" data-i18n="nav_home">Inicio</a></li>
+                    <li><a href="servicios.html" data-i18n="nav_services">Servicios</a></li>
+                    <li><a href="sobre-nosotras.html" data-i18n="nav_about">Sobre Nosotras</a></li>
+                    <li><a href="colaboradores.html" data-i18n="nav_collab">Colaboradores</a></li>
+                    <li><a href="contacto.html" data-i18n="nav_contact">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p><span data-i18n="footer_rights">Derechos de Autor &copy; </span><span id="year"></span><span
+                    data-i18n="footer_designed"> Little Juego Libre | Diseñado con alma</span></p>
+        </div>
+    </footer>
+
+    <!-- Language Translation Scripts -->
+    <script defer src="./js/translations.js"></script>
+    <script defer src="./js/language.js"></script>
+
+    <!-- Custom JS -->
+    <script defer src="./js/main.js"></script>
+    <script defer src="./js/contact_logic.js"></script>
+</body>
+
+</html>
+

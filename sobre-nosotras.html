@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotras | Little Juego Libre</title>
+    <meta name="description" content="Nuestra filosofía sobre el juego libre y los eventos infantiles en Mallorca.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="./css/style.css?v=14">
+</head>
+
+<body>
+
+    <!-- Navegación -->
+        <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="./assets/logo.png" alt="Little Juego Libre" class="logo-img">
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list" style="position: relative;">
+                    <li class="nav-item dropdown">
+                        <a href="servicios.html" class="nav-link " data-i18n="nav_services">Servicios <span class="material-symbols-rounded" style="font-size: 16px; vertical-align: middle;">expand_more</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="eventos.html" class="nav-link" data-i18n="nav_events">Eventos</a></li>
+                            <li><a href="cumpleanos.html" class="nav-link" data-i18n="nav_birthdays">Cumpleaños</a></li>
+                            <li><a href="juegos-libres.html" class="nav-link" data-i18n="nav_play">Juegos Libres</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="sobre-nosotras.html" class="nav-link active" data-i18n="nav_about">Sobre Nosotras</a></li>
+                    <li class="nav-item"><a href="colaboradores.html" class="nav-link " data-i18n="nav_collab">Colaboradores</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="nav-link " data-i18n="nav_contact">Contacto</a></li>
+                </ul>
+                <div class="nav-mobile-social">
+                    <a href="https://www.instagram.com/little_juegolibre" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/34603919414" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </nav>
+
+            <div class="header-social desktop-only">
+                <a href="https://www.instagram.com/little_juegolibre" target="_blank" aria-label="Instagram" class="nav-icon-delayed"><i
+                        class="fa-brands fa-instagram" style="font-size: 24px;"></i></a>
+                <a href="https://wa.me/34603919414" target="_blank" aria-label="WhatsApp" class="nav-icon-delayed"><i
+                        class="fa-brands fa-whatsapp" style="font-size: 24px;"></i></a>
+            </div>
+
+            <div class="custom-language-selector" id="language-selector-container">
+                <div class="language-selected" id="language-selected">
+                    <span class="material-symbols-rounded" style="font-size: 18px; margin-right: 4px;">language</span>
+                    <span class="lang-text" id="current-lang-text">ES</span>
+                    <span class="material-symbols-rounded" style="font-size: 16px; margin-left: 2px;">expand_more</span>
+                </div>
+                <ul class="language-options" id="language-options">
+                    <li data-value="es">ES</li>
+                    <li data-value="en">EN</li>
+                    <li data-value="de">DE</li>
+                    <li data-value="fr">FR</li>
+                    <li data-value="ca">CA</li>
+                </ul>
+            </div>
+
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+                <span class="material-symbols-rounded">menu</span>
+            </button>
+        </div>
+    </header>
+
+        <main class="page-main">
+        
+        <!-- 1. El Manifiesto (Hero) -->
+        <section class="manifesto-hero">
+            <div class="container fade-in-up" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <h1 class="marta-squared-title">
+                    <span class="m-paren-l" style="margin-right: -10px;">(</span>
+                    <span>Marta</span>
+                    <span class="m-cross"> &times; Marta</span>
+                    <span class="m-paren-r" style="margin-left: -5px;">)</span>
+                    <span class="m-squared" style="font-size: 2.5rem; top: -30px;">²</span>
+                </h1>
+            </div>
+        </section>
+
+        <!-- 2. Dos Martas, un mismo sueño (La Historia Original) -->
+        <section class="section" id="sobre-nosotras" style="padding: 20px 0 100px 0; background-color: var(--color-bg-primary);">
+            <div class="container fade-in-up delay-1">
+                <div class="about-story-layout" style="align-items: center;">
+                    <!-- Column 1: Image -->
+                    <div class="about-story-img">
+                        <img loading="lazy" decoding="async" src="./assets/fundadoras.jpg" alt="Marta M y Marta B - Little Juego Libre" style="border-radius: 0; box-shadow: 0 20px 40px rgba(0,0,0,0.06);">
+                    </div>
+                    <!-- Column 2: Text -->
+                    <div class="about-story-text">
+                        <h2 data-i18n="about_history_title" style="font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 20px; color: var(--color-text-main);">Dos Martas, un mismo sueño</h2>
+                        <p data-i18n="about_history_p1" style="font-size: 1.05rem; line-height: 1.8; color: var(--color-text-light); margin-bottom: 20px;">Little juego libre nació en 2023 de la pasión por la educación y el juego. Desde nuestros inicios, hemos buscado crear un entorno en la naturaleza donde cada peque pueda expresarse y aprender a través del juego de manera creativa y libre.</p>
+                        <p data-i18n="about_history_p2" style="font-size: 1.05rem; line-height: 1.8; color: var(--color-text-light);">Los momentos de calidad en familia para nosotras son clave, por eso a través de los años, hemos innovado en nuestras propuestas, asegurando que cada evento sea único y significativo para las familias.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+        <footer class="footer" style="padding-top: 100px;">
+        <div class="container footer-container">
+            <div class="footer-col text-center">
+                <!-- âœ¦ 3D GLOBE (WebGL) âœ¦ -->
+                <img src="./assets/logo.png" alt="Little Juego Libre" class="footer-logo-img">
+                <div class="social-links justify-center">
+                    <a href="https://www.instagram.com/little_juegolibre" target="_blank" aria-label="Instagram"><i
+                            class="fa-brands fa-instagram" style="font-size: 24px;"></i></a>
+                    <a href="https://wa.me/34603919414" target="_blank" aria-label="WhatsApp"><i
+                            class="fa-brands fa-whatsapp" style="font-size: 24px;"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-nav">
+                <ul class="footer-links">
+                    <li><a href="index.html" data-i18n="nav_home">Inicio</a></li>
+                    <li><a href="servicios.html" data-i18n="nav_services">Servicios</a></li>
+                    <li><a href="sobre-nosotras.html" data-i18n="nav_about">Sobre Nosotras</a></li>
+                    <li><a href="colaboradores.html" data-i18n="nav_collab">Colaboradores</a></li>
+                    <li><a href="contacto.html" data-i18n="nav_contact">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p><span data-i18n="footer_rights">Derechos de Autor &copy; </span><span id="year"></span><span
+                    data-i18n="footer_designed"> Little Juego Libre | Diseñado con alma</span></p>
+        </div>
+    </footer>
+
+    <!-- Language Translation Scripts -->
+    <script defer src="./js/translations.js"></script>
+    <script defer src="./js/language.js"></script>
+
+    <script defer src="./js/main.js"></script>
+</body>
+
+</html>
+
