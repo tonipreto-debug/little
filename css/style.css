@@ -1413,6 +1413,16 @@ ul {
 }
 
 @media (max-width: 768px) {
+    .header {
+        background-color: var(--color-bg-primary) !important;
+    }
+    .nav-container {
+        height: 70px !important; /* Smaller header on mobile to reduce gaps */
+    }
+    .logo-img {
+        height: 50px !important; /* Smaller logo for mobile header */
+    }
+
     .nav-toggle {
         display: block;
         position: relative;
@@ -1424,23 +1434,16 @@ ul {
         transition: color 0.3s ease;
     }
 
-    /* When menu is active, make toggle white to stand out against coral */
-    .nav-menu.active ~ .nav-toggle,
-    .nav-menu.active ~ .nav-actions .nav-toggle,
-    body.menu-open .nav-toggle {
-        color: white !important;
-    }
-
     .nav-menu {
         position: fixed;
         top: 0;
-        right: -100%; /* Hidden off-screen */
+        right: -100%;
         width: 320px;
         max-width: 85vw;
         height: 100vh;
-        background: var(--color-accent-primary); /* Coral Background */
+        background: var(--color-accent-primary);
         flex-direction: column;
-        padding: 100px 30px 40px;
+        padding: 80px 30px 40px;
         box-shadow: -10px 0 40px rgba(0, 0, 0, 0.2);
         display: flex;
         transition: right 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -1451,16 +1454,43 @@ ul {
         right: 0;
     }
 
+    .nav-list {
+        flex-direction: column;
+        gap: 30px;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .nav-item {
+        width: 100%; /* Stretch width so dropdown can fill safely */
+    }
+
     .nav-menu .nav-link {
         color: white !important;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-family: var(--font-heading);
         text-align: left;
     }
 
-    .nav-menu .nav-list {
-        gap: 25px;
-        align-items: flex-start;
+    .nav-item.dropdown .dropdown-menu {
+        position: static;
+        display: none;
+        box-shadow: none;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        padding: 10px 20px;
+        box-sizing: border-box;
+        background-color: rgba(255, 255, 255, 0.15);
+        width: 100%;
+        margin-top: 10px;
+        border-radius: 8px;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu,
+    .nav-item.dropdown:focus-within .dropdown-menu {
+        display: block;
     }
 
     .nav-mobile-social {
@@ -1476,81 +1506,31 @@ ul {
         font-size: 1.8rem;
     }
 
-    /* Hide desktop social in mobile */
     .header-social.desktop-only {
         display: none;
     }
 
-
-    /* Submenu styling for coral background */
-    .nav-item.dropdown .dropdown-menu {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        margin-top: 10px;
-        padding: 5px 15px;
-    }
-    
-    .nav-item.dropdown .dropdown-menu .nav-link {
-        font-size: 1.2rem;
-        opacity: 0.9;
+    .nav-menu.active ~ .nav-toggle,
+    .nav-menu.active ~ .nav-actions .nav-toggle,
+    body.menu-open .nav-toggle {
+        color: white !important;
     }
 
-    /* Compact Quote Form for Mobile */
-    .quote-form {
-        display: grid !important;
-        grid-template-columns: 1fr !important; /* Forces single column */
-        gap: 8px !important; /* Less gap */
-    }
-    .quote-form div {
-        margin-bottom: 0px !important; /* Remove individual div spacers */
-    }
-    .quote-form label {
-        margin-bottom: 2px !important; /* Very tight label-input spacing */
-    }
-    .nav-list {
-        flex-direction: column;
-        gap: 30px;
-        text-align: center;
-        width: 100%;
-    }
-
-    .nav-item.dropdown .dropdown-menu {
-        position: static;
-        display: none;
-        box-shadow: none;
-        transform: none;
-        opacity: 1;
-        visibility: visible;
-        padding-top: 10px;
-    }
-
-    .nav-item.dropdown:hover .dropdown-menu,
-    .nav-item.dropdown:focus-within .dropdown-menu {
-        display: block;
-    }
-
-    .header-social {
-        display: none;
-    }
-
-    /* Hide socials on mobile header for space */
-
-    .hero-quote {
-        font-size: 1.8rem;
+    .hero {
+        padding: 120px 0 80px !important; /* Reduced padding on mobile to fix header gap */
     }
 
     .hero-video-background {
-        gap: 5px; /* Reduce gap on mobile for the 3 side-by-side videos */
+        gap: 0px !important;
     }
 
-    .section-title {
-        font-size: 2rem;
+    .hero-quote {
+        font-size: 1.6rem;
     }
 
-    .footer-links {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
+    .int-stats-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
     }
 }
 
@@ -2163,6 +2143,75 @@ ul {
     opacity: 0;
     transform: translateY(20px);
     will-change: transform, opacity;
+}
+
+/* ===== INTERIOR STATS REDESIGN ===== */
+.int-stats {
+    background: var(--int-dark, #2c3a42);
+    padding: 80px 0;
+    color: white;
+    position: relative;
+    z-index: 10;
+}
+.int-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    align-items: center;
+}
+.int-stat-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.int-stat-num {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    color: #c8dfe8;
+    display: block;
+    margin-bottom: 8px;
+    line-height: 1;
+}
+.int-stat-label { 
+    font-size: 0.85rem; 
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.8; 
+}
+.int-stat-box {
+    border: 1px solid rgba(200, 223, 232, 0.3);
+    padding: 20px;
+    border-radius: 12px;
+    width: 100%;
+}
+.int-stat-main {
+    display: block;
+    font-size: 1.8rem;
+    font-family: var(--font-heading);
+    color: #c8dfe8;
+    margin-bottom: 5px;
+}
+.int-stat-sub {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    opacity: 0.7;
+}
+.int-stat-highlight {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: #c8dfe8;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .int-stats-grid {
+        grid-template-columns: 1fr !important;
+        gap: 50px !important;
+    }
+    .int-stat-num { font-size: 2.8rem; }
+    .int-stat-highlight { font-size: 1.8rem; }
 }
 
 /* Base class triggers animation */

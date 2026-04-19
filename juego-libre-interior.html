@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,0,0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="./css/style.css?v=14">
+    <link rel="stylesheet" href="./css/style.css?v=15">
 
     <style>
         /* ===== INTERIOR PAGE STYLES ===== */
@@ -591,7 +591,7 @@
         <section class="interior-hero">
             <!-- Mobile-only video background -->
             <div class="interior-hero-video-bg">
-                <video autoplay muted loop playsinline src="./assets/IMG_8361.MOV"></video>
+                <video autoplay muted loop playsinline webkit-playsinline src="./assets/IMG_8361.MOV"></video>
             </div>
             <div class="interior-hero-content">
                 <!-- Badge hidden on mobile, shown on desktop -->
@@ -617,16 +617,18 @@
         <section class="int-stats">
             <div class="container">
                 <div class="int-stats-grid">
-                    <div class="fade-in-up delay-1" style="text-align:center;">
+                    <div class="int-stat-item fade-in-up delay-1">
                         <span class="int-stat-num" data-target="1" data-suffix=" HORA">0</span>
                         <span class="int-stat-label" data-i18n="int_stats_1_lbl">DE JUEGO LIBRE</span>
                     </div>
-                    <div class="fade-in-up delay-2" style="text-align:center;">
-                        <span class="int-stat-num" style="display:block; font-size:1.5rem; line-height:1.2; margin-bottom:5px;">0 - 2 AÑOS</span>
-                        <span class="int-stat-label" data-i18n="int_stats_2_lbl" style="font-size: 0.85rem; line-height: 1.4; display: block;">PEQUES DESDE QUE SE MANTIENEN SENTADOS HASTA LOS 2 AÑOS</span>
+                    <div class="int-stat-item fade-in-up delay-2">
+                        <div class="int-stat-box">
+                            <span class="int-stat-main">0 - 2 AÑOS</span>
+                            <span class="int-stat-sub" data-i18n="int_stats_2_lbl">PEQUES DESDE QUE SE MANTIENEN SENTADOS HASTA LOS 2 AÑOS</span>
+                        </div>
                     </div>
-                    <div class="fade-in-up delay-3" style="text-align:center;">
-                        <span class="int-stat-num" style="display:block; font-size:1.5rem; line-height:1.2; margin-bottom:5px;">100% natural</span>
+                    <div class="int-stat-item fade-in-up delay-3">
+                        <span class="int-stat-highlight">100% natural</span>
                     </div>
                 </div>
             </div>
