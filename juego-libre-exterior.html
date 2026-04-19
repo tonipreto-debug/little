@@ -35,11 +35,12 @@
         /* Animated floating flowers (global) */
         .flower {
             position: fixed;
-            font-size: 2rem;
+            font-size: 2.5rem;
             opacity: 0;
             animation: flower-fall linear infinite;
             pointer-events: none;
             z-index: -1;
+            filter: grayscale(100%);
         }
         @keyframes flower-fall {
             0%   { transform: translateY(-10vh) rotate(0deg) scale(0); opacity: 0; }
@@ -517,12 +518,12 @@
 </head>
 <body>
     <!-- Floating Flowers Global Effect -->
-    <span class="flower" style="left:8%; animation-duration:14s; animation-delay:0s;">ðŸŒ¸</span>
-    <span class="flower" style="left:22%; animation-duration:18s; animation-delay:3s;">ðŸŒº</span>
-    <span class="flower" style="left:40%; animation-duration:15s; animation-delay:1s;">ðŸŒ¼</span>
-    <span class="flower" style="left:55%; animation-duration:12s; animation-delay:6s;">ðŸŒ·</span>
-    <span class="flower" style="left:75%; animation-duration:16s; animation-delay:1.5s;">ðŸŒ¸</span>
-    <span class="flower" style="left:88%; animation-duration:20s; animation-delay:4s;">ðŸŒº</span>
+    <span class="flower" style="left:8%; animation-duration:14s; animation-delay:0s; filter: grayscale(100%);">🌼</span>
+    <span class="flower" style="left:22%; animation-duration:18s; animation-delay:3s; filter: grayscale(100%);">🌼</span>
+    <span class="flower" style="left:40%; animation-duration:15s; animation-delay:1s; filter: grayscale(100%);">🌼</span>
+    <span class="flower" style="left:55%; animation-duration:12s; animation-delay:6s; filter: grayscale(100%);">🌼</span>
+    <span class="flower" style="left:75%; animation-duration:16s; animation-delay:1.5s; filter: grayscale(100%);">🌼</span>
+    <span class="flower" style="left:88%; animation-duration:20s; animation-delay:4s; filter: grayscale(100%);">🌼</span>
 
     <!-- ===== STANDARD HEADER ===== -->
     <header class="header" id="header">
@@ -596,14 +597,12 @@
                 <span class="ticker-item"><span class="ticker-dot"></span><span data-i18n="ticker_2">EXTERIOR · MALLORCA</span></span>
                 <span class="ticker-item"><span class="ticker-dot"></span><span data-i18n="ticker_3">MATERIALES NATURALES</span></span>
                 <span class="ticker-item"><span class="ticker-dot"></span><span data-i18n="ticker_4">1.5 HORAS</span></span>
-                <span class="ticker-item"><span class="ticker-dot"></span><span data-i18n="ticker_5">GRUPOS REDUCIDOS</span></span>
                 <span class="ticker-item"><span class="ticker-dot"></span><span data-i18n="ticker_6">EDAD: 0 A 4 AÑOS</span></span>
                 <!-- duplicate for seamless loop -->
                 <span class="ticker-item"><span class="ticker-dot"></span><span data-i18n="ticker_1">JUEGO LIBRE</span></span>
                 <span class="ticker-item"><span class="ticker-dot"></span><span data-i18n="ticker_2">EXTERIOR · MALLORCA</span></span>
                 <span class="ticker-item"><span class="ticker-dot"></span><span data-i18n="ticker_3">MATERIALES NATURALES</span></span>
                 <span class="ticker-item"><span class="ticker-dot"></span><span data-i18n="ticker_4">1.5 HORAS</span></span>
-                <span class="ticker-item"><span class="ticker-dot"></span><span data-i18n="ticker_5">GRUPOS REDUCIDOS</span></span>
                 <span class="ticker-item"><span class="ticker-dot"></span><span data-i18n="ticker_6">EDAD: 0 A 4 AÑOS</span></span>
             </div>
         </div>
@@ -620,8 +619,8 @@
                     <span class="stat-lbl" data-i18n="ext_stats_2_lbl">materiales naturales</span>
                 </div>
                 <div class="stat-item reveal in-view" style="transition-delay:0.3s">
-                    <span class="stat-num" data-target="6" data-suffix=" años" data-i18n="ext_stats_3_num">0</span>
-                    <span class="stat-lbl" data-i18n="ext_stats_3_lbl">experiencia en Mallorca</span>
+                    <span style="font-family: var(--font-heading); font-size: clamp(3rem, 8vw, 5rem); color: var(--ext-coral); display: block; line-height: 1;" data-i18n="ext_stats_3_num">0-4 años</span>
+                    <span class="stat-lbl" data-i18n="ext_stats_3_lbl">de edad</span>
                 </div>
             </div>
         </section>
@@ -660,7 +659,7 @@
         <!-- ===== FEATURE CARDS ===== -->
         <section class="features-section">
             <div class="container">
-                <span class="section-tag reveal in-view" data-i18n="ext_feat_tag">¿Qué incluye?</span>
+                <span class="section-tag reveal in-view" data-i18n="ext_feat_tag" style="display: none;">¿Qué incluye?</span>
                 <h2 class="reveal in-view" data-i18n="ext_feat_title">Todo lo que necesitan</h2>
                 <div class="feature-cards">
                     <div class="feature-card c1 reveal in-view">
