@@ -448,6 +448,15 @@ ul {
     z-index: 0;
 }
 
+@media (max-width: 768px) {
+    .hero-video-background {
+        grid-template-columns: 1fr;
+    }
+    .hero-video-background .video-wrapper:not(:nth-child(2)) {
+        display: none;
+    }
+}
+
 .video-wrapper {
     position: relative;
     width: 100%;
@@ -1448,6 +1457,8 @@ ul {
         display: flex;
         transition: right 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
         z-index: 1500;
+        overflow-x: hidden;   /* nothing escapes the panel horizontally */
+        overflow-y: auto;     /* allow scroll if content is tall */
     }
 
     .nav-menu.active {
@@ -1459,11 +1470,15 @@ ul {
         gap: 30px;
         align-items: flex-start;
         width: 100%;
+        max-width: 100%;
         margin-top: 20px;
+        overflow: hidden;
     }
 
     .nav-item {
-        width: 100%; /* Stretch width so dropdown can fill safely */
+        width: 100%;
+        max-width: 100%;
+        position: relative; /* contain children */
     }
 
     .nav-menu .nav-link {
@@ -1473,24 +1488,53 @@ ul {
         text-align: left;
     }
 
+    /* ===== DROPDOWN — mobile full contained fix ===== */
     .nav-item.dropdown .dropdown-menu {
-        position: static;
+        /* Kill ALL desktop positioning with !important */
+        position: static !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+
+        /* Appearance */
         display: none;
-        box-shadow: none;
-        transform: none;
+        box-shadow: none !important;
         opacity: 1;
         visibility: visible;
-        padding: 10px 20px;
+        padding: 4px 0;          /* no left indent — aligns with parent */
         box-sizing: border-box;
-        background-color: rgba(255, 255, 255, 0.15);
-        width: 100%;
-        margin-top: 10px;
+        background-color: rgba(0, 0, 0, 0.18);
+        margin-top: 8px;
         border-radius: 8px;
+        border-left: 3px solid rgba(255,255,255,0.45);
+        overflow: hidden;
     }
 
-    .nav-item.dropdown:hover .dropdown-menu,
-    .nav-item.dropdown:focus-within .dropdown-menu {
+    /* Show dropdown via JS .open class (not :hover — unreliable on touch) */
+    .nav-item.dropdown.open .dropdown-menu {
         display: block;
+    }
+
+    .nav-item.dropdown .dropdown-menu .nav-link {
+        font-size: 1.15rem !important;
+        padding: 10px 20px;     /* same horizontal padding as panel sides */
+        display: block;
+        width: 100%;
+        opacity: 0.9;
+        text-align: left;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-item.dropdown .dropdown-menu li:last-child .nav-link {
+        border-bottom: none;
+    }
+    .nav-item.dropdown .dropdown-menu .nav-link:hover,
+    .nav-item.dropdown .dropdown-menu .nav-link:active {
+        background: rgba(255,255,255,0.12);
+        opacity: 1;
     }
 
     .nav-mobile-social {
@@ -1522,6 +1566,18 @@ ul {
 
     .hero-video-background {
         gap: 0px !important;
+        grid-template-columns: 1fr !important; /* single column — only center video shows */
+    }
+
+    /* Hide left and right video panels — keep only the center one */
+    .hero-video-background .video-wrapper:nth-child(1),
+    .hero-video-background .video-wrapper:nth-child(3) {
+        display: none !important;
+    }
+
+    /* Center video fills the full width */
+    .hero-video-background .video-wrapper:nth-child(2) {
+        width: 100%;
     }
 
     .hero-quote {
@@ -3758,6 +3814,95 @@ ul {
         width: 100% !important;
         height: 100% !important;
     }
+
+/* ==================================
+   GLOBAL UI ELEMENTS (WhatsApp & Cookies)
+   ================================== */
+
+/* WhatsApp Floater */
+.float-wa {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    animation: wa-bounce 2s infinite;
+}
+.float-wa i {
+    color: white; /* Force white icon */
+}
+.float-wa:hover {
+    background-color: #128C7E;
+    color: white;
+    transform: scale(1.1);
+    animation: none;
+}
+@keyframes wa-bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* Cookie Banner */
+.cookie-banner {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 -5px 25px rgba(0,0,0,0.1);
+    z-index: 9999;
+    padding: 20px;
+    transition: bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.cookie-banner.show {
+    bottom: 0;
+}
+.cookie-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+.cookie-content p {
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+    margin: 0;
+    flex: 1;
+    min-width: 300px;
+}
+.cookie-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+@media (max-width: 768px) {
+    .float-wa {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 30px;
+    }
+    .cookie-buttons {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
 
     .hero-content {
         margin: 0 auto !important;
