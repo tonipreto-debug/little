@@ -16,6 +16,85 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="./css/style.css?v=14">
+
+    <style>
+        /* ===== BOOKING CALENDAR STYLES ===== */
+        .btn-cal-nav {
+            background: none;
+            border: 1px solid rgba(224,95,89,0.3);
+            border-radius: 50%;
+            width: 34px; height: 34px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            color: var(--color-accent-primary);
+            transition: background 0.2s, border-color 0.2s;
+            padding: 0;
+            flex-shrink: 0;
+        }
+        .btn-cal-nav:hover {
+            background: rgba(224,95,89,0.1);
+            border-color: var(--color-accent-primary);
+        }
+        .btn-cal-nav .material-symbols-rounded { font-size: 20px; }
+
+        .cal-day {
+            padding: 6px 2px;
+            border-radius: 50%;
+            cursor: default;
+            color: #ccc;
+            font-size: 0.8rem;
+            line-height: 1;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cal-day.available {
+            color: #3a2e28;
+            cursor: pointer;
+            font-weight: 600;
+            background: rgba(224,95,89,0.06);
+            border-radius: 50%;
+            transition: background 0.2s, color 0.2s;
+        }
+        .cal-day.available:hover {
+            background: rgba(224,95,89,0.18);
+            color: var(--color-accent-primary);
+        }
+        .cal-day.available.selected {
+            background: var(--color-accent-primary);
+            color: white !important;
+        }
+
+        .btn-time {
+            background: white;
+            border: 1.5px solid rgba(224,95,89,0.3);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #3a2e28;
+            transition: all 0.2s;
+            font-family: var(--font-body);
+        }
+        .btn-time:hover { border-color: var(--color-accent-primary); color: var(--color-accent-primary); }
+        .btn-time.selected {
+            background: var(--color-accent-primary);
+            border-color: var(--color-accent-primary);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .contact-layout { grid-template-columns: 1fr !important; }
+        }
+    </style>
+    <!-- Favicon & SEO -->
+    <link rel="icon" href="./assets/logo.png" type="image/png">
+    <meta property="og:title" content="Little Juego Libre">
+    <meta property="og:description" content="Eventos personalizados y magia en cada rincón para los peques.">
+    <meta property="og:image" content="./assets/logo-coral.jpg">
+    <meta property="og:type" content="website">
 </head>
 
 <body class="bg-white">
@@ -90,75 +169,73 @@
                 <!-- Layout Principal a dos columnas -->
                 <div class="contact-layout"
                     style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: stretch; margin-bottom: 60px;">
-
                     <!-- Columna Izquierda: Calendario -->
                     <div class="contact-left">
                         <div id="booking-calendar" class="calendar-card"
                             style="background: white; border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 2px solid rgba(224,95,89,0.1); height: 100%; display: flex; flex-direction: column;">
+
+                            <!-- Header -->
                             <div class="calendar-header"
                                 style="background: var(--color-accent-primary); color: white; padding: 20px; text-align: center;">
                                 <h3 style="margin: 0; font-family: var(--font-heading); font-size: 1.4rem;"
                                     data-i18n="contact_book_call">Agenda tu Llamada</h3>
                                 <p style="margin: 5px 0 0; font-size: 0.85rem; opacity: 0.9;" data-i18n="contact_book_desc">
-                                    Selecciona un dï¿½a y hora para hablar.</p>
+                                    Selecciona un día y hora para hablar.</p>
                             </div>
 
                             <form id="call-form" action="https://formsubmit.co/little.juegolibre@gmail.com" method="POST" style="flex-grow: 1; display: flex; flex-direction: column;">
-                                <!-- Calendario Interactivo -->
-                                <div style="padding: 20px; flex-grow: 1;">
+
+                                <!-- Month navigation -->
+                                <div style="padding: 20px 20px 0; flex-grow: 1;">
                                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                                        <button type="button" class="btn-cal-nav" onclick="changeMonth(-1)"><span class="material-symbols-rounded">chevron_left</span></button>
-                                        <h4 id="month-name" style="margin:0; font-family: var(--font-heading);" data-i18n="contact_month">Agosto 2026</h4>
-                                        <button type="button" class="btn-cal-nav" onclick="changeMonth(1)"><span class="material-symbols-rounded">chevron_right</span></button>
+                                        <button type="button" id="prev-month" class="btn-cal-nav"><span class="material-symbols-rounded">chevron_left</span></button>
+                                        <h4 id="current-month-display" style="margin: 0; font-family: var(--font-heading);"></h4>
+                                        <button type="button" id="next-month" class="btn-cal-nav"><span class="material-symbols-rounded">chevron_right</span></button>
                                     </div>
-                                    <div class="calendar-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; font-size: 0.8rem;">
-                                        <div style="font-weight: 600; color: #999;" data-i18n="contact_mon">L</div>
-                                        <div style="font-weight: 600; color: #999;" data-i18n="contact_tue">M</div>
-                                        <div style="font-weight: 600; color: #999;" data-i18n="contact_wed">X</div>
-                                        <div style="font-weight: 600; color: #999;" data-i18n="contact_thu">J</div>
-                                        <div style="font-weight: 600; color: #999;" data-i18n="contact_fri">V</div>
-                                        <div style="font-weight: 600; color: #999;" data-i18n="contact_sat">S</div>
-                                        <div style="font-weight: 600; color: #999;" data-i18n="contact_sun">D</div>
-                                        <!-- Days injected by JS -->
-                                        <div style="color: #ccc;">27</div><div style="color: #ccc;">28</div><div style="color: #ccc;">29</div><div style="color: #ccc;">30</div><div style="color: #ccc;">31</div>
-                                        <div class="cal-day">1</div><div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div>
-                                        <div class="cal-day available">10</div><div class="cal-day available">11</div><div class="cal-day">12</div><div class="cal-day">13</div><div class="cal-day">14</div><div class="cal-day">15</div>
-                                        <div class="cal-day available" onclick="selectDate(this, '16')">16</div>
-                                        <div class="cal-day available selected" id="default-selected" onclick="selectDate(this, '17')">17</div>
-                                        <div class="cal-day available" onclick="selectDate(this, '18')">18</div>
-                                        <div class="cal-day">19</div><div class="cal-day">20</div><div class="cal-day">21</div><div class="cal-day">22</div>
-                                        <div class="cal-day available" onclick="selectDate(this, '23')">23</div>
-                                        <div class="cal-day available" onclick="selectDate(this, '24')">24</div>
-                                        <div class="cal-day available" onclick="selectDate(this, '25')">25</div>
-                                        <div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day">28</div>
-                                    </div>
+
+                                    <!-- Dynamic calendar grid (days injected by JS) -->
+                                    <div id="calendar-days-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; font-size: 0.8rem;"></div>
                                 </div>
-                                <div class="time-slots" style="padding: 0 15px 15px; border-top: 1px solid #eee;">
-                                    <p id="date-label" style="margin: 10px 0; font-weight: 600; font-size: 0.85rem;" data-i18n="contact_date_selected">Lun, 17 Ago</p>
-                                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px;">
-                                        <button type="button" class="btn btn-time selected" onclick="selectTime(this, '10:00')">10:00</button>
-                                        <button type="button" class="btn btn-time" onclick="selectTime(this, '11:30')">11:30</button>
-                                        <button type="button" class="btn btn-time" onclick="selectTime(this, '16:00')">16:00</button>
-                                    </div>
-                                    <input type="hidden" name="Fecha_Llamada" id="hidden-date" value="2026-08-17 10:00">
+
+                                <!-- Time slots + form fields -->
+                                <div class="time-slots" style="padding: 15px 20px 15px; border-top: 1px solid #eee; margin-top: 15px;">
+                                    <p id="date-label" style="margin: 0 0 10px; font-weight: 600; font-size: 0.85rem; color: var(--color-accent-primary);">Selecciona un día disponible</p>
+                                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px;"></div>
+                                    <input type="hidden" name="Fecha_Llamada" id="selected-date" value="">
+
                                     <div style="margin-bottom: 10px;">
-                                        <input type="text" name="Nombre_Cliente" data-i18n="contact_form_name_ph" placeholder="Tu Nombre" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-family: var(--font-body); font-size: 0.9rem;">
+                                        <input type="text" name="Nombre_Cliente" data-i18n="contact_form_name_ph" placeholder="Tu Nombre" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-family: var(--font-body); font-size: 0.9rem; box-sizing: border-box;">
                                     </div>
                                     <div style="margin-bottom: 10px;">
-                                        <input type="email" name="Email_Cliente" data-i18n="contact_form_email_ph" placeholder="Tu Email" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-family: var(--font-body); font-size: 0.9rem;">
+                                        <input type="email" name="Email_Cliente" data-i18n="contact_form_email_ph" placeholder="Tu Email" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-family: var(--font-body); font-size: 0.9rem; box-sizing: border-box;">
                                     </div>
                                     <div style="margin-bottom: 15px;">
-                                        <input type="tel" name="Telfono_Cliente" data-i18n="contact_form_phone_ph" placeholder="Tu Telfono" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-family: var(--font-body); font-size: 0.9rem;">
+                                        <input type="tel" name="Telefono_Cliente" data-i18n="contact_form_phone_ph" placeholder="Tu Teléfono" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-family: var(--font-body); font-size: 0.9rem; box-sizing: border-box;">
                                     </div>
-                                    <!-- FormSubmit Config -->
+
+                                    <!-- FormSubmit config -->
                                     <input type="hidden" name="_subject" value="Nueva Llamada Agendada en Little!">
-                                    <input type="hidden" name="_autorespond" value="Gracias por agendar tu llamada con Little Juego Libre! Hemos recibido tu solicitud correctamente. Si deseas aadirlo a tu calendario, puedes hacerlo desde el enlace adjunto o crear un evento para el da seleccionado. Hablemos pronto!">
+                                    <input type="hidden" name="_captcha" value="false">
                                     <input type="hidden" name="_template" value="table">
-                                    <button type="submit" class="btn btn-primary btn-full" data-i18n="contact_btn_confirm">Confirmar Reserva</button>
+
+                                    <button type="submit" id="call-submit-btn" class="btn btn-primary btn-full" data-i18n="contact_btn_confirm">Confirmar Reserva</button>
                                 </div>
+
+                                <!-- Success message (hidden until form submitted) -->
+                                <div id="call-success-msg" style="display: none; padding: 30px 20px; text-align: center;">
+                                    <span class="material-symbols-rounded" style="font-size: 3rem; color: #4CAF50; display: block; margin-bottom: 12px;">check_circle</span>
+                                    <h4 style="color: #3a2e28; font-family: var(--font-heading); margin-bottom: 8px;">¡Reserva confirmada!</h4>
+                                    <p style="color: #7a6a62; font-size: 0.9rem; margin-bottom: 16px;">Te escribiremos pronto para confirmar los detalles.</p>
+                                    <a id="google-cal-link" href="#" target="_blank" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; border-radius: 30px; padding: 10px 22px; font-size: 0.85rem;">
+                                        <span class="material-symbols-rounded" style="font-size: 18px;">calendar_add_on</span>
+                                        Añadir a Google Calendar
+                                    </a>
+                                </div>
+
                             </form>
                         </div>
                     </div>
+
 
                     <div class="contact-right">
                         <div class="quote-container bg-white"

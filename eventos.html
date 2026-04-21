@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -20,6 +20,10 @@
 
     <style>
         /* ======= EVENTOS PAGE SPECIFIC STYLES ======= */
+
+        /* Prevent horizontal overflow on all screen sizes */
+        html, body { overflow-x: hidden; }
+        .page-main { overflow-x: hidden; }
 
         /* Hero */
         .eventos-hero {
@@ -114,18 +118,18 @@
             margin-bottom: 12px;
         }
 
+        /* Back link — desktop: pinned top-left; mobile: flows inside hero content */
+        .back-link-wrapper {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+        }
         @media (max-width: 768px) {
-            .mobile-back-shift {
-                position: absolute !important;
-                top: 160px !important;
-                left: 20px !important;
-                padding: 0 !important;
-                margin: 0 !important;
-                z-index: 100 !important;
-            }
-            .eventos-hero-content {
-                padding-top: 80px !important; /* Make room for the link */
-            }
+            .mobile-back-shift { display: none !important; } /* Hide the old absolute-positioned wrapper */
+            .back-link-mobile { display: flex !important; } /* Show the inline one */
+        }
+        @media (min-width: 769px) {
+            .back-link-mobile { display: none !important; } /* Hide the inline one on desktop */
         }
         /* Philosophy Strip */
         .philosophy-strip {
@@ -849,40 +853,81 @@
 
         /* ======= MOBILE OVERRIDES ======= */
         @media (max-width: 900px) {
+            /* Hero */
+            .eventos-hero { min-height: 60vh; }
+            .eventos-hero-desc { font-size: 1rem; padding: 0 10px; }
+
+            /* Editorial rows (Bodas/Bautizos/Corporativo) */
             .editorial-row {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                margin-bottom: 100px;
+                grid-template-columns: 1fr !important;
+                gap: 24px;
+                margin-bottom: 50px;
+                padding: 24px !important;
             }
-            .editorial-row.reverse {
-                grid-template-columns: 1fr;
-            }
-            .editorial-row.reverse .editorial-img-col {
-                order: 0;
-            }
-            .editorial-row.reverse .editorial-text-col {
-                order: 0;
-                padding-right: 0;
-            }
-            .editorial-row:not(.reverse) .editorial-text-col {
-                padding-left: 0;
-            }
-            .ed-title {
-                margin-left: 0;
-                margin-right: 0 !important;
-                font-size: 2.2rem;
-            }
-            .eventos-cta {
-                padding: 100px 20px;
-            }
+            .editorial-row.reverse { grid-template-columns: 1fr !important; }
+            .editorial-row.reverse .editorial-img-col { order: 0; }
+            .editorial-row.reverse .editorial-text-col { order: 0; padding-right: 0; }
+            .editorial-row:not(.reverse) .editorial-text-col { padding-left: 0; }
+
+            /* Fix image overlap — critical mobile fix */
+            .ed-title { margin-left: 0 !important; margin-right: 0 !important; font-size: 1.8rem; }
+            .ed-img-wrap::before { padding-bottom: 70%; } /* Wider ratio on mobile, less tall */
+            .ed-img-deco { display: none; } /* Hide decorative offset border on mobile */
+
+            /* Stats */
             .stats-grid { grid-template-columns: 1fr; gap: 50px; }
-            .glamping-inner { grid-template-columns: 1fr; gap: 40px; }
-            .glamping-circle-bg { width: 240px; height: 240px; }
+
+            /* Glamping */
+            .glamping-inner { grid-template-columns: 1fr; gap: 30px; }
             .glamping-visual { order: -1; }
+            .glamping-photo-main { height: 280px; }
+            .glamping-circle-bg { width: 240px; height: 240px; }
+
+            /* Alma / nuestra forma */
             .alma-grid { grid-template-columns: 1fr; gap: 30px; }
+
+            /* Extras / logistica */
             .extras-grid { grid-template-columns: 1fr; gap: 20px; }
             .logistica-grid { grid-template-columns: 1fr; gap: 40px; }
+
+            /* CTA */
+            .eventos-cta { padding: 80px 20px; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .btn-cta-white, .btn-cta-outline { width: 100%; max-width: 300px; justify-content: center; }
         }
+
+        @media (max-width: 600px) {
+            /* Hero title & spacing */
+            .eventos-hero-title { font-size: clamp(1.9rem, 8vw, 2.8rem); }
+            .eventos-hero-content { padding: 20px 16px; }
+
+            /* Section padding reduction */
+            .alma-section, .extras-section, .stats-section,
+            .glamping-section, .talleres-section, .zones-section { padding: 60px 0 !important; }
+
+            /* Editorial */
+            .editorial-row { padding: 18px !important; gap: 18px; }
+            .ed-title { font-size: 1.5rem; }
+            .ed-desc { font-size: 0.95rem; }
+            .ed-features li { font-size: 0.9rem; }
+            .btn-editorial { font-size: 0.7rem; }
+
+            /* Sensorial images — prevent huge fixed heights */
+            .sens-arch-p1 { height: 180px !important; }
+            .sens-arch-p2 { height: 200px !important; }
+            .sens-arch-p3 { height: 150px !important; }
+            .sens-arch-p4 { height: 130px !important; }
+            .sensorial-grid { gap: 8px; }
+
+            /* Glamping photo */
+            .glamping-photo-main { height: 220px; }
+            .glamping-photo-badge { font-size: 0.62rem; padding: 8px 16px; }
+            .glamping-title { font-size: 1.6rem; }
+
+            /* PDF title */
+            .pdf-title { font-size: clamp(1.4rem, 5vw, 2rem); }
+        }
+
 
         /* ======= PDF LAYOUT STYLES ======= */
         .pdf-bg { background-color: #fdf7ed; }
@@ -1118,16 +1163,30 @@
         .sens-arch-p4 { border-radius: 20px 20px 150px 150px; height: 250px; }
 
         @media (max-width: 900px) {
-            .forma-crear-grid { grid-template-columns: 1fr; }
-            .forma-img-col { height: 400px; }
+            .forma-crear-grid { grid-template-columns: 1fr; gap: 30px; }
+            /* forma-img-col: remove fixed height, let images size naturally */
+            .forma-img-col { height: auto !important; grid-template-columns: 1fr 1fr; gap: 16px; }
+            .nfc-card { height: 260px; }
+            .nfc-slot:last-child { margin-top: 16px; }
             .timeline-line { display: none; }
             .timeline-items { flex-direction: column; align-items: center; gap: 40px; }
             .timeline-item.top, .timeline-item.bottom { transform: none; }
             .timeline-item.top::after, .timeline-item.bottom::after { display: none; }
-            .sensorial-box { grid-template-columns: 1fr; }
+            /* Sensorial: stack text then photos */
+            .sensorial-box { grid-template-columns: 1fr; gap: 30px; }
+            .sensorial-grid { grid-template-columns: 1fr 1fr; }
             .pdf-title-container { text-align: center; padding-right: 0; }
             .pdf-title::before, .pdf-title::after { display: none; }
         }
+        @media (max-width: 500px) {
+            /* On very small screens, stack the 3D photo pair vertically */
+            .forma-img-col { grid-template-columns: 1fr !important; }
+            .nfc-slot:last-child { margin-top: 0; }
+            .nfc-card { height: 280px; }
+            /* Sensorial: single column on very small screens */
+            .sensorial-grid { grid-template-columns: 1fr; }
+        }
+
 
         /* ===== PERSONALIZA VUESTRA EXPERIENCIA ===== */
         .personaliza-section {
@@ -1287,7 +1346,65 @@
             .personaliza-cta-row { flex-direction: column; gap: 16px; text-align: center; }
         }
 
-        /* ===== TALLERES REDESIGN: 2x2 Symmetric Grid ===== */
+        /* ===== TALLERES HORIZONTAL 3-COLUMN LAYOUT ===== */
+        .talleres-horiz-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-top: 60px;
+        }
+        .taller-horiz-card {
+            background: #fff;
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 32px rgba(164,80,55,0.07);
+            border: 1px solid rgba(164,80,55,0.08);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+        .taller-horiz-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(164,80,55,0.14);
+        }
+        .taller-horiz-img-wrap {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+        .taller-horiz-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .taller-horiz-card:hover .taller-horiz-img { transform: scale(1.05); }
+        .taller-horiz-body {
+            padding: 24px 26px 28px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .taller-horiz-body h3 {
+            font-family: var(--font-heading, 'Playfair Display', serif);
+            font-size: 1.4rem;
+            color: #3d2c26;
+            margin: 0 0 10px;
+        }
+        .taller-horiz-body p {
+            font-size: 0.88rem;
+            color: #7a6a62;
+            line-height: 1.65;
+            margin: 0 0 18px;
+            flex: 1;
+        }
+        @media (max-width: 900px) {
+            .talleres-horiz-grid { grid-template-columns: 1fr; gap: 20px; }
+            .taller-horiz-img-wrap { height: 210px; }
+        }
+
+        /* ===== TALLERES REDESIGN: 2x2 Symmetric Grid (legacy, kept for reference) ===== */
         .talleres-section { background: var(--pdf-bg, #f4edea); }
         .talleres-grid {
             display: grid;
@@ -1531,6 +1648,12 @@
             .nfc-card { height: 300px; }
         }
     </style>
+    <!-- Favicon & SEO -->
+    <link rel="icon" href="./assets/logo.png" type="image/png">
+    <meta property="og:title" content="Little Juego Libre">
+    <meta property="og:description" content="Eventos personalizados y magia en cada rincón para los peques.">
+    <meta property="og:image" content="./assets/logo-coral.jpg">
+    <meta property="og:type" content="website">
 </head>
 
 <body class="bg-white">
@@ -1593,15 +1716,17 @@
     <main class="page-main">
 
         <!-- Hero Section -->
-        <section class="eventos-hero">
+        <section class="eventos-hero" style="padding-top: 100px;">
             <div class="eventos-hero-bg">
                 <div class="hero-bg-col" style="background-image: url('./assets/eventos-hero-1.jpg');"></div>
                 <div class="hero-bg-col" style="background-image: url('./assets/eventos-hero-2.jpg');"></div>
                 <div class="hero-bg-col" style="background-image: url('./assets/eventos-hero-3.jpg');"></div>
             </div>
-            
+
             <div style="position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10;">
-                <div class="container mobile-back-shift" style="width: 100%; position: absolute; top: 40px; left: 0; right: 0;">
+
+                <!-- Desktop back link (absolute pinned) -->
+                <div class="container mobile-back-shift" style="width: 100%; position: absolute; top: -60px; left: 0; right: 0;">
                     <a href="servicios.html" class="back-link" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--color-accent-primary); font-weight: 600; font-size: 0.9rem;">
                         <span class="material-symbols-rounded">arrow_back</span>
                         <span data-i18n="nav_back_services">Volver a Servicios</span>
@@ -1609,42 +1734,23 @@
                 </div>
 
                 <div class="eventos-hero-content reveal-up">
+                    <!-- Mobile back link (in-flow, above eyebrow) -->
+                    <a href="servicios.html" class="back-link back-link-mobile" style="display: none; align-items: center; gap: 6px; text-decoration: none; color: var(--color-accent-primary); font-weight: 600; font-size: 0.85rem; margin-bottom: 16px; justify-content: center;">
+                        <span class="material-symbols-rounded" style="font-size: 18px;">arrow_back</span>
+                        <span data-i18n="nav_back_services">Volver a Servicios</span>
+                    </a>
                     <span class="eventos-hero-eyebrow" data-i18n="evt_hero_eyebrow">Momentos Inolvidables</span>
                     <h1 class="eventos-hero-title">
-                        <span data-i18n="evt_hero_title1" style="display: block; text-align: center;">Creamos el escenario para tu</span>
-                        <em id="hero-typewriter" style="display: block; text-align: center;">Boda</em>
+                        <span style="display: block; text-align: center;">creamos el escenario para tu</span>
+                        <em id="hero-typewriter" style="display: block; text-align: center;">&ldquo;boda&rdquo;</em>
                     </h1>
-                    <p class="eventos-hero-desc" data-i18n="evt_hero_desc">Diseñamos rincones infantiles con alma donde los más pequeños viven su propia fiesta. Estética, juego libre y materiales naturales para eventos mágicos.</p>
+                    <p class="eventos-hero-desc">Creamos rincones con alma donde los más pequeños forman parte de la celebración a su manera.</p>
                     <div class="hero-actions">
-                        <a href="#tipos-evento" class="btn btn-primary" style="padding: 15px 40px; border-radius: 50px; text-decoration: none; display: inline-block;" data-i18n="evt_hero_btn">Ver Servicios</a>
+                        <a href="#talleres-section" class="btn btn-primary" style="padding: 15px 40px; border-radius: 50px; text-decoration: none; display: inline-block;">Descubrir más</a>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Philosophy Strip -->
-        <section class="philosophy-strip">
-            <div class="container">
-                <div class="philosophy-grid">
-                    <div class="philosophy-item reveal-up">
-                        <span class="ph-icon material-symbols-rounded">eco</span>
-                        <h3 data-i18n="evt_philo1_title">Natural & Estético</h3>
-                        <p data-i18n="evt_philo1_desc">Materiales nobles, madera y texturas suaves que se integran en la decoración de tu evento.</p>
-                    </div>
-                    <div class="philosophy-item reveal-up" style="transition-delay: 0.1s;">
-                        <span class="ph-icon material-symbols-rounded">face</span>
-                        <h3 data-i18n="evt_philo2_title">Acompañamiento</h3>
-                        <p data-i18n="evt_philo2_desc">Cuidado profesional y respetuoso para que los peques disfruten con total seguridad.</p>
-                    </div>
-                    <div class="philosophy-item reveal-up" style="transition-delay: 0.2s;">
-                        <span class="ph-icon material-symbols-rounded">auto_awesome</span>
-                        <h3 data-i18n="evt_philo3_title">Momentos Mágicos</h3>
-                        <p data-i18n="evt_philo3_desc">Propuestas abiertas que invitan al asombro, la calma y la alegría compartida.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
 
 
         <!-- ===== NUESTRA FORMA DE CREAR (PDF STYLE) ===== -->
@@ -1680,8 +1786,8 @@
             </div><!-- /.container -->
         </section>
 
-        <!-- ===== TIPOS DE EVENTOS ORIGINALES ===== -->
-        <section class="event-types-section pdf-bg-alt" id="tipos-evento" style="padding: 100px 0;">
+        <!-- ===== TIPOS DE EVENTOS (removed per user request) ===== -->
+        <section class="event-types-section pdf-bg-alt" id="tipos-evento" style="padding: 0; display:none;">
 
             <div class="container">
                 <div class="text-center reveal-up" style="margin-bottom: 70px;">
@@ -1754,18 +1860,29 @@
         </section>
 
         <!-- ===== TALLERES ===== -->
-        <section class="talleres-section pdf-bg-alt" style="padding: 100px 0;">
+        <section class="talleres-section pdf-bg-alt" id="talleres-section" style="padding: 100px 0;">
+            <style>
+                .talleres-horiz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+                .taller-horiz-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+                .taller-horiz-img-wrap { height: 250px; overflow: hidden; }
+                .taller-horiz-img { width: 100%; height: 100%; object-fit: cover; }
+                .taller-horiz-body { padding: 30px; }
+                @media (max-width: 768px) { .talleres-horiz-grid { grid-template-columns: 1fr; } }
+            </style>
             <div class="container reveal-up">
                 <div class="pdf-title-container" style="text-align: center; padding-right: 0;">
                     <h2 class="pdf-title">Talleres</h2>
                     <p class="pdf-subtitle">Dise&#241;amos talleres <strong>creativos</strong> que pueden adaptarse al estilo y concepto de cada evento.</p>
                 </div>
 
-                <div class="talleres-grid">
+                <!-- Horizontal 3-column layout -->
+                <div class="talleres-horiz-grid">
 
-                    <div class="taller-card">
-                        <img src="./assets/taller-gorras.jpg" alt="Taller de Gorras" class="taller-card-img">
-                        <div class="taller-card-body">
+                    <div class="taller-horiz-card">
+                        <div class="taller-horiz-img-wrap">
+                            <img src="./assets/taller-gorras.jpg" alt="Taller de Gorras" class="taller-horiz-img">
+                        </div>
+                        <div class="taller-horiz-body">
                             <span class="taller-card-tag">Taller Creativo</span>
                             <h3>Gorras</h3>
                             <p>Personalizan su propia gorra con parches, pins y pedreria. Un accesorio &#250;nico que se llevan a casa como recuerdo del d&#237;a.</p>
@@ -1773,9 +1890,11 @@
                         </div>
                     </div>
 
-                    <div class="taller-card">
-                        <img src="./assets/evento-gafas.png" alt="Taller de Gafas" class="taller-card-img">
-                        <div class="taller-card-body">
+                    <div class="taller-horiz-card">
+                        <div class="taller-horiz-img-wrap">
+                            <img src="./assets/evento-gafas.png" alt="Taller de Gafas" class="taller-horiz-img">
+                        </div>
+                        <div class="taller-horiz-body">
                             <span class="taller-card-tag">Taller Creativo</span>
                             <h3>Gafas</h3>
                             <p>Decoran y personalizan sus propias gafas de sol. Infinitas combinaciones para que cada peque exprese su estilo &#250;nico.</p>
@@ -1783,22 +1902,14 @@
                         </div>
                     </div>
 
-                    <div class="taller-card">
-                        <img src="./assets/taller-capas.jpg" alt="Taller de Capas" class="taller-card-img">
-                        <div class="taller-card-body">
+                    <div class="taller-horiz-card">
+                        <div class="taller-horiz-img-wrap">
+                            <img src="./assets/taller-capas.jpg" alt="Taller de Capas" class="taller-horiz-img">
+                        </div>
+                        <div class="taller-horiz-body">
                             <span class="taller-card-tag">Taller Creativo</span>
                             <h3>Capas de Superh&#233;roe</h3>
                             <p>Cada peque crea y personaliza su propia capa de superh&#233;roe. Pinceles, purpurina y mucha imaginaci&#243;n para vivir la aventura.</p>
-                            <a href="contacto.html" class="taller-card-link">Saber m&#225;s &#8594;</a>
-                        </div>
-                    </div>
-
-                    <div class="taller-card">
-                        <img src="./assets/evento-sensorial.png" alt="Taller Sensorial" class="taller-card-img">
-                        <div class="taller-card-body">
-                            <span class="taller-card-tag">Taller Sensorial · 0&#8211;4 a&#241;os</span>
-                            <h3>Estaci&#243;n Sensorial</h3>
-                            <p>Un rinc&#243;n de calma y exploraci&#243;n para los m&#225;s peque&#241;os, con materiales naturales, texturas y elementos sensoriales seguros.</p>
                             <a href="contacto.html" class="taller-card-link">Saber m&#225;s &#8594;</a>
                         </div>
                     </div>
@@ -1814,7 +1925,7 @@
                     <div class="forma-text-col">
                         <div class="pdf-title-container" style="text-align:left; padding-right:0;"><h2 class="pdf-title" style="margin-left:20px;">Estación Sensorial</h2></div>
                         <p class="quote" style="text-align:left; color:#a45037; font-size:1.1rem; margin-top:-30px; font-weight: 500;">"Zona de experimentación para los más pequeños"</p>
-                        <p>Los invitados más pequeños también merecen una experiencia a su medida. Diseñamos un rincón de <strong>calma y exploración</strong> para bebés y niños de <strong>0 a 4 años</strong>, donde los materiales naturales, las texturas y los elementos sensoriales son los protagonistas.</p>
+                        <p>Los invitados más pequeños también merecen una experiencia a su medida. Diseñamos un rincón de <strong>calma y exploración</strong> para bebés y niños de <strong>0 a 4 años</strong>, donde los materiales naturales, las texturas y los elementos sensoriales son los protagonistas. <strong>Puede incluirse si hay peques de la primera infancia (0–4 años).</strong></p>
                         <p>Un <strong>espacio seguro y estético</strong> que respeta sus ritmos, fomentando la <strong>curiosidad</strong> y el asombro en un ambiente <strong>relajado</strong> dentro de la celebración.</p>
                         <strong style="color:#a45037; display:block; margin: 30px 0 15px;">INCLUYE:</strong>
                         <ul style="color:#a45037; padding-left:20px; line-height:1.8;">
@@ -1834,8 +1945,8 @@
             </div>
         </section>
 
-<!-- ===== PERSONALIZA VUESTRA EXPERIENCIA (EXTRAS GRID) ===== -->
-        <section class="personaliza-section">
+<!-- ===== PERSONALIZA VUESTRA EXPERIENCIA (removed per user request) ===== -->
+        <section class="personaliza-section" style="display:none;">
             <div class="container">
                 <div class="personaliza-header">
                     <span class="pdf-tag">Extras con alma</span>
@@ -1967,7 +2078,7 @@
         </section>
 
         <!-- ===== CTA ===== -->
-        <section class="eventos-cta">
+        <section class="eventos-cta" style="background: var(--color-accent-primary) !important; background: #E05F59 !important;">
             <div class="container fade-in-up">
                 <h2 data-i18n="evt_cta_title">¿Tienes un evento en mente?</h2>
                 <p data-i18n="evt_cta_desc">Cuéntanos tu celebración y juntos diseñaremos un rincón que tus invitados recordarán siempre.</p>
@@ -2023,16 +2134,16 @@
     <script>
     (function() {
         // --- 1. TYPEWRITER EFFECT ---
-        const words = ['Boda', 'Comunión', 'Bautizo', 'Evento Escolar'];
+        const words = ['boda', 'comunión', 'evento'];
         const el = document.getElementById('hero-typewriter');
         let wi = 0, ci = 0, deleting = false;
         function type() {
             const w = words[wi];
             if (!deleting) {
-                el.textContent = w.slice(0, ++ci);
+                el.textContent = '“' + w.slice(0, ++ci) + '”';
                 if (ci === w.length) { deleting = true; setTimeout(type, 1800); return; }
             } else {
-                el.textContent = w.slice(0, --ci);
+                el.textContent = '"' + w.slice(0, --ci) + '"';
                 if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
             }
             setTimeout(type, deleting ? 60 : 110);

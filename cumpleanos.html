@@ -17,6 +17,12 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="./css/style.css?v=15">
+    <!-- Favicon & SEO -->
+    <link rel="icon" href="./assets/logo.png" type="image/png">
+    <meta property="og:title" content="Little Juego Libre">
+    <meta property="og:description" content="Eventos personalizados y magia en cada rincón para los peques.">
+    <meta property="og:image" content="./assets/logo-coral.jpg">
+    <meta property="og:type" content="website">
 </head>
 
 <body>
@@ -76,7 +82,7 @@
         </div>
     </header>
     
-    <main style="padding-top: 80px; padding-bottom: 80px; min-height: 80vh;">
+    <main style="padding-top: 100px; padding-bottom: 80px; min-height: 80vh;">
         <!-- PANTALLA DE ELECCIÓN: GLOBOS -->
         <section id="bd-choice" class="bd-choice-container fade-in-up">
             <div class="blob-wrapper">
@@ -96,234 +102,26 @@
             </div>
         </section>
 
-        <!-- OPCIÓN 1: CUMPLEAÑOS EN LITTLE (CONTENIDO ACTUAL) -->
-        <div id="little-bd" style="display: none;">
-        <!-- Cumpleaños Hero (Confetti & Background) -->
-        <section class="cumple-hero text-center" style="position: relative; margin-bottom: 100px; padding: 120px 20px; overflow: hidden; background-image: url('./assets/cumple-hero-bg.jpg'); background-size: cover; background-position: center; border-radius: 0 0 60px 60px;">
-            <div style="position: absolute; inset: 0; background: rgba(249, 243, 238, 0.75); z-index: 1;"></div>
-            <div class="container fade-in-up" style="position: relative; z-index: 5;">
-                <div class="cumple-title-wrapper" style="position: relative;">
-                    <h1 class="cumple-title animate-wave wave-style-3" style="font-family: var(--font-heading); font-size: clamp(3rem, 7vw, 4.5rem); color: var(--color-accent-primary); position: relative; z-index: 2; margin: 0; line-height: 1.1; font-weight: 700;" data-i18n="bd1_title">
-                        Cumpleaños en Little
-                    </h1>
-                    
-                    <!-- Confetti Expansion Engine -->
-                    <div class="confetti-layer" style="z-index: 1;">
-                        <div class="conf-piece" style="--tx: -120px; --ty: -150px; --rot: 45deg; background: #E05F59;"></div>
-                        <div class="conf-piece" style="--tx: 150px; --ty: -180px; --rot: 120deg; background: #f2c94c;"></div>
-                        <div class="conf-piece" style="--tx: 80px; --ty: 100px; --rot: -45deg; background: #a4c3b2;"></div>
-                        <div class="conf-piece" style="--tx: -90px; --ty: 120px; --rot: 210deg; background: #e2a76f;"></div>
-                        <div class="conf-piece" style="--tx: -200px; --ty: -50px; --rot: -10deg; background: #a8d8ea;"></div>
-                        <div class="conf-piece" style="--tx: 200px; --ty: 40px; --rot: 80deg; background: #E05F59;"></div>
-                        <div class="conf-piece" style="--tx: -30px; --ty: -200px; --rot: 300deg; background: #f2c94c;"></div>
-                        <div class="conf-piece" style="--tx: 100px; --ty: -60px; --rot: -90deg; background: #a4c3b2;"></div>
-                        <div class="conf-piece" style="--tx: -160px; --ty: 150px; --rot: 180deg; background: #e2a76f;"></div>
-                        <div class="conf-piece" style="--tx: 40px; --ty: 180px; --rot: -130deg; background: #a8d8ea;"></div>
-                        <div class="conf-piece" style="--tx: 180px; --ty: 130px; --rot: 55deg; background: #E05F59;"></div>
-                        <div class="conf-piece" style="--tx: -180px; --ty: -120px; --rot: -60deg; background: #f2c94c;"></div>
-                        <div class="conf-piece" style="--tx: -50px; --ty: 80px; --rot: -15deg; background: #a4c3b2;"></div>
-                        <div class="conf-piece" style="--tx: 220px; --ty: -100px; --rot: 190deg; background: #e2a76f;"></div>
-                        <div class="conf-piece" style="--tx: 120px; --ty: 140px; --rot: 95deg; background: #a8d8ea;"></div>
-                    </div>
-                    
-                    <!-- Magic Sweeping Broom -->
-                    <div class="broom-layer" style="font-size: 4rem; z-index: 5;"><span class="material-symbols-rounded" style="font-weight: 200; font-size: inherit;">magic_button</span></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Timeline Animation -->
-        <section class="cumple-timeline section bg-light" style="padding: 80px 0;">
-            <div class="container">
-                <div class="timeline-wrapper">
-                    
-                    <!-- Node 1: Edades -->
-                    <div class="timeline-item fade-in-up delay-1">
-                        <div class="timeline-icon"><span class="material-symbols-rounded" style="font-weight: 300; font-size: 2.5rem;">sunny</span></div>
-                        <div class="timeline-content box-shadow-hover">
-                            <h3 data-i18n="bd1_t1_title">Edades Mágicas</h3>
-                            <p data-i18n="bd1_t1_desc">Celebramos cumpleaños desde la primera vuelta al sol hasta los 5 años.</p>
-                        </div>
-                        <div class="timeline-img-box tilt-right">
-                            <img loading="lazy" decoding="async" src="./assets/cumple_nueva_1.jpg" alt="Actividades Sensoriales Little">
-                        </div>
-                    </div>
-
-                    <!-- Node 2: Personalización -->
-                    <div class="timeline-item fade-in-up delay-2">
-                        <div class="timeline-icon"><span class="material-symbols-rounded" style="font-weight: 300; font-size: 2.5rem;">palette</span></div>
-                        <div class="timeline-content box-shadow-hover">
-                            <h3 data-i18n="bd1_t2_title">100% Personalizado</h3>
-                            <p data-i18n="bd1_t2_desc">Cada cumpleaños es tematizado y único, decorado milimétricamente con los colores favoritos del/la peque.</p>
-                        </div>
-                        <div class="timeline-img-box tilt-left">
-                            <img loading="lazy" decoding="async" src="./assets/cumple_nueva_2.jpg" alt="Decoración Personalizada Little">
-                        </div>
-                    </div>
-
-                    <!-- Node 3: Qué Incluye -->
-                    <div class="timeline-item fade-in-up delay-3">
-                        <div class="timeline-icon"><span class="material-symbols-rounded" style="font-weight: 300; font-size: 2.5rem;">star</span></div>
-                        <div class="timeline-content box-shadow-hover">
-                            <h3 data-i18n="bd1_t3_title">¿Qué incluye nuestra propuesta?</h3>
-                            <div class="timeline-features">
-                                <div class="feature-row"><span class="feat-icon"><span class="material-symbols-rounded" style="font-weight: 300; font-size: 1.8rem;">science</span></span><p data-i18n="bd1_t3_i1">Propuestas avanzadas de experimentación sensorial.</p></div>
-                                <div class="feature-row"><span class="feat-icon"><span class="material-symbols-rounded" style="font-weight: 300; font-size: 1.8rem;">water_drop</span></span><p data-i18n="bd1_t3_i2">Bandejas con agua y elementos congelados para hacer trasvases y descubrimientos.</p></div>
-                                <div class="feature-row"><span class="feat-icon"><span class="material-symbols-rounded" style="font-weight: 300; font-size: 1.8rem;">brush</span></span><p data-i18n="bd1_t3_i3">Actividades de arte expresivas y creativas.</p></div>
-                                <div class="feature-row"><span class="feat-icon"><span class="material-symbols-rounded" style="font-weight: 300; font-size: 1.8rem;">toys</span></span><p data-i18n="bd1_t3_i4">Parte de juego simbólico integral con casita a doble altura, cocina de madera de 3 metros y rincones mágicos.</p></div>
-                                <div class="feature-row"><span class="feat-icon"><span class="material-symbols-rounded" style="font-weight: 300; font-size: 1.8rem;">favorite</span></span><p data-i18n="bd1_t3_i5">Y mucho más, todo pensado y realizado con mimo, alma y detalle.</p></div>
-                            </div>
-                        </div>
-                        <div id="vertical-reel-video" class="vertical-reel tilt-right">
-                            <video autoplay muted loop playsinline src="./assets/hero-video-1.mp4"></video>
-                        </div>
-                    </div>
-
-                    <!-- Node 4: CTA -->
-                    <div class="timeline-item fade-in-up delay-4">
-                        <div class="timeline-icon"><span class="material-symbols-rounded" style="font-weight: 300; font-size: 2.5rem;">chat_bubble_outline</span></div>
-                        <div class="timeline-content box-shadow-hover" style="border: 2px solid var(--color-accent-primary);">
-                            <h3 style="color: var(--color-text-main);" data-i18n="bd1_t4_title">¡Nos encantará organizarlo!</h3>
-                            <p style="margin-bottom: 20px;" data-i18n="bd1_t4_desc">Para más información o para reservar tu fecha directa, podéis escribirnos por WhatsApp o mandarnos un mensaje directo sin compromiso.</p>
-                            <a href="https://wa.me/34603919414" target="_blank" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
-                                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> <span data-i18n="bd1_whatsapp">Escríbenos por WhatsApp</span>
-                            </a>
-                        </div>
-                        <div id="vertical-reel-image" class="vertical-reel tilt-left">
-                            <img loading="lazy" decoding="async" src="./assets/cumple-little-3.jpg" alt="Organización Little">
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-        </div> <!-- End little-bd -->
-
-        <!-- OPCIÓN 2: CUMPLEAÑOS A DOMICILIO -->
-        <div id="home-bd" style="display: none;">
-            
-            <section class="home-bd-hero text-center" style="margin-bottom: 60px;">
-                <div class="container fade-in-up">
-                    <h1 class="cumple-title" style="font-family: var(--font-heading); font-size: 3.5rem; color: var(--color-accent-primary); margin-bottom: 20px;" data-i18n="bd2_title">
-                        Cumpleaños a Domicilio
-                    </h1>
-                    <div class="van-animation-container">
-                        <div class="house"><span class="material-symbols-rounded" style="font-weight: 200; font-size: 4rem; color: var(--color-accent-primary);">cottage</span></div>
-                        <div class="van">
-                            <div class="van-logo"></div>
-                            <div class="wheel wheel-front"></div>
-                            <div class="wheel wheel-back"></div>
-                        </div>
-                        <div class="road"></div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="home-bd-content bg-light" style="padding: 60px 0; border-radius: 40px;">
-                <div class="container fade-in-up delay-1">
-                    <div class="home-bd-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                        <div class="home-bd-card box-shadow-hover" style="background-image: url('./assets/cumple-domi-1.jpg'); background-size: cover; background-position: center; border-radius: 80px 20px 80px 20px; overflow: hidden; position: relative; border: 2px solid rgba(255, 255, 255, 0.5);">
-                            <div style="background: rgba(255, 255, 255, 0.82); padding: 45px 40px; height: 100%; text-align: center;">
-                                <div class="card-icon" style="display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
-                                    <span class="material-symbols-rounded" style="font-weight: 300; font-size: 3.5rem; color: var(--color-accent-primary);">sunny</span>
-                                    <span class="material-symbols-rounded" style="font-weight: 300; font-size: 3.5rem; color: var(--color-accent-primary);">cake</span>
-                                </div>
-                                <h3 style="color: var(--color-text-main); font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 15px;" data-i18n="bd1_t1_title">Edades Mágicas</h3>
-                                <p style="font-size: 1.1rem;" data-i18n="bd2_c1_desc">Celebramos cumples desde la primera vuelta al sol hasta los 5 años.</p>
-                            </div>
-                        </div>
-                        <div class="home-bd-card box-shadow-hover" style="background-image: url('./assets/cumple-domi-2.jpg'); background-size: cover; background-position: center; border-radius: 20px 80px 20px 80px; overflow: hidden; position: relative; border: 2px solid rgba(255, 255, 255, 0.5);">
-                            <div style="background: rgba(255, 255, 255, 0.82); padding: 45px 40px; height: 100%; text-align: center;">
-                                <div class="card-icon" style="margin-bottom: 20px;">
-                                    <span class="material-symbols-rounded" style="font-weight: 300; font-size: 3.5rem; color: var(--color-accent-primary);">palette</span>
-                                </div>
-                                <h3 style="color: var(--color-text-main); font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 15px;" data-i18n="bd2_c2">Tematización</h3>
-                                <p style="font-size: 1.1rem;" data-i18n="bd2_c2_desc">Cada cumpleaños es personalizado con los colores favoritos del/la peque.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="home-bd-features box-shadow-hover fade-in-up delay-2" style="margin-top: 50px; background-image: url('./assets/cumple-domi-3.jpg'); background-size: cover; background-position: center; border-radius: 60px; overflow: hidden; position: relative; border: 2px solid rgba(255, 255, 255, 0.5);">
-                        <div style="background: rgba(255, 255, 255, 0.85); padding: 50px; height: 100%;">
-                            <h3 style="color: var(--color-accent-primary); font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 35px; text-align: center;" data-i18n="bd2_feat_title">¿Qué Incluye?</h3>
-                            <div class="feature-list" style="display: flex; flex-direction: column; gap: 28px; max-width: 700px; margin: 0 auto;">
-                                <div class="feature-item" style="display: flex; align-items: flex-start; gap: 20px;">
-                                    <span class="material-symbols-rounded" style="font-weight: 300; font-size: 2.5rem; color: var(--color-accent-primary);">science</span> 
-                                    <p style="font-size: 1.2rem; margin: 0; line-height: 1.5;" data-i18n="bd2_feat_1">Propuestas avanzadas de <strong>experimentación sensorial</strong>.</p>
-                                </div>
-                                <div class="feature-item" style="display: flex; align-items: flex-start; gap: 20px;">
-                                    <span class="material-symbols-rounded" style="font-weight: 300; font-size: 2.5rem; color: var(--color-accent-primary);">water_drop</span> 
-                                    <p style="font-size: 1.2rem; margin: 0; line-height: 1.5;" data-i18n="bd2_feat_2"><strong>Bandejas con agua</strong> preparadas para experimentar y hacer trasvases.</p>
-                                </div>
-                                <div class="feature-item" style="display: flex; align-items: flex-start; gap: 20px;">
-                                    <span class="material-symbols-rounded" style="font-weight: 300; font-size: 2.5rem; color: var(--color-accent-primary);">brush</span> 
-                                    <p style="font-size: 1.2rem; margin: 0; line-height: 1.5;" data-i18n="bd2_feat_3">También ofrecemos divertidas e inmersivas <strong>actividades de arte</strong>.</p>
-                                </div>
-                                <div class="feature-item" style="display: flex; align-items: flex-start; gap: 20px;">
-                                    <span class="material-symbols-rounded" style="font-weight: 300; font-size: 2.5rem; color: var(--color-accent-primary);">favorite</span> 
-                                    <p style="font-size: 1.2rem; margin: 0; line-height: 1.5;" data-i18n="bd2_feat_4">Y mucho más, todo pensado y realizado con <strong>mimo, alma y detalle</strong>.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="home-bd-cta text-center fade-in-up delay-3" style="margin-top: 80px;">
-                        <div style="background: #fdfaf6; padding: 40px; border-radius: var(--border-radius-lg); border: 2px solid var(--color-accent-primary); max-width: 800px; margin: 0 auto;">
-                            <p style="font-size: 1.2rem; margin-bottom: 25px; line-height: 1.7;" data-i18n="bd2_cta_desc">
-                                <span class="material-symbols-rounded" style="font-weight: 300; font-size: 1.2rem; vertical-align: middle; margin-right: 5px;">description</span> Os enviamos un <strong>presupuesto completo</strong> con todo lo que incluye para que sepáis cómo será ese día tan especial.<br><br>
-                                <span class="material-symbols-rounded" style="font-weight: 300; font-size: 1.2rem; vertical-align: middle; margin-right: 5px;">chat_bubble_outline</span> Para más info o reservar fecha, podéis escribirnos por WhatsApp o mensaje directo. ¡Nos encantará organizarlo con vosotros! <span class="material-symbols-rounded" style="font-weight: 300; font-size: 1.2rem; vertical-align: middle; margin-left: 5px;">flare</span>
-                            </p>
-                            <a href="https://wa.me/34603919414" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 35px;">
-                                <i class="fa-brands fa-whatsapp" style="margin-right: 8px; font-size: 1.3rem;"></i> <span data-i18n="bd1_whatsapp">Escríbenos por WhatsApp</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+        <!-- Lógica de Enrutamiento hacia nuevas páginas separadas -->
 
         <script>
             function showBD(viewId) {
-                document.getElementById('bd-choice').style.display = 'none';
-                document.getElementById('little-bd').style.display = 'none';
-                document.getElementById('home-bd').style.display = 'none';
-                
-                const target = document.getElementById(viewId);
-                target.style.display = (viewId === 'bd-choice') ? 'flex' : 'block';
-                
-                // Scroll to top to ensure clean view
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                
-                // Re-trigger animations by forcing a reflow
-                if(viewId !== 'bd-choice') {
-                    const animatedEls = target.querySelectorAll('.fade-in-up, .scale-up');
-                    animatedEls.forEach(el => {
-                        el.classList.remove('animate-show');
-                        void el.offsetWidth; // Force reflow
-                        setTimeout(() => el.classList.add('animate-show'), 50);
-                    });
+                if(viewId === 'little-bd') {
+                    window.location.href = 'cumpleanos-little.html';
+                } else if(viewId === 'home-bd') {
+                    window.location.href = 'cumpleanos-domicilio.html';
                 }
             }
             
-            // On load, handle deep-linking and 5-second hint
+            // On load, show 5-second hint
             document.addEventListener("DOMContentLoaded", () => {
-                const urlParams = new URLSearchParams(window.location.search);
-                const section = urlParams.get('section');
-                
-                if (section === 'home-bd' || section === 'little-bd') {
-                    showBD(section);
-                } else {
-                    document.getElementById('bd-choice').style.display = 'flex';
-                    
-                    // Show hint after 5 seconds if no selection made
-                    setTimeout(() => {
-                        const hint = document.querySelector('.bd-hint-divider');
-                        const isChoiceVisible = document.getElementById('bd-choice').style.display === 'flex';
-                        if (hint && isChoiceVisible) {
-                            hint.classList.add('show-hint');
-                        }
-                    }, 5000);
-                }
+                // Show hint after 5 seconds if no selection made
+                setTimeout(() => {
+                    const hint = document.querySelector('.bd-hint-divider');
+                    if (hint) {
+                        hint.classList.add('show-hint');
+                    }
+                }, 5000);
             });
         </script>
     </main>
@@ -377,79 +175,7 @@
         </div>
     </div>
 
-    <!-- Mobile Timeline WOW Animation Script -->
-    <script>
-    (function() {
-        // Only run on screens ≤ 935px
-        if (window.innerWidth > 935) return;
-
-        var textObserver = null;
-
-        function initMobileTimeline() {
-            // Disconnect any previous observer
-            if (textObserver) { textObserver.disconnect(); }
-
-            // Reset media boxes to hidden state
-            var allMedia = document.querySelectorAll(
-                '#little-bd .timeline-img-box, #little-bd .vertical-reel, #little-bd #vertical-reel-video, #little-bd #vertical-reel-image'
-            );
-            allMedia.forEach(function(m) {
-                m.classList.remove('mob-img-show');
-            });
-
-            // If there are no text blocks, bail
-            var textBlocks = document.querySelectorAll('#little-bd .timeline-content');
-            if (!textBlocks.length) return;
-
-            // Create IntersectionObserver on TEXT blocks
-            textObserver = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (!entry.isIntersecting) return;
-
-                    var item = entry.target.closest('.timeline-item');
-                    if (!item) return;
-
-                    var media = item.querySelector(
-                        '.timeline-img-box, .vertical-reel, #vertical-reel-video, #vertical-reel-image'
-                    );
-                    if (!media) return;
-
-                    // Reveal media 450ms after text is in view
-                    setTimeout(function() {
-                        media.classList.add('mob-img-show');
-                    }, 450);
-
-                    textObserver.unobserve(entry.target);
-                });
-            }, {
-                root: null,
-                rootMargin: '0px 0px 0px 0px',
-                threshold: 0.2
-            });
-
-            textBlocks.forEach(function(tc) { textObserver.observe(tc); });
-        }
-
-        // Hook into the existing showBD function to re-init when user picks "little-bd"
-        document.addEventListener('DOMContentLoaded', function() {
-            var origShowBD = window.showBD;
-            window.showBD = function(viewId) {
-                origShowBD(viewId);
-                if (viewId === 'little-bd') {
-                    // Small delay to let the display:block take effect before observing
-                    setTimeout(initMobileTimeline, 80);
-                }
-            };
-
-            // Also auto-init if page loads directly into little-bd (via URL param)
-            var params = new URLSearchParams(window.location.search);
-            if (params.get('section') === 'little-bd') {
-                setTimeout(initMobileTimeline, 200);
-            }
-        });
-    })();
-    </script>
-</body>
+    <!-- Scripts Cleaned up for Gateway -->
 
 </html>
 

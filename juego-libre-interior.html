@@ -36,6 +36,29 @@
             90%  { opacity: 0.2; }
             100% { transform: translateY(-10vh) scale(0.6); opacity: 0; }
         }
+        
+        .int-age-badge {
+            position: absolute; right: -20px; top: -20px;
+            width: 100px; height: 100px;
+            background: linear-gradient(135deg, var(--int-accent), var(--int-dark));
+            border-radius: 50%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: white; font-weight: 600; text-transform: uppercase;
+            box-shadow: 0 10px 25px rgba(90,122,138,0.4);
+            transform: rotate(12deg);
+            animation: hero-title-in 0.9s cubic-bezier(0.16,1,0.3,1) 0.8s both, float-badge 3s ease-in-out infinite alternate 1.7s;
+            z-index: 2;
+        }
+        .int-age-badge .int-age-top { font-size: 0.65rem; letter-spacing: 0.1em; opacity: 0.9; margin-bottom: 2px; }
+        .int-age-badge .int-age-num { font-size: 2rem; font-family: var(--font-heading); line-height: 1; }
+        .int-age-badge .int-age-bot { font-size: 0.75rem; letter-spacing: 0.05em; }
+        @keyframes float-badge {
+            from { transform: translateY(0) rotate(12deg); }
+            to   { transform: translateY(-10px) rotate(5deg); }
+        }
+        @media (max-width: 768px) {
+            .int-age-badge { right: -10px; top: -30px; transform: scale(0.85) rotate(12deg); }
+        }
 
         /* ---- HERO ---- */
         .interior-hero {
@@ -162,6 +185,35 @@
         }
         .btn-int-outline:hover { border-color: var(--int-accent); color: var(--int-accent); }
 
+        /* ---- NEW INTERIOR CTA ---- */
+        .int-cta { padding: 120px 0; background: var(--int-dark); text-align: center; color: white; }
+        .int-cta h2 { font-family: var(--font-heading); font-size: clamp(2rem,5vw,3.2rem); color: white; margin-bottom: 20px; }
+        .int-cta p { opacity: 0.75; max-width: 500px; margin: 0 auto 40px; font-size: 1.05rem; line-height: 1.8; }
+        .btn-int-outline-light {
+            background: transparent; color: white; border: 1px solid white;
+            padding: 14px 34px; border-radius: 50px; font-weight: 600;
+            font-size: 0.95rem; text-decoration: none; transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body);
+        }
+        .btn-int-outline-light:hover { background: white; color: var(--int-dark); transform: translateY(-3px); }
+        .btn-int-primary.cta-btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); }
+
+                /* Animated floating flowers (Section specific) */
+        .flower {
+            position: absolute;
+            font-size: 2.2rem;
+            opacity: 0;
+            animation: flower-fall linear infinite;
+            pointer-events: none;
+            z-index: 0;
+            filter: grayscale(100%);
+        }
+        @keyframes flower-fall {
+            0%   { top: -30px; transform: rotate(0deg) scale(0); opacity: 0; }
+            10%  { top: 5%; opacity: 0.35; transform: rotate(20deg) scale(1); }
+            80%  { top: 80%; opacity: 0.25; transform: rotate(200deg) scale(1); }
+            100% { top: 100%; transform: rotate(360deg) scale(0.8); opacity: 0; }
+        }
         /* ---- REVEAL COUNTER STRIP ---- */
         .int-stats {
             background: var(--int-dark);
@@ -514,6 +566,12 @@
                 border-radius: 20px !important;
             }
         }    </style>
+    <!-- Favicon & SEO -->
+    <link rel="icon" href="./assets/logo.png" type="image/png">
+    <meta property="og:title" content="Little Juego Libre">
+    <meta property="og:description" content="Eventos personalizados y magia en cada rincón para los peques.">
+    <meta property="og:image" content="./assets/logo-coral.jpg">
+    <meta property="og:type" content="website">
 </head>
 <body>
 
@@ -599,8 +657,13 @@
                     <span class="material-symbols-rounded" style="font-size:14px;">home</span>
                     Nuevo Servicio · Espacio Propio
                 </div>
-                <h1 class="interior-hero-title" data-i18n="int_hero_title">
-                    Taller<br><em>Multisensorial</em>
+                <h1 class="interior-hero-title" style="position: relative; display: inline-block;">
+                    <span data-i18n="int_hero_title">Taller<br><em>Multisensorial</em></span>
+                    <div class="int-age-badge">
+                        <span class="int-age-top">EXCLUSIVO</span>
+                        <span class="int-age-num">0-2</span>
+                        <span class="int-age-bot">años</span>
+                    </div>
                 </h1>
                 <p class="interior-hero-desc" data-i18n="int_hero_desc">
                     La misma magia sensorial de Little, ahora en INTERIOR. Un espacio cálido, diseñado al milímetro, donde la luz, los materiales y la experimentación crean el ambiente perfecto para explorar sin límites.
@@ -628,7 +691,7 @@
                         </div>
                     </div>
                     <div class="int-stat-item fade-in-up delay-3">
-                        <span class="int-stat-highlight">100% natural</span>
+                        <span class="int-stat-highlight">100% casero</span>
                     </div>
                 </div>
             </div>
@@ -675,14 +738,21 @@
             </div>
         </section>
         <!-- ===== QUÉ OFRECEMOS (S-CURVE TIMELINE) ===== -->
-        <section class="interior-timeline section" id="que-ofrecemos">
-            <div class="container" style="max-width:1000px;margin:0 auto;">
+        <section class="interior-timeline section" id="que-ofrecemos" style="overflow:hidden; position:relative;">
+            <!-- Floating Flowers Background Effect -->
+            <span class="flower" style="left:12%; animation-duration:14s; animation-delay:0s;">🌼</span>
+            <span class="flower" style="left:80%; animation-duration:18s; animation-delay:3s;">🌼</span>
+            <span class="flower" style="left:25%; animation-duration:15s; animation-delay:8s;">🌼</span>
+            <span class="flower" style="left:65%; animation-duration:12s; animation-delay:5s;">🌼</span>
+            <span class="flower" style="left:40%; animation-duration:16s; animation-delay:1.5s;">🌼</span>
+            <span class="flower" style="left:88%; animation-duration:20s; animation-delay:10s;">🌼</span>
+            <div class="container" style="max-width:1000px;margin:0 auto; position:relative; z-index:2;">
                 <div class="text-center fade-in-up" style="margin-bottom:70px;">
                     <h2 style="font-family:var(--font-heading);font-size:clamp(1.8rem,4vw,2.8rem);color:var(--int-dark);" data-i18n="int_timeline_title">
                         Qué viven dentro
                     </h2>
                     <p style="color:#7a6a62;max-width:520px;margin:0 auto;line-height:1.75;" data-i18n="int_timeline_desc">
-                        Cada detalle del local está pensado para que el juego sea la única protagonista.
+                        Cada detalle está pensado para que el juego sea la única protagonista.
                     </p>
                 </div>
 
@@ -697,60 +767,73 @@
                     </defs>
                 </svg>
 
-                <!-- ROW 1 -->
+                <!-- ROW 1 (1 HORA) -->
                 <div class="curvy-row fade-in-up">
                     <svg class="curvy-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
                         <path d="M 50 0 C 90 20, 90 80, 50 100" stroke="url(#gradInt)" fill="none" vector-effect="non-scaling-stroke"/>
                     </svg>
-                    <div class="curvy-icon" style="left:90%;">
+                    <div class="curvy-icon" style="left:90%; z-index:2;">
                         <span class="material-symbols-rounded" style="font-variation-settings:'wght' 300;font-size:2.2rem;">schedule</span>
                     </div>
-                    <div class="curvy-content" style="left:0;width:40%;text-align:right;">
+                    <div class="curvy-content" style="left:0;width:40%;text-align:right; z-index:2;">
                         <h3 style="color:var(--int-dark);" data-i18n="int_time_title">1 Hora</h3>
-                        <p data-i18n="int_time_desc">Sesiones íntimas de una hora, con tiempo suficiente para que cada peque entre en su propio ritmo y viva el juego de verdad.</p>
+                        <p data-i18n="int_time_desc">Sesiones de 1h donde cada peque va a su ritmo acompaÃ±ado de un adulto.</p>
                     </div>
                 </div>
 
-                <!-- ROW 3 -->
+                <!-- ROW 2 (ZONAS TEMÃTICAS) -->
+                <div class="curvy-row fade-in-up delay-1">
+                    <svg class="curvy-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M 50 0 C 10 20, 10 80, 50 100" stroke="url(#gradInt)" fill="none" vector-effect="non-scaling-stroke"/>
+                    </svg>
+                    <div class="curvy-icon" style="left:10%; z-index:2;">
+                        <span class="material-symbols-rounded" style="font-variation-settings:'wght' 300;font-size:2.2rem;">cottage</span>
+                    </div>
+                    <div class="curvy-content" style="left:60%;width:40%;text-align:left; z-index:2;">
+                        <h3 style="color:var(--int-dark);" data-i18n="int_zones_title">Zonas TemÃ¡ticas</h3>
+                        <p data-i18n="int_zones_desc">(en una sala experimentaciÃ³n con bases secas y en otra sala experimentaciÃ³n con bases cochinas para un mejor desarollo de todos los sentidos de los peques)</p>
+                    </div>
+                </div>
+
+                <!-- ROW 3 (SILENCIO/MÃšSICA) -->
                 <div class="curvy-row fade-in-up delay-2">
                     <svg class="curvy-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
                         <path d="M 50 0 C 90 20, 90 80, 50 100" stroke="url(#gradInt)" fill="none" vector-effect="non-scaling-stroke"/>
                     </svg>
-                    <div class="curvy-icon" style="left:90%;">
-                        <span class="material-symbols-rounded" style="font-variation-settings:'wght' 300;font-size:2.2rem;">cottage</span>
+                    <div class="curvy-icon" style="left:90%; z-index:2;">
+                        <span class="material-symbols-rounded" style="font-variation-settings:'wght' 300;font-size:2.2rem;">volume_off</span>
                     </div>
-                    <div class="curvy-content" style="left:0;width:40%;text-align:right;">
-                        <h3 style="color:var(--int-dark);" data-i18n="int_zones_title">Zonas Temáticas</h3>
-                        <p data-i18n="int_zones_desc">en una experimentación con bases secas y en la otra experimentación con bases cochinas para un mejor desarollo de todos los sentidos de los peques.</p>
+                    <div class="curvy-content" style="left:0;width:40%;text-align:right; z-index:2;">
+                        <p data-i18n="int_silence_desc" style="font-size: 1.1rem; margin-top: 10px;">MÃºsica suave de fondo, sin ruido ajeno, sin pantallas. Un entorno que favorece la concentraciÃ³n, el asombro y la conexiÃ³n entre adultos y peques.</p>
                     </div>
                 </div>
 
-                <!-- ROW 4 -->
-                <div class="curvy-row fade-in-up delay-3">
+                <!-- ROW 4 (MATERIALES) -->
+                <div class="curvy-row fade-in-up delay-3" style="min-height:280px;">
                     <svg class="curvy-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
                         <path d="M 50 0 C 10 20, 10 80, 50 100" stroke="url(#gradInt)" fill="none" vector-effect="non-scaling-stroke"/>
                     </svg>
-                    <div class="curvy-icon" style="left:10%;">
-                        <span class="material-symbols-rounded" style="font-variation-settings:'wght' 300;font-size:2.2rem;">volume_off</span>
+                    <div class="curvy-icon" style="left:10%; z-index:2;">
+                        <span class="material-symbols-rounded" style="font-variation-settings:'wght' 300;font-size:2.2rem;">eco</span>
                     </div>
-                    <div class="curvy-content" style="left:60%;width:40%;text-align:left;">
-                        <h3 style="color:var(--int-dark);" data-i18n="int_silence_title">Silencio activo</h3>
-                        <p data-i18n="int_silence_desc">Música suave de fondo, sin ruido ajeno, sin pantallas. Un entorno que favorece la concentración, el asombro y la conexión entre adultos y peques.</p>
+                    <div class="curvy-content" style="left:60%;width:40%;text-align:left; z-index:2;">
+                        <h3 style="color:var(--int-dark);" data-i18n="int_mat_title">Materiales</h3>
+                        <p style="margin-bottom:20px;" data-i18n="int_mat_desc">bases 100% comestibles, caseras y seguras.</p>
+                        <a href="contacto.html" class="btn-int-primary" style="display:inline-block;text-decoration:none;" data-i18n="int_btn_book">Reservar sesiÃ³n interior</a>
                     </div>
                 </div>
 
-                <!-- ROW 5 -->
-                <div class="curvy-row fade-in-up delay-4" style="min-height:280px;">
+                <!-- ROW 5 (ALERGIAS) -->
+                <div class="curvy-row fade-in-up delay-4" style="min-height:220px;">
                     <svg class="curvy-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
                         <path d="M 50 0 C 90 20, 90 80, 50 100" stroke="url(#gradInt)" fill="none" vector-effect="non-scaling-stroke"/>
                     </svg>
-                    <div class="curvy-icon" style="left:90%;">
-                        <span class="material-symbols-rounded" style="font-variation-settings:'wght' 300;font-size:2.2rem;">eco</span>
+                    <div class="curvy-icon" style="left:90%; z-index:2;">
+                        <span class="material-symbols-rounded" style="font-variation-settings:'wght' 300;font-size:2.2rem;">medical_information</span>
                     </div>
-                    <div class="curvy-content" style="left:0;width:40%;text-align:right;">
-                        <h3 style="color:var(--int-dark);" data-i18n="int_mat_title">Materiales 100% naturales</h3>
-                        <p style="margin-bottom:20px;" data-i18n="int_mat_desc">Todos los elementos del local — madera, mimbre, algodón, alimentos naturales — son seguros para el tacto y la boca. Garantizamos un entorno sin químicos.</p>
-                        <a href="contacto.html" class="btn-int-primary" style="display:inline-block;text-decoration:none;" data-i18n="int_btn_book">Reservar sesión interior</a>
+                    <div class="curvy-content" style="left:0;width:40%;text-align:right; z-index:2;">
+                        <h3 style="color:var(--int-dark);" data-i18n="int_alerg_title">Alergias</h3>
+                        <p data-i18n="int_alerg_desc" style="font-size: 1.05rem;">si tu peque tiene alguna alergia hacerlo llegar a la hora de reservar! nos adaptamos a ella sin problema!</p>
                     </div>
                 </div>
 
@@ -760,26 +843,19 @@
             </div>
         </section>
 
-        <!-- ===== LIGHT ANIMATION SECTION ===== -->
-        <section class="light-section">
-            <!-- Animated light rays -->
-            <div class="light-ray" style="left:20%;animation-duration:7s;animation-delay:0s;"></div>
-            <div class="light-ray" style="left:35%;animation-duration:9s;animation-delay:2s;"></div>
-            <div class="light-ray" style="left:55%;animation-duration:6s;animation-delay:1s;"></div>
-            <div class="light-ray" style="left:70%;animation-duration:8s;animation-delay:3s;"></div>
-            <div class="light-ray" style="left:82%;animation-duration:11s;animation-delay:0.5s;"></div>
-
-            <div class="container fade-in-up" style="position:relative;z-index:1;">
-                <h2 data-i18n="int_banner_title">Protegidos del exterior,<br><em>libres por dentro</em></h2>
-                <p data-i18n="int_banner_desc">La mejor versión del juego libre no depende del tiempo que hace fuera. En nuestro local, llueva o luzca el sol de Mallorca, la magia siempre está lista.</p>
-                <a href="contacto.html" class="btn-int-primary" style="display:inline-flex;align-items:center;gap:8px;" >
-                    <span class="material-symbols-rounded" style="font-variation-settings:'wght' 300;">calendar_month</span>
-                    <span data-i18n="int_banner_btn">Ver disponibilidad</span>
-                </a>
-                <a href="https://wa.me/34603919414" target="_blank" style="display:inline-flex;align-items:center;gap:10px;margin-top:16px;background:rgba(255,255,255,0.12);border:2px solid rgba(255,255,255,0.35);color:white;border-radius:50px;padding:12px 30px;font-weight:600;text-decoration:none;transition:all 0.2s;">
-                    <i class="fa-brands fa-whatsapp" style="font-size:1.2rem;"></i>
-                    <span>WhatsApp</span>
-                </a>
+        <!-- ===== CTA ===== -->
+        <section class="int-cta">
+            <div class="container fade-in-up">
+                <h2 data-i18n="ext_cta_title">¿Preparados para jugar?</h2>
+                <p data-i18n="ext_cta_desc">Escríbenos y os contamos las próximas fechas disponibles. ¡Las plazas vuelan!</p>
+                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://wa.me/34603919414" target="_blank" class="btn-int-primary cta-btn" style="box-shadow: none;">
+                        <i class="fa-brands fa-whatsapp"></i> <span data-i18n="ext_cta_wa">Hablar por WhatsApp</span>
+                    </a>
+                    <a href="contacto.html" class="btn-int-outline-light cta-btn">
+                        <span class="material-symbols-rounded" style="font-size:1.1rem;">mail</span> <span data-i18n="ext_cta_contact">Formulario de contacto</span>
+                    </a>
+                </div>
             </div>
         </section>
     </main>
@@ -1003,6 +1079,8 @@
 
 </body>
 </html>
+
+
 
 
 
