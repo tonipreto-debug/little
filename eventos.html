@@ -1514,7 +1514,7 @@
         /* ===== NUESTRA FORMA DE CREAR - 3D PHOTO CAROUSEL ===== */
         .forma-crear-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.5fr; /* Más espacio para las fotos */
             gap: 60px;
             align-items: center;
             margin-top: 50px;
@@ -1716,7 +1716,7 @@
     <main class="page-main">
 
         <!-- Hero Section -->
-        <section class="eventos-hero" style="padding-top: 100px;">
+        <section class="eventos-hero">
             <div class="eventos-hero-bg">
                 <div class="hero-bg-col" style="background-image: url('./assets/eventos-hero-1.jpg');"></div>
                 <div class="hero-bg-col" style="background-image: url('./assets/eventos-hero-2.jpg');"></div>
@@ -1739,7 +1739,7 @@
                         <span class="material-symbols-rounded" style="font-size: 18px;">arrow_back</span>
                         <span data-i18n="nav_back_services">Volver a Servicios</span>
                     </a>
-                    <span class="eventos-hero-eyebrow" data-i18n="evt_hero_eyebrow">Momentos Inolvidables</span>
+                    <span class="eventos-hero-eyebrow">Momentos Inolvidables</span>
                     <h1 class="eventos-hero-title">
                         <span style="display: block; text-align: center;">creamos el escenario para tu</span>
                         <em id="hero-typewriter" style="display: block; text-align: center;">&ldquo;boda&rdquo;</em>
@@ -1752,12 +1752,12 @@
             </div>
         </section>
 
-
         <!-- ===== NUESTRA FORMA DE CREAR (PDF STYLE) ===== -->
         <section class="alma-section pdf-bg" style="padding: 100px 0;">
             <div class="container reveal-up">
-                <div class="pdf-title-container">
-                    <h2 class="pdf-title">Nuestra Forma<br>de Crear</h2>
+                <!-- Título encima, centrado, a todo ancho -->
+                <div style="text-align: center; margin-bottom: 60px;">
+                    <h2 class="pdf-title" style="text-align: center;">Nuestra Forma<br>de Crear</h2>
                 </div>
                 <div class="forma-crear-grid">
                     <div class="forma-text-col">
@@ -1765,7 +1765,7 @@
                         <p>Creamos <strong>propuestas</strong> abiertas, con materiales elegidos con <strong>intención</strong> y espacios pensados para invitar a la <strong>curiosidad</strong>, la <strong>calma</strong> y la <strong>autonomía</strong>.</p>
                         <p>Nos gusta <strong>acompañar</strong> sin dirigir, dejar espacio para que cada peque explore, imagine y descubra a su manera.</p>
                         <p>Porque no se trata solo de entretener, sino de <strong>vivirlo</strong>.<br>De <strong>crear</strong> sin prisas, sin ruido… y dejar que lo más bonito pase de forma espontánea.</p>
-                        <p class="quote">“Creamos el evento que ellos también recordarán”</p>
+                        <p class="quote">"Creamos el evento que ellos también recordarán"</p>
                     </div><!-- /.forma-text-col -->
                     <div class="forma-img-col">
                         <div class="nfc-slot nfc-slot-a">
@@ -1936,10 +1936,10 @@
                         </ul>
                     </div>
                     <div class="sensorial-grid">
-                        <img src="./assets/evento-sensorial.png" class="sens-arch sens-arch-p1">
-                        <img src="./assets/evento-sensorial.png" class="sens-arch sens-arch-p2">
-                        <img src="./assets/evento-sensorial.png" class="sens-arch sens-arch-p3">
-                        <img src="./assets/evento-sensorial.png" class="sens-arch sens-arch-p4">
+                        <img loading="lazy" src="./assets/estacion-sensorial-1.jpg" alt="Estación sensorial con temática de playa y texturas" class="sens-arch sens-arch-p1">
+                        <img loading="lazy" src="./assets/estacion-sensorial-2.jpg" alt="Montaje sensorial con mesa de arena colorida" class="sens-arch sens-arch-p2">
+                        <img loading="lazy" src="./assets/estacion-sensorial-3.jpg" alt="Estación de juego sensorial con cítricos" class="sens-arch sens-arch-p3">
+                        <img loading="lazy" src="./assets/estacion-sensorial-4.jpg" alt="Detalle de mesa sensorial estilo marinero" class="sens-arch sens-arch-p4">
                     </div>
                 </div>
             </div>
@@ -2066,16 +2066,299 @@
                         </a>
                     </div>
                     <div class="glamping-visual slide-right">
-                        <div class="glamping-photo-wrap">
-                            <img src="./assets/glamping-flyers.jpg" alt="Little Glamping portfolio" class="glamping-photo-main">
+                        <div class="glamping-photo-wrap" style="max-width: 480px;">
+                            <img src="./assets/glamping-tienda.JPEG" alt="Little x The Glamping — Tienda sensorial" class="glamping-photo-main" style="object-position: center center; height: 580px;">
                             <span class="glamping-photo-badge">Little &#215; The Glamping</span>
+
+                            <!-- ✦ Botón galería — dentro de la foto ✦ -->
+                            <style>
+                                @keyframes glampShake {
+                                    0%, 88%, 100% { transform: translateX(-50%) rotate(0deg); }
+                                    90%  { transform: translateX(-50%) rotate(-4deg); }
+                                    92%  { transform: translateX(-50%) rotate(4deg); }
+                                    94%  { transform: translateX(-50%) rotate(-3deg); }
+                                    96%  { transform: translateX(-50%) rotate(3deg); }
+                                    98%  { transform: translateX(-50%) rotate(-1deg); }
+                                }
+                                #btn-glamp-gallery {
+                                    position: absolute;
+                                    bottom: 55px; /* above the badge */
+                                    left: 50%;
+                                    transform: translateX(-50%);
+                                    display: inline-flex;
+                                    align-items: center;
+                                    gap: 7px;
+                                    background: rgba(255,255,255,0.92);
+                                    backdrop-filter: blur(6px);
+                                    color: #a45037;
+                                    border: none;
+                                    padding: 10px 22px;
+                                    border-radius: 100px;
+                                    font-size: 0.78rem;
+                                    letter-spacing: 0.1em;
+                                    text-transform: uppercase;
+                                    font-weight: 700;
+                                    cursor: pointer;
+                                    box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+                                    white-space: nowrap;
+                                    font-family: var(--font-body, 'Montserrat', sans-serif);
+                                    animation: glampShake 4s ease-in-out infinite;
+                                    transition: background 0.25s, color 0.25s, transform 0.25s;
+                                    z-index: 5;
+                                }
+                                #btn-glamp-gallery:hover {
+                                    background: #a45037;
+                                    color: white;
+                                    animation: none;
+                                    transform: translateX(-50%) scale(1.05);
+                                }
+                            </style>
+                            <button id="btn-glamp-gallery" onclick="openGlampSlideshow(0)" aria-label="Ver galería de fotos Little Glamping">
+                                <span class="material-symbols-rounded" style="font-size: 16px; font-variation-settings: 'wght' 300;">collections</span>
+                                Ver Galería
+                            </button>
                         </div>
                     </div>
-                </div>
-                </div>
+
+                        <!-- ╔══════════════════════════════════════╗ -->
+                        <!-- ║  GLAMPING SLIDESHOW MODAL            ║ -->
+                        <!-- ╚══════════════════════════════════════╝ -->
+                        <style>
+                            #glamp-modal {
+                                display: none;
+                                position: fixed;
+                                inset: 0;
+                                z-index: 99999;
+                                background: rgba(15, 8, 5, 0.96);
+                                align-items: center;
+                                justify-content: center;
+                                flex-direction: column;
+                                padding: 20px;
+                                animation: glampFadeIn 0.3s ease;
+                            }
+                            #glamp-modal.open { display: flex; }
+                            @keyframes glampFadeIn {
+                                from { opacity: 0; }
+                                to   { opacity: 1; }
+                            }
+
+                            /* --- Close button --- */
+                            #glamp-close {
+                                position: fixed; top: 20px; right: 24px;
+                                background: rgba(255,255,255,0.12);
+                                border: 1px solid rgba(255,255,255,0.2);
+                                color: white; width: 44px; height: 44px;
+                                border-radius: 50%; display: flex; align-items: center;
+                                justify-content: center; cursor: pointer;
+                                font-size: 20px; z-index: 100001;
+                                transition: background 0.2s ease;
+                            }
+                            #glamp-close:hover { background: rgba(255,255,255,0.25); }
+
+                            /* --- Counter badge --- */
+                            #glamp-counter {
+                                position: fixed; top: 22px; left: 50%;
+                                transform: translateX(-50%);
+                                color: rgba(255,255,255,0.65);
+                                font-size: 0.8rem; letter-spacing: 0.15em;
+                                text-transform: uppercase;
+                                font-family: var(--font-body, 'Montserrat', sans-serif);
+                                z-index: 100001;
+                            }
+
+                            /* --- Image area --- */
+                            #glamp-img-wrap {
+                                position: relative;
+                                max-width: min(560px, 90vw);
+                                width: 100%;
+                                display: flex; align-items: center; justify-content: center;
+                            }
+                            #glamp-modal-img {
+                                width: 100%;
+                                max-height: 72vh;
+                                object-fit: contain;
+                                border-radius: 18px;
+                                box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+                                transition: opacity 0.3s ease, transform 0.3s ease;
+                                display: block;
+                            }
+                            #glamp-modal-img.fading {
+                                opacity: 0;
+                                transform: scale(0.97);
+                            }
+
+                            /* --- Dot indicators --- */
+                            #glamp-dots {
+                                display: flex; gap: 7px;
+                                margin-top: 22px; justify-content: center;
+                            }
+                            .glamp-dot {
+                                width: 7px; height: 7px; border-radius: 50%;
+                                background: rgba(255,255,255,0.25);
+                                transition: background 0.3s, transform 0.3s;
+                                cursor: pointer;
+                            }
+                            .glamp-dot.active {
+                                background: #c4714e;
+                                transform: scale(1.5);
+                            }
+
+                            /* --- Prev / Next arrows --- */
+                            .glamp-arrow {
+                                position: fixed; top: 50%; transform: translateY(-50%);
+                                background: rgba(255,255,255,0.1);
+                                border: 1px solid rgba(255,255,255,0.18);
+                                color: white; width: 50px; height: 50px;
+                                border-radius: 50%; display: flex; align-items: center;
+                                justify-content: center; cursor: pointer; z-index: 100001;
+                                transition: background 0.2s, transform 0.2s;
+                                font-size: 22px;
+                            }
+                            .glamp-arrow:hover {
+                                background: rgba(255,255,255,0.22);
+                                transform: translateY(-50%) scale(1.08);
+                            }
+                            #glamp-prev { left: 20px; }
+                            #glamp-next { right: 20px; }
+
+                            /* Caption */
+                            #glamp-caption {
+                                margin-top: 14px;
+                                color: rgba(255,255,255,0.45);
+                                font-size: 0.78rem;
+                                letter-spacing: 0.1em;
+                                text-transform: uppercase;
+                                font-family: var(--font-body, 'Montserrat', sans-serif);
+                                text-align: center;
+                            }
+
+                            @media (max-width: 600px) {
+                                .glamp-arrow { width: 40px; height: 40px; font-size: 18px; }
+                                #glamp-prev  { left: 8px; }
+                                #glamp-next  { right: 8px; }
+                            }
+                        </style>
+
+                        <div id="glamp-modal" role="dialog" aria-modal="true" aria-label="Galería Little × The Glamping">
+                            <!-- Close -->
+                            <button id="glamp-close" onclick="closeGlampSlideshow()" aria-label="Cerrar galería">
+                                <span class="material-symbols-rounded" style="font-size:20px;">close</span>
+                            </button>
+
+                            <!-- Counter -->
+                            <div id="glamp-counter">1 / 9</div>
+
+                            <!-- Prev arrow -->
+                            <button class="glamp-arrow" id="glamp-prev" onclick="glampNav(-1)" aria-label="Foto anterior">
+                                <span class="material-symbols-rounded">chevron_left</span>
+                            </button>
+
+                            <!-- Image -->
+                            <div id="glamp-img-wrap">
+                                <img id="glamp-modal-img" src="" alt="Little Glamping">
+                            </div>
+
+                            <!-- Caption -->
+                            <p id="glamp-caption">Little × The Glamping</p>
+
+                            <!-- Dots -->
+                            <div id="glamp-dots"></div>
+
+                            <!-- Next arrow -->
+                            <button class="glamp-arrow" id="glamp-next" onclick="glampNav(1)" aria-label="Foto siguiente">
+                                <span class="material-symbols-rounded">chevron_right</span>
+                            </button>
+                        </div>
+
+                        <script>
+                        (function() {
+                            const glampPhotos = [
+                                { src: './assets/glamping-gal-1.JPEG', caption: 'Cama y detalles interiores' },
+                                { src: './assets/glamping-gal-2.JPEG', caption: 'El palo central de la tienda' },
+                                { src: './assets/glamping-gal-3.JPEG', caption: 'Flores, cofre y materiales' },
+                                { src: './assets/glamping-gal-4.JPEG', caption: 'Vista completa de la cama' },
+                                { src: './assets/glamping-gal-5.JPEG', caption: 'Setas decorativas' },
+                                { src: './assets/glamping-gal-6.JPEG', caption: 'Taller de dibujo Fondo del Mar' },
+                                { src: './assets/glamping-gal-7.JPEG', caption: 'Base sensorial de fresas' },
+                                { src: './assets/glamping-gal-8.JPEG', caption: 'Faro, cámara y baúl' },
+                                { src: './assets/glamping-gal-9.JPEG', caption: 'Faro y ballena de madera' },
+                            ];
+
+                            let current = 0;
+
+                            // Build dots
+                            const dotsWrap = document.getElementById('glamp-dots');
+                            glampPhotos.forEach((_, i) => {
+                                const d = document.createElement('span');
+                                d.className = 'glamp-dot' + (i === 0 ? ' active' : '');
+                                d.onclick = () => glampGoTo(i);
+                                dotsWrap.appendChild(d);
+                            });
+
+                            window.openGlampSlideshow = function(index) {
+                                current = index || 0;
+                                document.getElementById('glamp-modal').classList.add('open');
+                                document.body.style.overflow = 'hidden';
+                                glampRender(current, false);
+                            };
+
+                            window.closeGlampSlideshow = function() {
+                                document.getElementById('glamp-modal').classList.remove('open');
+                                document.body.style.overflow = '';
+                            };
+
+                            window.glampNav = function(dir) {
+                                const next = (current + dir + glampPhotos.length) % glampPhotos.length;
+                                glampGoTo(next);
+                            };
+
+                            function glampGoTo(index) {
+                                const img = document.getElementById('glamp-modal-img');
+                                img.classList.add('fading');
+                                setTimeout(() => {
+                                    current = index;
+                                    glampRender(current, true);
+                                }, 280);
+                            }
+
+                            function glampRender(index, removeFade) {
+                                const photo = glampPhotos[index];
+                                const img = document.getElementById('glamp-modal-img');
+                                img.src = photo.src;
+                                img.alt = photo.caption;
+                                document.getElementById('glamp-caption').textContent = photo.caption;
+                                document.getElementById('glamp-counter').textContent = (index + 1) + ' / ' + glampPhotos.length;
+                                // Dots
+                                document.querySelectorAll('.glamp-dot').forEach((d, i) => {
+                                    d.classList.toggle('active', i === index);
+                                });
+                                if (removeFade) {
+                                    requestAnimationFrame(() => img.classList.remove('fading'));
+                                }
+                            }
+
+                            // Keyboard navigation
+                            document.addEventListener('keydown', e => {
+                                if (!document.getElementById('glamp-modal').classList.contains('open')) return;
+                                if (e.key === 'ArrowRight') glampNav(1);
+                                if (e.key === 'ArrowLeft')  glampNav(-1);
+                                if (e.key === 'Escape')     closeGlampSlideshow();
+                            });
+
+                            // Touch swipe
+                            let touchStartX = 0;
+                            document.getElementById('glamp-modal').addEventListener('touchstart', e => {
+                                touchStartX = e.touches[0].clientX;
+                            });
+                            document.getElementById('glamp-modal').addEventListener('touchend', e => {
+                                const diff = touchStartX - e.changedTouches[0].clientX;
+                                if (Math.abs(diff) > 50) glampNav(diff > 0 ? 1 : -1);
+                            });
+                        })();
+                        </script>
             </div>
-            </div>
-        </section>
+        </div>
+    </section>
 
         <!-- ===== CTA ===== -->
         <section class="eventos-cta" style="background: var(--color-accent-primary) !important; background: #E05F59 !important;">

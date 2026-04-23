@@ -546,6 +546,10 @@ const translations = {
         "faq_a3": "Our corners and materials are mainly adapted for little ones from when they walk until 6-8 years old, although we always customize according to the guests.",
         "faq_q4": "Do you look after children during the wedding banquet?",
         "faq_a4": "Yes! Our entertainers can be present not only in the Free Play area, but also providing support at the children's table during the feast.",
+        "faq_q5": "What if my child has a food allergy?",
+        "faq_a5": "No problem at all — just let us know when booking and we will make sure the space is fully safe for everyone to enjoy.",
+        "faq_q6": "Do parents need to be present during the activity?",
+        "faq_a6": "In workshops and outdoor free play we encourage adults to also immerse themselves in observation and play alongside their children. In weddings and personalised events we provide conscious and respectful accompaniment.",
         "faq_contact_btn": "I have another question, let's talk",
 
         "gallery_title": "Our Gallery",
@@ -658,8 +662,9 @@ const translations = {
 
         "footer_rights": "Copyright &copy; ",
         "footer_designed": " Little Juego Libre | Designed with soul",
+        "nav_back_services": "Back to Services",
         "ticker_1": "FREE PLAY",
-        "ticker_2": "CADA MES CAMBIAMOS DE TEMATICA",
+        "ticker_2": "NEW THEME EVERY MONTH",
         "ticker_3": "NATURAL MATERIALS",
         "ticker_4": "1.5 HOURS OF WONDER",
         "ticker_5": "SMALL GROUPS",
@@ -920,6 +925,10 @@ const translations = {
         "faq_a3": "Unsere Ecken und Materialien sind hauptsÍ¤chlich für Kinder ab dem Laufalter bis ca. 6-8 Jahre angepasst, wobei wir immer individuell auf die GÍ¤ste eingehen.",
         "faq_q4": "Betreut ihr die Kinder wÍ¤hrend des Hochzeitsessens?",
         "faq_a4": "Ja! Unsere Betreuerinnen kÍ¶nnen nicht nur im Bereich für freies Spiel prÍ¤sent sein, sondern auch die Kinder am Tisch wÍ¤hrend des Essens unterstützen.",
+        "faq_q5": "Was ist, wenn mein Kind eine Lebensmittelallergie hat?",
+        "faq_a5": "Kein Problem — teilt uns das einfach bei der Buchung mit, und wir sorgen dafür, dass der Raum für alle sicher ist.",
+        "faq_q6": "Müssen die Eltern während der Aktivität anwesend sein?",
+        "faq_a6": "Bei Workshops und dem Freien Spiel im Freien ermutigen wir die Erwachsenen, sich ebenfalls in die Beobachtung und das Spiel mit ihren Kindern einzutauchen. Bei Hochzeiten und personalisierten Events bieten wir eine bewusste und respektvolle Begleitung.",
         "faq_contact_btn": "Ich habe eine andere Frage, lass uns reden",
 
         "gallery_title": "Unsere Galerie",
@@ -1032,8 +1041,9 @@ const translations = {
 
         "footer_rights": "Urheberrecht &copy; ",
         "footer_designed": " Little Juego Libre | Mit Herz entworfen",
+        "nav_back_services": "Zurück zu Leistungen",
         "ticker_1": "FREIES SPIEL",
-        "ticker_2": "CADA MES CAMBIAMOS DE TEMATICA",
+        "ticker_2": "JEDEN MONAT EIN NEUES THEMA",
         "ticker_3": "NATÍœRLICHE MATERIALIEN",
         "ticker_4": "1.5 STUNDEN STAUNEN",
         "ticker_5": "KLEINE GRUPPEN",
@@ -1294,6 +1304,10 @@ const translations = {
         "faq_a3": "Els nostres racons i materials estan adaptats principalment per a petits des que caminen fins als 6-8 anys, encara que sempre personalitzam segons els convidats.",
         "faq_q4": "Cuidau els nins durant el banquet de bodes?",
         "faq_a4": "Sí! Les nostres animadores poden estar presents no només a la zona de Joc Lliure, sinó també donant suport a la taula dels nins durant el convit.",
+        "faq_q5": "I el meu fill té alguna al·lèrgia alimentària?",
+        "faq_a5": "Cap problema — feu-nos-ho saber quan feu la reserva i ens assegurarem que l'espai sigui totalment segur per a tothom.",
+        "faq_q6": "Els pares han d'estar presents durant l'activitat?",
+        "faq_a6": "Als tallers i al joc lliure exterior fomentam que els adults també s'endinsin en l'observació i el joc amb els seus fills. A bodes i esdeveniments personalitzats oferim un acompanyament conscient i respectuós.",
         "faq_contact_btn": "Tenc un altre dubte, parlem",
 
         "gallery_title": "La nostra Galeria",
@@ -1406,8 +1420,9 @@ const translations = {
 
         "footer_rights": "Drets d'Autor &copy; ",
         "footer_designed": " Little Juego Libre | Dissenyat amb Í nima",
+        "nav_back_services": "Tornar a Serveis",
         "ticker_1": "JOC LLIURE",
-        "ticker_2": "CADA MES CAMBIAMOS DE TEMATICA",
+        "ticker_2": "NOVA TEMÀTICA CADA MES",
         "ticker_3": "MATERIALS NATURALS",
         "ticker_4": "1.5 HORES D'ASTORAMENT",
         "ticker_5": "GRUPS REDUÍTS",
@@ -1469,7 +1484,9 @@ const translations = {
         "int_zones_desc": "Casetes de fusta, cuina de joc, zona de trasvases sensorials i racó d'art — tot distribuÍ¯t perquÍ¨ els petits flueixin d'una a l'altra naturalment.",
         "int_silence_title": "Silenci actiu",
         "int_silence_desc": "Música suau de fons, sense soroll extern, sense pantalles. Un entorn que afavoreix la concentració, l'astorament i la connexió entre adults i petits.",
-        "int_mat_title": "Materiales 100% naturals",
+        "int_alerg_title": "Al·lèrgies",
+        "int_alerg_desc": "Si el teu petit té alguna al·lèrgia, fes-nos-ho saber en el moment de reservar. Ens hi adaptem sense cap problema!",
+        "int_mat_title": "Materials 100% naturals",
         "int_mat_desc": "Tots els elements del local — fusta, vime, cotó, aliments naturals — són segurs per al tacte i la boca. Garantim un entorn sense químics.",
         "int_atmo_tag": "L'ambient",
         "int_atmo_title": "Cada racó, pensat",
@@ -1492,6 +1509,16 @@ const translations = {
         "int_cta_title": "Llista per reservar<br>una sessió interior?",
         "int_cta_desc": "Conta'ns l'edat del teu petit i et compartim la sessió perfecta. Les places són limitades — mÍ xim 8 nens per sessió.",
         "int_cta_btn": "Sol·licitar Reserva",
+        "colab_card_title": "THE GLAMPING",
+        "colab_the": "The ",
+        "colab_play_suffix": " Joc Lliure",
+        "colab_synergy_1": "Bodes",
+        "colab_synergy_2": "Esdeveniments",
+        "colab_synergy_3": "Disseny Sensorial",
+        "colab_desc": "De la nostra visió compartida neix <strong>Little Glamping</strong>, una col·laboració màgica per integrar àrees infantils en esdeveniments de forma natural i molt estètica. <br><br> Cream espais dissenyats amb mim dins de meravelloses tendes glamping, on els més petits poden gaudir amb total seguretat d'experiències sensorials i joc lliure, mentre els adults viuen l'esdeveniment amb tranquil·litat.",
+        "colab_btn": "Visitar The Glamping",
+        "colab_cta_title": "Tens un projecte similar?",
+        "colab_cta_desc": "Si treballes per fer del món un lloc més bonic per a la infància i creus que tenim una filosofia similar, ens encantaria conèixer-te.",
         "colab_cta_btn": "Contacta amb Nosaltres"
     },
     "fr": {
@@ -1537,7 +1564,7 @@ const translations = {
         "btn_leave_review": "Laisser un avis",
 
         "btn_saber_mas": "EN SAVOIR PLUS",
-        "btn_otro_moment": "PLUS TARD",
+        "btn_otro_momento": "PLUS TARD",
 
         "about_title": "Qui Sommes-Nous",
         "about_subtitle": "Marta M & Marta B",
@@ -1658,6 +1685,10 @@ const translations = {
         "faq_a3": "Nos coins et matériaux sont principalement adaptés aux plus petits dÍ¨s qu'ils marchent jusqu'Í  6-8 ans, bien que nous personnalisions toujours en fonction des invités.",
         "faq_q4": "Gardez-vous les enfants pendant le banquet de mariage ?",
         "faq_a4": "Oui ! Nos animatrices peuvent Íªtre présentes non seulement dans l'espace de jeu libre, but aussi en accompagnement Í  la table des enfants pendant le festin.",
+        "faq_q5": "Et si mon enfant a une allergie alimentaire ?",
+        "faq_a5": "Aucun problème — informez-nous simplement lors de la réservation et nous veillerons à ce que l'espace soit totalement sûr pour tout le monde.",
+        "faq_q6": "Les parents doivent-ils être présents pendant l'activité ?",
+        "faq_a6": "Lors des ateliers et du jeu libre en extérieur, nous encourageons les adultes à s'immerger eux aussi dans l'observation et le jeu avec leurs enfants. Pour les mariages et événements personnalisés, nous assurons un accompagnement conscient et respectueux.",
         "faq_contact_btn": "J'ai une autre question, parlons-en",
 
         "gallery_title": "Notre Galerie",
@@ -1757,9 +1788,9 @@ const translations = {
         "bd2_feat_3": "Nous proposons également des <strong>activités artistiques</strong> amusantes et immersives.",
         "bd2_feat_4": "Et bien plus encore, tout est pensé et fait avec <strong>soin, Í¢me et détail</strong>.",
         "bd2_cta_desc": "<span class=\"material-symbols-rounded\" style=\"font-weight: 300; font-size: 1.2rem; vertical-align: middle; margin-right: 5px;\">description</span> Nous vous enverrons un <strong>devis complet</strong> avec tout ce qui est inclus afin que vous sachiez Í  quoi ressemblera cette journée spéciale.<br><br><span class=\"material-symbols-rounded\" style=\"font-weight: 300; font-size: 1.2rem; vertical-align: middle; margin-right: 5px;\">chat_bubble_outline</span> Pour plus d'infos ou pour réserver une date, écrivez-nous sur WhatsApp ou par message direct. Nous avons hÍ¢te de l'organiser avec vous ! <span class=\"material-symbols-rounded\" style=\"font-weight: 300; font-size: 1.2rem; vertical-align: middle; margin-left: 5px;\">flare</span>",
-        "play_ext_cube": "Joc Lliure<br>Exterior",
+        "play_ext_cube": "Jeu Libre<br>Extérieur",
         "play_ext_lbl": "Jeu Libre en Extérieur",
-        "play_int_cube": "Joc Lliure<br>Interior",
+        "play_int_cube": "Jeu Libre<br>Intérieur",
         "play_int_lbl": "Jeu Libre en Intérieur",
         "play_prompt": "Sélectionnez l'une des deux options",
         "ext_hero_eyebrow": "Expérience en plein air · Majorque",
@@ -1770,8 +1801,9 @@ const translations = {
 
         "footer_rights": "Copyright &copy; ",
         "footer_designed": " Little Juego Libre | ConÍ§u avec Í¢me",
+        "nav_back_services": "Retour aux Services",
         "ticker_1": "JEU LIBRE",
-        "ticker_2": "CADA MES CAMBIAMOS DE TEMATICA",
+        "ticker_2": "UN NOUVEAU THÈME CHAQUE MOIS",
         "ticker_3": "MATÉRIAUX NATURELS",
         "ticker_4": "1.5 HEURES D'ÉMERVEILLEMENT",
         "ticker_5": "PETITS GROUPES",
@@ -1833,8 +1865,10 @@ const translations = {
         "int_zones_desc": "Cabanes en bois, cuisine de jeu, zone de transvasement sensoriel et coin artistique — le tout distribué de maniÍ¨re Í  ce que les enfants passent naturellement de l'un Í  l'autre.",
         "int_silence_title": "Silence actif",
         "int_silence_desc": "Musique de fond douce, pas de bruit extérieur, pas d'écrans. Un environnement qui favorise la concentration, l'émerveillement et la connexion entre adultes et enfants.",
+        "int_alerg_title": "Allergies",
+        "int_alerg_desc": "Si votre enfant a une allergie, merci de nous le signaler au moment de la réservation. Nous nous y adapterons sans aucun problème !",
         "int_mat_title": "Matériaux 100% naturels",
-        "int_mat_desc": "Tous les éléments du lieu — bois, osier, coton, aliments naturels — sont sÍ»rs pour le toucher et la bouche. Nous garantissons un environnement sans produits chimiques.",
+        "int_mat_desc": "Tous les éléments du lieu — bois, osier, coton, aliments naturels — sont sûrs pour le toucher et la bouche. Nous garantissons un environnement sans produits chimiques.",
         "int_atmo_tag": "L'ambiance",
         "int_atmo_title": "Chaque coin, pensé",
         "int_atmo_desc": "Le lieu n'est pas seulement un espace — c'est une expérience en soi dÍ¨s que vous entrez.",
@@ -1869,4 +1903,5 @@ const translations = {
         "colab_cta_btn": "Contactez-nous"
     }
 };
+
 

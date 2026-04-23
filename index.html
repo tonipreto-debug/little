@@ -8,7 +8,8 @@
     <meta name="description"
         content="Organizamos eventos personalizados y ofrecemos espacios para el juego libre infantil.">
     <link rel="preload" as="image" href="./assets/logo.png">
-    <link rel="preload" as="video" href="./assets/hero-video-1.mp4" type="video/mp4">
+    <!-- Preload central hero video for faster start -->
+    <link rel="preload" as="fetch" href="./assets/IMG_8361.MOV" crossorigin>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,14 +89,21 @@
         <!-- Hero Section -->
         <section class="hero" id="inicio">
             <div class="hero-video-background">
-                <div class="video-wrapper">
-                    <video autoplay loop muted playsinline webkit-playsinline poster="./assets/eventos-hero-1.jpg" src="./assets/hero-video-1.mp4"></video>
+                <!-- IZQUIERDA (desktop) -->
+                <div class="video-wrapper desktop-only-video">
+                    <video autoplay loop muted playsinline webkit-playsinline preload="none" src="./assets/IMG_8642.mp4"></video>
                 </div>
-                <div class="video-wrapper">
-                    <video autoplay loop muted playsinline webkit-playsinline poster="./assets/eventos-hero-2.jpg" src="./assets/IMG_8361.mp4"></video>
+                <!-- CENTRO (desktop) -->
+                <div class="video-wrapper desktop-only-video">
+                    <video autoplay loop muted playsinline webkit-playsinline preload="auto" src="./assets/hero-video-3.mp4"></video>
                 </div>
-                <div class="video-wrapper">
-                    <video autoplay loop muted playsinline webkit-playsinline poster="./assets/eventos-hero-3.jpg" src="./assets/hero-video-3.mp4"></video>
+                <!-- DERECHA (desktop) -->
+                <div class="video-wrapper desktop-only-video">
+                    <video autoplay loop muted playsinline webkit-playsinline preload="none" src="./assets/IMG_8361.mp4"></video>
+                </div>
+                <!-- MÓVIL: vídeo único a pantalla completa -->
+                <div class="video-wrapper mobile-hero-video">
+                    <video autoplay loop muted playsinline webkit-playsinline preload="auto" src="./assets/IMG_8642.mp4"></video>
                 </div>
             </div>
             <div class="hero-overlay"></div>
@@ -410,7 +418,7 @@
                     Nos encanta saber tu opinión y la de tu peque.<br>
                     <strong>Nota:</strong> Al enviarla nos llegará por correo privado para que la revisemos antes de que se publique en la web, de forma segura.
                 </p>
-                <form id="review-form" action="https://formsubmit.co/AQUI_TU_CORREO@GMAIL.COM" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 12px;">
+                <form id="review-form" action="https://formsubmit.co/little.juegolibre@gmail.com" method="POST" enctype="multipart/form-data" target="review-hidden-iframe" style="display: flex; flex-direction: column; gap: 12px;">
                     <input type="hidden" name="_subject" value="¡Nueva Reseña de Cliente (Lista para publicar)!">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="box">

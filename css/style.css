@@ -448,12 +448,43 @@ ul {
     z-index: 0;
 }
 
+/* Mobile-only video: hidden on desktop */
+.mobile-hero-video {
+    display: none;
+}
+
 @media (max-width: 768px) {
+    /* Switch to single column grid */
     .hero-video-background {
         grid-template-columns: 1fr;
+        gap: 0;
     }
-    .hero-video-background .video-wrapper:not(:nth-child(2)) {
-        display: none;
+
+    /* Hide the 3 desktop videos on mobile */
+    .desktop-only-video {
+        display: none !important;
+    }
+
+    /* Show and perfect the mobile video */
+    .mobile-hero-video {
+        display: block !important;
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    /* The video itself: cover the entire portrait screen beautifully */
+    .mobile-hero-video video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top; /* Frame top of the shot (usually the most interesting part) */
+        transform: none; /* Remove the translate trick, not needed for full cover */
     }
 }
 
@@ -471,7 +502,13 @@ ul {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top; /* Frame top of shot — best for portrait/vertical videos */
     transform: translate(-50%, -50%);
+}
+
+/* Center video (hero-video-3) is landscape — center framing is perfect */
+.desktop-only-video:nth-child(2) video {
+    object-position: center center;
 }
 
 .hero-overlay {
@@ -1215,6 +1252,15 @@ ul {
     display: flex;
     justify-content: center;
     gap: 30px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .footer-links {
+        gap: 15px;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .footer-links a {
@@ -3814,6 +3860,29 @@ ul {
         width: 100% !important;
         height: 100% !important;
     }
+
+/* Bono Popup: Mobile Compact Fix */
+@media (max-width: 768px) {
+    .gift-popup-overlay {
+        align-items: flex-end !important; /* Slide up from bottom on mobile */
+        padding: 0 !important;
+    }
+    .gift-popup-overlay .gift-popup-content {
+        max-height: 85vh !important;   /* Never taller than 85% of screen */
+        overflow-y: auto !important;   /* Scroll inside the popup if needed */
+        border-radius: 24px 24px 0 0 !important; /* Rounded only at top */
+        padding: 25px 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    /* Make sure the close button sticks at the top */
+    .gift-popup-overlay #bono-close-btn {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 10 !important;
+        float: right !important;
+    }
+}
 
 /* ==================================
    GLOBAL UI ELEMENTS (WhatsApp & Cookies)

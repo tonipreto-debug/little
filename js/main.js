@@ -18,12 +18,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Close menu when clicking a link
+    // Close menu when clicking a link (but NOT the parent dropdown toggler on mobile)
     navLinks.forEach(link => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (e) => {
+            const parentItem = link.closest('.nav-item.dropdown');
+            const isInsideDropdown = link.closest('.dropdown-menu');
+
+            if (parentItem && !isInsideDropdown) {
+                // On MOBILE: first click opens dropdown, don't navigate yet
+                if (window.innerWidth <= 991) {
+                    // If already open → allow navigation to servicios.html
+                    if (parentItem.classList.contains('open')) {
+                        // Close dropdown and let the link navigate normally
+                        parentItem.classList.remove('open');
+                        // Don't preventDefault → browser follows href
+                        return;
+                    }
+                    // First tap: just open the dropdown
+                    e.preventDefault();
+                    parentItem.classList.toggle('open');
+                    return;
+                }
+                // On DESKTOP: hover handles dropdown via CSS — click navigates directly
+                // Don't preventDefault → browser follows href to servicios.html
+                return;
+            }
+
+            // Sub-links or other nav items: close the whole nav
             navMenu.classList.remove('active');
             toggleBtn.querySelector('span').textContent = 'menu';
+            document.querySelectorAll('.nav-item.dropdown.open').forEach(el => el.classList.remove('open'));
         });
+    });
+
+    // Close any open dropdown when clicking outside of it
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-item.dropdown')) {
+            document.querySelectorAll('.nav-item.dropdown.open').forEach(el => el.classList.remove('open'));
+        }
     });
 
     // Header Background on Scroll
@@ -80,16 +112,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const bonoCloseBtn = document.getElementById('bono-close-btn');
 
     if (bonoPopup) {
-        // Show after 10 seconds
+        // Show after 1 minute (60,000ms)
         setTimeout(() => {
             // Check if user has already seen it in this session to avoid annoyance every page load
             if (!sessionStorage.getItem('bonoPopupShown')) {
                 bonoPopup.classList.add('show');
                 sessionStorage.setItem('bonoPopupShown', 'true');
-                // Disable body scroll when popup is open
-                document.body.style.overflow = 'hidden';
+                
+                // Auto-close after 10 seconds unless interacted with
+                let autoCloseTimeout = setTimeout(() => {
+                    bonoPopup.classList.remove('show');
+                    document.body.style.overflow = '';
+                }, 10000);
+
+                bonoPopup.addEventListener('mouseenter', () => clearTimeout(autoCloseTimeout));
+                bonoPopup.addEventListener('touchstart', () => clearTimeout(autoCloseTimeout), {passive: true});
             }
-        }, 10000);
+        }, 60000);
 
         if (bonoCloseBtn) {
             bonoCloseBtn.addEventListener('click', () => {
@@ -187,5 +226,50 @@ document.addEventListener('DOMContentLoaded', () => {
             panel.style.maxHeight = panel.scrollHeight + "px";
         }
     };
+
+    // --- Inyección Global de UI (WhatsApp y Cookies) ---
+    // 1. WhatsApp Flotante
+    if (!document.querySelector('.float-wa')) {
+        const waBtn = document.createElement('a');
+        waBtn.href = "https://wa.me/34603919414";
+        waBtn.className = "float-wa";
+        waBtn.target = "_blank";
+        waBtn.setAttribute('aria-label', "Escríbenos por WhatsApp");
+        waBtn.innerHTML = '<i class="fa-brands fa-whatsapp"></i>';
+        document.body.appendChild(waBtn);
+    }
+
+    // 2. Banner de Cookies
+    if (!localStorage.getItem('little_cookies_accepted') && !document.getElementById('cookieBanner')) {
+        const cookieDiv = document.createElement('div');
+        cookieDiv.className = 'cookie-banner';
+        cookieDiv.id = 'cookieBanner';
+        cookieDiv.innerHTML = `
+            <div class="cookie-content">
+                <p>Usamos galletas (cookies) propias y de terceros para darte la mejor experiencia en nuestra web. ✨</p>
+                <div class="cookie-buttons">
+                    <button id="acceptCookies" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem; border-radius: 30px;">¡Aceptar magia!</button>
+                    <button id="declineCookies" style="background:none; border:none; color: var(--color-text-light); text-decoration: underline; font-size: 0.8rem; cursor:pointer;">No, gracias</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(cookieDiv);
+        
+        // Mostrar con delay
+        setTimeout(() => cookieDiv.classList.add('show'), 2000);
+
+        // Lógica botones
+        document.getElementById('acceptCookies').addEventListener('click', () => {
+            localStorage.setItem('little_cookies_accepted', 'true');
+            cookieDiv.classList.remove('show');
+            setTimeout(() => cookieDiv.remove(), 500);
+        });
+        
+        document.getElementById('declineCookies').addEventListener('click', () => {
+            sessionStorage.setItem('little_cookies_accepted', 'declined'); // Expira al cerrar pestaña
+            cookieDiv.classList.remove('show');
+            setTimeout(() => cookieDiv.remove(), 500);
+        });
+    }
 
 });
